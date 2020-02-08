@@ -1,26 +1,38 @@
 package venn;
 
-public class Main {
+import javafx.scene.layout.BorderPane;
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+	 
 
-	public static void main(String[] args) {
+public class Main extends Application {
 	
-
-
-
-		System.out.println("Muneer with conflict");
-		System.out.println("Sid Sudarsan blah blah check for conflict");
-		System.out.println("hello");
-		System.out.println("world");
-		System.out.println("push");
-		System.out.println("was just testing ");
-		System.out.println("Areeba Abidi");
-		//testing123
-
-		System.out.println("commitandpushattemptAreeba");
-		
-		
-
-
-	}
+	public static void main(String[] args) {
+        launch(args);
+    }
+	 
+// JavaFX entry point
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("Demo.fxml"));
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}       
+    }
+	
+	
+	
+>>>>>>> refs/heads/sid_develop
 	
 }
+
