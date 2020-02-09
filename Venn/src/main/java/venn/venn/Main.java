@@ -31,10 +31,7 @@ public class Main extends Application {
     }
 	
 	
-	
->>>>>>> refs/heads/sid_develop
-//areeba edit
-	
+
 	
 }
 
