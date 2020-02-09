@@ -1,14 +1,19 @@
 package venn;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,25 +28,34 @@ public class AddDataController {
     public TextArea firstSet = new TextArea();
     @FXML
     public TextArea secondSet= new TextArea();
+    @FXML
+    AnchorPane root;
     
-    DemoController control = new DemoController();
+    public List<String> firstDataArray = new ArrayList<String>();
+	public List<String> secondDataArray = new ArrayList<String>();
+    
+
 	
 	
 	@FXML
-	private void doneButtonAction(){
-	    // get a handle to the stage
-	    Stage stage = (Stage) done.getScene().getWindow();
-	    // do what you have to do
-	    stage.close();
-	    getVennData();
+	private void doneButtonAction(ActionEvent event) throws IOException{
+		//Get stage information
+		Parent homeParent = FXMLLoader.load(getClass().getResource("Demo.fxml"));
+    	Scene addDataViewScene = new Scene(homeParent);
+    	
+    	//Get stage information
+    	Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    	
+    	window.setScene(addDataViewScene);
+    	window.show();
+    	
+    	getVennData();
+
 	}
 	
-	private void getVennData() {
+	private void getVennData() throws IOException {
 		String firstData = firstSet.getText();
 		String secondData = secondSet.getText();
-		
-		List<String> firstDataArray = new ArrayList<String>();
-		List<String> secondDataArray = new ArrayList<String>();
 		
 		Scanner scanner1 = new Scanner(firstData);
 		Scanner scanner2 = new Scanner(secondData);
@@ -57,15 +71,19 @@ public class AddDataController {
 		scanner2.close();
 		
 		
-//		System.out.println(firstDataArray.get(0));
-//		System.out.println(secondDataArray.get(0));
+		String a = firstDataArray.get(0);
+		String b = secondDataArray.get(0);
 		
 		
-		
-		control.displayText(firstDataArray, secondDataArray);
-		
-		
-		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Demo.fxml"));
+		AnchorPane pane = loader.load();
+		DemoController demoController = loader.getController();
+	    
+
+	    demoController.firstText.setText(a);
+	    demoController.firstText.setText(b);
+	    
+	    root.getChildren().setAll(pane);
 		
 	}
 }

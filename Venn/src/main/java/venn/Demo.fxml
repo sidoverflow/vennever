@@ -6,13 +6,13 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
   <children>
@@ -75,16 +75,16 @@
                         <DropShadow color="#000000a8" />
                      </effect>
                      <children>
-                        <StackPane layoutX="67.0" layoutY="33.0" prefHeight="150.0" prefWidth="200.0">
+                        <StackPane layoutX="67.0" layoutY="33.0">
                            <children>
+                              <TextArea fx:id="firstText" prefHeight="200.0" prefWidth="200.0" />
                               <Circle fx:id="pink" fill="#ff1fa566" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
-                              <Text fx:id="firstText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                            </children>
                         </StackPane>
-                        <StackPane layoutX="204.0" layoutY="33.0" prefHeight="150.0" prefWidth="200.0">
+                        <StackPane layoutX="204.0" layoutY="33.0">
                            <children>
+                              <TextArea fx:id="secondText" prefHeight="200.0" prefWidth="200.0" />
                               <Circle fx:id="blue" fill="#00ffe597" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
-                              <Text fx:id="secondText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                            </children>
                         </StackPane>
                      </children>
