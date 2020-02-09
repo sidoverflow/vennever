@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.AddDataController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.AddDataController">
    <children>
       <Label layoutX="175.0" layoutY="7.0" prefHeight="28.0" prefWidth="250.0" text="Add Data to Venn Diagram">
          <font>
@@ -31,6 +31,11 @@
          </font>
       </Label>
       <Button fx:id="done" layoutX="271.0" layoutY="331.0" mnemonicParsing="false" onAction="#doneButtonAction" text="DONE">
+         <font>
+            <Font name="Montserrat Medium" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="back" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonAction" text="BACK">
          <font>
             <Font name="Montserrat Medium" size="13.0" />
          </font>

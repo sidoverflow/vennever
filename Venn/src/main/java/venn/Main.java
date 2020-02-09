@@ -23,6 +23,7 @@ public class Main extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("Demo.fxml"));
 			Scene scene = new Scene(root);
+			primaryStage.setTitle("Venn Builder");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
