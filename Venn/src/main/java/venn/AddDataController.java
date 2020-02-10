@@ -16,8 +16,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import venn.TextCreator.EditableDraggableText;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
