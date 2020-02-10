@@ -6,15 +6,14 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -57,36 +56,44 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefWidth="477.0" VBox.vgrow="ALWAYS">
          <children>
-            <AnchorPane prefHeight="371.0" prefWidth="74.0" style="-fx-background-color: #474545#474545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane prefHeight="371.0" prefWidth="97.0" style="-fx-background-color: #474545#474545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="button" layoutX="20.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="29.0" prefWidth="34.0" text="ADD" textAlignment="CENTER">
+                  <Button fx:id="button" alignment="CENTER" layoutX="4.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="29.0" prefWidth="78.0" text="ADD DATA" textAlignment="CENTER">
                      <font>
-                        <Font name="Montserrat SemiBold" size="8.0" />
+                        <Font name="Montserrat SemiBold" size="9.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-               </children></AnchorPane>
-            <AnchorPane layoutX="74.0" layoutY="45.0" prefHeight="327.0" prefWidth="567.0" style="-fx-background-color: #F5EFEF#F5EFEF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitMenuButton fx:id="splitMenuButton" alignment="CENTER" layoutX="4.0" layoutY="64.0" mnemonicParsing="false" onAction="#menuClick" prefHeight="27.0" prefWidth="78.0" text="COLOR" textAlignment="CENTER">
+                    <items>
+                      <MenuItem fx:id="lButton" mnemonicParsing="false" onAction="#leftCircleColour" text="Left Circle" />
+                      <MenuItem fx:id="rButton" mnemonicParsing="false" onAction="#rightCircleColour" text="Right Circle" />
+                    </items>
+                     <font>
+                        <Font name="Montserrat SemiBold" size="9.0" />
+                     </font>
+                  </SplitMenuButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="89.0" layoutY="45.0" prefHeight="371.0" prefWidth="551.0" style="-fx-background-color: #F5EFEF#F5EFEF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane layoutX="31.0" layoutY="40.0" prefHeight="266.0" prefWidth="505.0" style="-fx-background-color: ffffff;">
+                  <AnchorPane fx:id="canvas" layoutX="31.0" layoutY="40.0" prefHeight="266.0" prefWidth="487.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="40.0">
                      <effect>
                         <DropShadow color="#000000a8" />
                      </effect>
                      <children>
-                        <StackPane layoutX="67.0" layoutY="33.0">
+                        <AnchorPane fx:id="lPane" layoutX="34.0" layoutY="33.0" prefHeight="208.0" prefWidth="200.0">
                            <children>
-                              <Circle fx:id="pink" fill="#ff1fa566" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
-                              <TextField fx:id="firstText" />
+                              <Circle fx:id="lCircle" fill="#ff1fa566" layoutX="126.0" layoutY="104.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
                            </children>
-                        </StackPane>
-                        <StackPane layoutX="204.0" layoutY="33.0">
+                        </AnchorPane>
+                        <AnchorPane fx:id="rPane" layoutX="204.0" layoutY="33.0" prefHeight="200.0" prefWidth="182.0">
                            <children>
-                              <Circle fx:id="blue" fill="#00ffe597" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
-                              <TextField fx:id="secondText" />
+                              <Circle fx:id="rCircle" fill="#00ffe597" layoutX="86.0" layoutY="100.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
                            </children>
-                        </StackPane>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </children>

@@ -95,7 +95,11 @@ public class AddDataController {
     	
     	Stage stage = new Stage(StageStyle.DECORATED);
 		stage.setTitle("Venn Builder");
-		stage.setScene(new Scene(parent));
+		Scene scene = new Scene(parent);
+		scene.getStylesheets().add(getClass().getResource(
+	            "editable-text.css"
+	        ).toExternalForm());
+		stage.setScene(scene);
 		stage.show();
 		
 		
