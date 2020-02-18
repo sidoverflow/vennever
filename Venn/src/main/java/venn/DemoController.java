@@ -32,6 +32,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -40,12 +41,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.control.*;
 
 public class DemoController {
+	@FXML
+    private Button button = new Button();
+	@FXML
+    private Button addLabel = new Button();
 	@FXML
 	private MenuItem lButton = new MenuItem();
 	@FXML
@@ -63,12 +69,24 @@ public class DemoController {
     @FXML
     private AnchorPane rPane = new AnchorPane();
     
+    
+      
+    
     @FXML
     public void handleButtonAction(ActionEvent event) throws IOException{
     	loadScene(event, "AddData.fxml", "Add Data");
 
     }
     
+    @FXML
+    public void textButton(ActionEvent event) throws IOException{
+    	canvas.getChildren().addAll(
+                new EditableDraggableText(0, 0, "type here")
+        );
+    
+    }
+    
+   
     void loadScene(ActionEvent event, String loc, String title) throws IOException{
 //    	try {
 //    		Parent parent = FXMLLoader.load(getClass().getResource(loc));
@@ -97,12 +115,36 @@ public class DemoController {
   	}
     
     public void inflateCircle(List<String> first, List<String> second) {
-    	lPane.getChildren().addAll(
-                new EditableDraggableText(0, 0, first.get(0))
-        );
-    	rPane.getChildren().addAll(
-                new EditableDraggableText(0, 0, second.get(0))
-        );
+    	
+    	List<String> intersection = new ArrayList<String>();
+    	for (int i = 0; i < first.size(); i++) {
+    		for (int j = 0; j < second.size(); j++) {
+    			if (first.get(i).equals(second.get(j))) {
+    				intersection.add(first.get(i));
+    			}
+    		}
+    	}
+    	
+    	for (int i = 0; i < intersection.size(); i++) {
+    		first.remove(intersection.get(i));
+    		second.remove(intersection.get(i));
+    	}
+    	int yCoordI = 60;
+    	for (int i = 0; i < intersection.size(); i++) {
+			rPane.getChildren().addAll(new EditableDraggableText(0, yCoordI, intersection.get(i)));
+			yCoordI += 40;
+		}
+    	
+    	int yCoordL = 30;
+    	for (int i = 0; i < first.size(); i++) {
+			lPane.getChildren().addAll(new EditableDraggableText(100, yCoordL, first.get(i)));
+			yCoordL += 40;
+		}
+    	int yCoordR = 30;
+    	for (int i = 0; i < second.size(); i++) {
+			rPane.getChildren().addAll(new EditableDraggableText(80, yCoordR, second.get(i)));
+			yCoordR += 40;
+		}
     }
     
   //to change the colour of the left circle
@@ -235,14 +277,11 @@ public class DemoController {
         private class Delta {
             double x, y;
         }
+        
+        
+        
+        
+        
     } 
-    
-    
-   
-    
-    
-    
-    
-    
     
 }

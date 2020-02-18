@@ -24,6 +24,9 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("Demo.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("Venn Builder");
+			scene.getStylesheets().add(getClass().getResource(
+		            "editable-text.css"
+		        ).toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
