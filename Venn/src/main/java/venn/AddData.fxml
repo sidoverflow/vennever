@@ -6,39 +6,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.AddDataController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1250.0" style="-fx-background-color: e6e6e6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.AddDataController">
    <children>
-      <Label layoutX="175.0" layoutY="7.0" prefHeight="28.0" prefWidth="250.0" text="Add Data to Venn Diagram">
+      <Label layoutX="488.0" layoutY="20.0" prefHeight="28.0" prefWidth="306.0" text="Add Data to Venn Diagram">
          <font>
-            <Font name="Montserrat Medium" size="17.0" />
+            <Font name="Montserrat Medium" size="22.0" />
          </font>
       </Label>
-      <TextArea fx:id="firstSet" layoutX="75.0" layoutY="72.0" prefHeight="245.0" prefWidth="200.0" />
-      <TextArea fx:id="secondSet" layoutX="325.0" layoutY="72.0" prefHeight="245.0" prefWidth="200.0" />
-      <Label layoutX="142.0" layoutY="43.0" text="FIRST SET">
+      <TextArea fx:id="secondSet" layoutX="661.0" layoutY="123.0" prefHeight="375.0" prefWidth="530.0" />
+      <Label layoutX="258.0" layoutY="89.0" text="FIRST SET">
          <font>
-            <Font name="Montserrat SemiBold" size="13.0" />
+            <Font name="Montserrat SemiBold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="382.0" layoutY="43.0" text="SECOND SET">
+      <Label layoutX="910.0" layoutY="85.0" prefHeight="33.0" prefWidth="133.0" text="SECOND SET">
          <font>
-            <Font name="Montserrat SemiBold" size="13.0" />
+            <Font name="Montserrat SemiBold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="146.0" layoutY="369.0" text="Enter data for each set separated by a new line">
+      <Label layoutX="467.0" layoutY="597.0" text="Enter data for each set separated by a new line">
          <font>
             <Font name="Montserrat Light Italic" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="done" layoutX="271.0" layoutY="331.0" mnemonicParsing="false" onAction="#doneButtonAction" text="DONE">
+      <Button fx:id="done" layoutX="572.0" layoutY="517.0" mnemonicParsing="false" onAction="#doneButtonAction" prefHeight="51.0" prefWidth="99.0" text="DONE">
+         <font>
+            <Font name="Montserrat Medium" size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="back" layoutX="29.0" layoutY="22.0" mnemonicParsing="false" onAction="#backButtonAction" text="BACK">
          <font>
             <Font name="Montserrat Medium" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="back" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonAction" text="BACK">
-         <font>
-            <Font name="Montserrat Medium" size="13.0" />
-         </font>
-      </Button>
+      <TextArea fx:id="firstSet" layoutX="58.0" layoutY="123.0" prefHeight="373.0" prefWidth="530.0" />
    </children>
 </AnchorPane>

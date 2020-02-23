@@ -12,6 +12,8 @@ import com.sun.javafx.tk.FontMetrics;
 import com.sun.javafx.tk.Toolkit;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,7 +51,7 @@ import javafx.scene.control.*;
 
 public class DemoController {
 	@FXML
-    private Button button = new Button();
+    private Button addData = new Button();
 	@FXML
     private Button addLabel = new Button();
 	@FXML
@@ -65,18 +67,28 @@ public class DemoController {
 	@FXML
 	public Circle rCircle = new Circle();
     @FXML
-    private AnchorPane lPane = new AnchorPane();
+    private AnchorPane pane = new AnchorPane();
     @FXML
-    private AnchorPane rPane = new AnchorPane();
+    private AnchorPane mainFrame = new AnchorPane();
     
     
-      
+    public int count = 0;
+    int yCoordI = 80;
+    int yCoordL = 30;
+	int yCoordR = 30;
     
-    @FXML
-    public void handleButtonAction(ActionEvent event) throws IOException{
-    	loadScene(event, "AddData.fxml", "Add Data");
+    
+    private Scene secondScene;
 
+    public void setSecondScene(Scene scene) {
+        secondScene = scene;
     }
+
+    public void openSecondScene(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(secondScene);
+    }
+   
     
     @FXML
     public void textButton(ActionEvent event) throws IOException{
@@ -114,8 +126,10 @@ public class DemoController {
   		splitMenuButton.getItems().add(rButton);
   	}
     
-    public void inflateCircle(List<String> first, List<String> second) {
+    public void inflateCircle(List<String> first, List<String> second){
     	
+    	
+    	//find the elements of the intersection set of the two user-input data sets and add them to an array called intersection
     	List<String> intersection = new ArrayList<String>();
     	for (int i = 0; i < first.size(); i++) {
     		for (int j = 0; j < second.size(); j++) {
@@ -125,26 +139,67 @@ public class DemoController {
     		}
     	}
     	
+    	
+    	//remove the intersecting elements from the respective arrays
     	for (int i = 0; i < intersection.size(); i++) {
     		first.remove(intersection.get(i));
     		second.remove(intersection.get(i));
     	}
-    	int yCoordI = 60;
+    	
+    	//display the elements of the intersection set one below the other by incrementing the y coordinate of the draggable textbox in a loop
+    	
     	for (int i = 0; i < intersection.size(); i++) {
-			rPane.getChildren().addAll(new EditableDraggableText(0, yCoordI, intersection.get(i)));
+    		
+    		EditableDraggableText text = new EditableDraggableText(300, yCoordI, intersection.get(i));
+    		
+    		text.setOnMouseClicked(mouseEvent -> {
+            	try {
+					customizeText(mouseEvent, text);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            });
+			pane.getChildren().addAll(text);
 			yCoordI += 40;
 		}
     	
-    	int yCoordL = 30;
+    	//display the elements of the first set one below the other by incrementing the y coordinate of the draggable textbox in a loop
+    	
     	for (int i = 0; i < first.size(); i++) {
-			lPane.getChildren().addAll(new EditableDraggableText(100, yCoordL, first.get(i)));
+    		EditableDraggableText text = new EditableDraggableText(190, yCoordL, first.get(i));
+    		text.setOnMouseClicked(mouseEvent -> {
+            	try {
+					customizeText(mouseEvent, text);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            });
+			pane.getChildren().addAll(text);
 			yCoordL += 40;
 		}
-    	int yCoordR = 30;
+    	
+    	//display the elements of the second set one below the other by incrementing the y coordinate of the draggable textbox in a loop
+    	
     	for (int i = 0; i < second.size(); i++) {
-			rPane.getChildren().addAll(new EditableDraggableText(80, yCoordR, second.get(i)));
+    		
+			EditableDraggableText text = new EditableDraggableText(410, yCoordR, second.get(i));
+    		text.setOnMouseClicked(mouseEvent -> {
+            	try {
+					customizeText(mouseEvent, text);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            });
+			pane.getChildren().addAll(text);
 			yCoordR += 40;
 		}
+    }
+    
+    public void customizeText(MouseEvent event, EditableDraggableText text) throws IOException {
+    	
     }
     
   //to change the colour of the left circle
@@ -152,8 +207,8 @@ public class DemoController {
   		  ColorPicker colorPicker = new ColorPicker();
           VBox box = new VBox(colorPicker);
           canvas.getChildren().add(box);
-          lCircle.setFill(colorPicker.getValue());
-          lCircle.setOpacity(0.30);
+          //lCircle.setFill(colorPicker.getValue());
+          //lCircle.setOpacity(0.30);
           colorPicker.setOnAction(new EventHandler() {
           public void handle(Event t) {
               lCircle.setFill(colorPicker.getValue());           
@@ -168,8 +223,8 @@ public class DemoController {
   		  ColorPicker colorPicker = new ColorPicker();
           VBox vBox = new VBox(colorPicker);
           canvas.getChildren().add(vBox);
-          rCircle.setFill(colorPicker.getValue());
-          rCircle.setOpacity(0.30);
+          //rCircle.setFill(colorPicker.getValue());
+          //rCircle.setOpacity(0.30);
           colorPicker.setOnAction(new EventHandler() {
               public void handle(Event t) {
                   rCircle.setFill(colorPicker.getValue());      
@@ -234,8 +289,21 @@ public class DemoController {
 
             enableDrag();
         }
+        
+        
 
-        public EditableDraggableText(int x, int y, String text) {
+        public EditableText getText() {
+			return this.text;
+		}
+
+
+		public void setText(EditableText text) {
+			this.text = text;
+		}
+
+
+
+		public EditableDraggableText(int x, int y, String text) {
             this(x, y);
             this.text.setText(text);
         }
@@ -243,6 +311,7 @@ public class DemoController {
         // make a node movable by dragging it around with the mouse.
         private void enableDrag() {
             final Delta dragDelta = new Delta();
+            
             setOnMousePressed(mouseEvent -> {
                 this.toFront();
                 // record a delta distance for the drag and drop operation.
@@ -277,6 +346,7 @@ public class DemoController {
         private class Delta {
             double x, y;
         }
+        
         
         
         

@@ -38,70 +38,65 @@ public class AddDataController {
     @FXML
     AnchorPane root = new AnchorPane();
     
-    public List<String> firstDataArray = new ArrayList<String>();
-	public List<String> secondDataArray = new ArrayList<String>();
+    
 	
 	
-	
-    void loadScene(ActionEvent event, String loc, String title) throws IOException{
-    	Parent parent = FXMLLoader.load(getClass().getResource(loc));
-    	Scene scene = new Scene(parent);
-    	
-    	//Get stage information
-    	Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-    	window.setTitle(title);
-    	window.setScene(scene);
-    	window.show();
-    }
-   
-	
-	@FXML
-	private void doneButtonAction(ActionEvent event) throws IOException{
-		// get a handle to the stage
-	    Stage stage = (Stage) done.getScene().getWindow();
-	    // do what you have to do
-	    stage.close();
-    	getVennData();
-    	
+	private Scene firstScene;
+	private DemoController firstController;
 
+    public void setFirstScene(Scene scene) {
+        firstScene = scene;
+    }
+    
+    public void setFirstController(DemoController controller) {
+        firstController = controller;
+    }
+
+    public void openFirstScene(ActionEvent actionEvent) throws IOException {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(firstScene);
+        firstScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
+        
+    }
+    @FXML
+	private void doneButtonAction(ActionEvent event) throws IOException{
+		getVennData();
+		openFirstScene(event);
+		
 	}
+	
+   
 	@FXML
 	private void backButtonAction(ActionEvent event) throws IOException{
-		loadScene(event, "Demo.fxml", "Venn Builder");
+		openFirstScene(event);
+		
 	}
 	
 	private void getVennData() throws IOException {
+		
+		List<String> firstDataArray = new ArrayList<String>();
+		List<String> secondDataArray = new ArrayList<String>();
 		String firstData = firstSet.getText();
 		String secondData = secondSet.getText();
 		
+	
 		Scanner scanner1 = new Scanner(firstData);
 		Scanner scanner2 = new Scanner(secondData);
 		while (scanner1.hasNextLine()) {
-		  String line = scanner1.nextLine();
-		  firstDataArray.add(line);
+			String line = scanner1.nextLine();
+			firstDataArray.add(line);
 		}
 		while (scanner2.hasNextLine()) {
-		  String line = scanner2.nextLine();
-		  secondDataArray.add(line);
+			String line = scanner2.nextLine();
+			secondDataArray.add(line);
 		}
 		scanner1.close();
 		scanner2.close();
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Demo.fxml"));
-    	Parent parent = loader.load();
-    	
-    	DemoController controller = (DemoController) loader.getController();
-    	controller.inflateCircle(firstDataArray, secondDataArray);
-    	
-    	Stage stage = new Stage(StageStyle.DECORATED);
-		stage.setTitle("Venn Builder");
-		Scene scene = new Scene(parent);
-		scene.getStylesheets().add(getClass().getResource(
-	            "editable-text.css"
-	        ).toExternalForm());
-		stage.setScene(scene);
-		stage.show();
 		
+		firstController.inflateCircle(firstDataArray, secondDataArray);
+		
+	
 		
 	}
 }

@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.191" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
+<VBox prefHeight="650.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -58,7 +58,7 @@
          <children>
             <AnchorPane prefHeight="371.0" prefWidth="97.0" style="-fx-background-color: #474545#474545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="button" alignment="CENTER" layoutX="4.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="29.0" prefWidth="78.0" text="ADD DATA" textAlignment="CENTER">
+                  <Button fx:id="addData" alignment="CENTER" layoutX="4.0" layoutY="23.0" mnemonicParsing="false" onAction="#openSecondScene" prefHeight="29.0" prefWidth="78.0" text="ADD DATA" textAlignment="CENTER">
                      <font>
                         <Font name="Montserrat SemiBold" size="9.0" />
                      </font>
@@ -92,14 +92,10 @@
                         <DropShadow color="#000000a8" />
                      </effect>
                      <children>
-                        <AnchorPane fx:id="lPane" layoutX="34.0" layoutY="33.0" prefHeight="208.0" prefWidth="226.0">
+                        <AnchorPane fx:id="pane" layoutX="228.0" layoutY="63.0" >
                            <children>
-                              <Circle fx:id="lCircle" fill="#ff1fa566" layoutX="126.0" layoutY="104.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="rPane" layoutX="211.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Circle fx:id="rCircle" fill="#00ffe597" layoutX="86.0" layoutY="100.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
+                              <Circle fx:id="rCircle" fill="#1fff7c74" layoutX="432.0" layoutY="209.0" radius="200.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="7.0" />
+                              <Circle fx:id="lCircle" fill="#1f93ff96" layoutX="201.0" layoutY="207.0" radius="200.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="7.0" />
                            </children>
                         </AnchorPane>
                      </children>
