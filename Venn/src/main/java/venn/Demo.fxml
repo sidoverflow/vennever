@@ -56,7 +56,7 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefWidth="477.0" VBox.vgrow="ALWAYS">
          <children>
-            <AnchorPane prefHeight="371.0" prefWidth="97.0" style="-fx-background-color: #474545#474545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="toolbar" prefHeight="371.0" prefWidth="97.0" style="-fx-background-color: #474545#474545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="addData" alignment="CENTER" layoutX="4.0" layoutY="23.0" mnemonicParsing="false" onAction="#openSecondScene" prefHeight="29.0" prefWidth="78.0" text="ADD DATA" textAlignment="CENTER">
                      <font>
@@ -83,6 +83,46 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Button fx:id="bold" alignment="CENTER" layoutX="5.0" layoutY="144.0" mnemonicParsing="false" onAction="#boldButton" prefHeight="29.0" prefWidth="78.0" text="BOLD" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat Black" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="italics" alignment="CENTER" layoutX="5.0" layoutY="184.0" mnemonicParsing="false" onAction="#italicsButton" prefHeight="29.0" prefWidth="78.0" text="ITALICS" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat SemiBold Italic" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="circleSize" alignment="CENTER" layoutX="5.0" layoutY="224.0" mnemonicParsing="false" onAction="#circleSizeAction" prefHeight="29.0" prefWidth="78.0" text="CIRCLE SIZE" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="undoButton" alignment="CENTER" layoutX="4.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleUndoButtonAction" prefHeight="29.0" prefWidth="78.0" text="UNDO" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="redoButton" alignment="CENTER" layoutX="4.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleRedoButtonAction" prefHeight="29.0" prefWidth="78.0" text=" REDO" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="89.0" layoutY="45.0" prefHeight="371.0" prefWidth="551.0" style="-fx-background-color: #F5EFEF#F5EFEF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -92,7 +132,7 @@
                         <DropShadow color="#000000a8" />
                      </effect>
                      <children>
-                        <AnchorPane fx:id="pane" layoutX="228.0" layoutY="63.0" >
+                        <AnchorPane fx:id="pane" layoutX="228.0" layoutY="63.0">
                            <children>
                               <Circle fx:id="rCircle" fill="#1fff7c74" layoutX="432.0" layoutY="209.0" radius="200.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="7.0" />
                               <Circle fx:id="lCircle" fill="#1f93ff96" layoutX="201.0" layoutY="207.0" radius="200.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="7.0" />
