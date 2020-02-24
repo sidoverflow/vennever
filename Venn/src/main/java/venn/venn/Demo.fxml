@@ -6,15 +6,14 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
+<VBox prefHeight="650.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -50,43 +49,95 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+            <MenuItem mnemonicParsing="false" text="About VennBuilder" />
           </items>
         </Menu>
       </menus>
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefWidth="477.0" VBox.vgrow="ALWAYS">
          <children>
-            <AnchorPane prefHeight="371.0" prefWidth="74.0" style="-fx-background-color: #474545#474545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="toolbar" prefHeight="371.0" prefWidth="97.0" style="-fx-background-color: #474545#474545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="button" layoutX="20.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="29.0" prefWidth="34.0" text="ADD" textAlignment="CENTER">
+                  <Button fx:id="addData" alignment="CENTER" layoutX="4.0" layoutY="23.0" mnemonicParsing="false" onAction="#openSecondScene" prefHeight="29.0" prefWidth="78.0" text="ADD DATA" textAlignment="CENTER">
                      <font>
-                        <Font name="Montserrat SemiBold" size="8.0" />
+                        <Font name="Montserrat SemiBold" size="9.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-               </children></AnchorPane>
-            <AnchorPane layoutX="74.0" layoutY="45.0" prefHeight="327.0" prefWidth="567.0" style="-fx-background-color: #F5EFEF#F5EFEF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitMenuButton fx:id="splitMenuButton" alignment="CENTER" layoutX="4.0" layoutY="64.0" mnemonicParsing="false" onAction="#menuClick" prefHeight="27.0" prefWidth="78.0" text="COLOR" textAlignment="CENTER">
+                    <items>
+                      <MenuItem fx:id="lButton" mnemonicParsing="false" onAction="#leftCircleColour" text="Left Circle" />
+                      <MenuItem fx:id="rButton" mnemonicParsing="false" onAction="#rightCircleColour" text="Right Circle" />
+                    </items>
+                     <font>
+                        <Font name="Montserrat SemiBold" size="9.0" />
+                     </font>
+                  </SplitMenuButton>
+                  <Button fx:id="addLabel" alignment="CENTER" layoutX="4.0" layoutY="103.0" mnemonicParsing="false" onAction="#textButton" prefHeight="29.0" prefWidth="78.0" text="ADD LABEL" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="bold" alignment="CENTER" layoutX="5.0" layoutY="144.0" mnemonicParsing="false" onAction="#boldButton" prefHeight="29.0" prefWidth="78.0" text="BOLD" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat Black" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="italics" alignment="CENTER" layoutX="5.0" layoutY="184.0" mnemonicParsing="false" onAction="#italicsButton" prefHeight="29.0" prefWidth="78.0" text="ITALICS" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat SemiBold Italic" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="circleSize" alignment="CENTER" layoutX="5.0" layoutY="224.0" mnemonicParsing="false" onAction="#circleSizeAction" prefHeight="29.0" prefWidth="78.0" text="CIRCLE SIZE" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="undoButton" alignment="CENTER" layoutX="4.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleUndoButtonAction" prefHeight="29.0" prefWidth="78.0" text="UNDO" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="redoButton" alignment="CENTER" layoutX="4.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleRedoButtonAction" prefHeight="29.0" prefWidth="78.0" text=" REDO" textAlignment="CENTER">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="9.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="89.0" layoutY="45.0" prefHeight="371.0" prefWidth="551.0" style="-fx-background-color: #F5EFEF#F5EFEF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane layoutX="31.0" layoutY="40.0" prefHeight="266.0" prefWidth="505.0" style="-fx-background-color: ffffff;">
+                  <AnchorPane fx:id="canvas" layoutX="31.0" layoutY="40.0" prefHeight="266.0" prefWidth="487.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="40.0">
                      <effect>
                         <DropShadow color="#000000a8" />
                      </effect>
                      <children>
-                        <StackPane layoutX="67.0" layoutY="33.0" prefHeight="150.0" prefWidth="200.0">
+                        <AnchorPane fx:id="pane" layoutX="228.0" layoutY="63.0">
                            <children>
-                              <Circle fx:id="pink" fill="#ff1fa566" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
-                              <Text fx:id="firstText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                              <Circle fx:id="rCircle" fill="#1fff7c74" layoutX="432.0" layoutY="209.0" radius="200.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="7.0" />
+                              <Circle fx:id="lCircle" fill="#1f93ff96" layoutX="201.0" layoutY="207.0" radius="200.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="7.0" />
                            </children>
-                        </StackPane>
-                        <StackPane layoutX="204.0" layoutY="33.0" prefHeight="150.0" prefWidth="200.0">
-                           <children>
-                              <Circle fx:id="blue" fill="#00ffe597" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" />
-                              <Text fx:id="secondText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                           </children>
-                        </StackPane>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </children>
