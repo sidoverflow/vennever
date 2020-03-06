@@ -118,7 +118,6 @@ public class AddDataController {
 		}
 		scanner1.close();
 		scanner2.close();
-		
 
     	
     	
