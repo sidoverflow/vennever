@@ -32,23 +32,23 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: cd CounterCI && gradle dependencies
+      - run: cd Venn && gradle dependencies
 
       - save_cache:
           paths:
             - ~/.gradle
-          key: v1-dependencies-{{ checksum "CounterCI/build.gradle" }}
+          key: v1-dependencies-{{ checksum "Venn/build.gradle" }}
 
       # run tests!
-      - run: cd CounterCI && gradle test
+      - run: cd Venn && gradle test
 
       - run: 
           name: "Build and Publish Release on GitHub"
           command: |
             NOW="$(date)" 
-            ZIP_FILE_NAME=CounterCI
+            ZIP_FILE_NAME=Venn
             TAG=Release-$(date '+%Y-%m-%d-%H-%M-%S')
-            cd CounterCI
+            cd Venn
             gradle jar
             cd ./build/libs/
             zip ${ZIP_FILE_NAME}.zip CounterCI.jar 
