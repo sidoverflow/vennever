@@ -1,0 +1,63 @@
+# Java Gradle CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      #- image: circleci/openjdk:8-jdk
+      - image: danielmapar/gradle_and_node:2.0
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "CounterCI/build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: cd CounterCI && gradle dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "CounterCI/build.gradle" }}
+
+      # run tests!
+      - run: cd CounterCI && gradle test
+
+      - run: 
+          name: "Build and Publish Release on GitHub"
+          command: |
+            NOW="$(date)" 
+            ZIP_FILE_NAME=CounterCI
+            TAG=Release-$(date '+%Y-%m-%d-%H-%M-%S')
+            cd CounterCI
+            gradle jar
+            cd ./build/libs/
+            zip ${ZIP_FILE_NAME}.zip CounterCI.jar 
+            github-release upload --token ${GITHUB_TOKEN} --owner ${PROJECT_USERNAME} --repo ${PROJECT_REPONAME} --tag ${TAG} --name ${TAG} --body "Release date: ${NOW}" ${ZIP_FILE_NAME}.zip
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
