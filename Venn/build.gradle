@@ -23,6 +23,9 @@ repositories {
     mavenCentral()
 }
 
+java {
+	sourceCompatibility = JavaVersion.VERSION_12
+}
 
 javafx {
     version = "13"
