@@ -372,7 +372,7 @@ public class DemoController {
 			getChildren().add(tf);
 			getStyleClass().add("editable-draggable-text");
 			enableDrag();
-
+			
 		}
 
 		public EditableLabel(String str) {
