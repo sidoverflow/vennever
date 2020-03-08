@@ -114,8 +114,13 @@ public class DemoController {
 
 	@FXML
 	public void textButton(ActionEvent event) throws IOException {
-		canvas.getChildren().addAll(new EditableLabel(0, 0, "type here"));
-
+		EditableLabel newLABEL = new EditableLabel(0, 0, "type here");
+		canvas.getChildren().addAll(newLABEL);
+		Operation change = new Operation();
+		change.setOperation("label");
+		change.setLabel(newLABEL);
+		undoStack.push(change);
+		
 	}
 
 	// initializing the split menu button
@@ -338,6 +343,10 @@ public class DemoController {
 			lCircle.setRadius(oldSize);
 			rCircle.setRadius(oldSize);
 		}
+		else if (operation.equals("label")) {
+			EditableLabel oldLabel = undo.getlabel();
+			canvas.getChildren().removeAll(oldLabel);
+		}
 
 	}
 
@@ -348,12 +357,19 @@ public class DemoController {
 		undoStack.push(redo);
 		String operation = redo.getOperation();
 		if (operation.equals("color")) {
+			
 			Color undoneColor = redo.getNewColor();
 			redo.getCircle().setFill(undoneColor);
+			
 		} else if (operation.equals("size")) {
+			
 			double undoneSize = redo.getNewCircleSize();
 			lCircle.setRadius(undoneSize);
 			rCircle.setRadius(undoneSize);
+			
+		}else if ( operation.equals("label")) {
+			EditableLabel undoneLabel = redo.getlabel();
+			canvas.getChildren().addAll(undoneLabel);
 		}
 
 	}
