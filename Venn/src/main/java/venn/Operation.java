@@ -12,7 +12,7 @@ public class Operation {
 	private Color currentColor;
 	private Color newColor;
 	private Circle c;
-	private Label addedLabel;
+	private EditableLabel addedLabel;
 	private double currentCircleSize;
 	private double newCircleSize;
 	private String currentLabelData;
@@ -64,10 +64,16 @@ public class Operation {
 		this.currentCircleSize = currentCircleSize;
 	}
 
-	// ---------GET LABEL METHOD----------------------------------------
+	// ---------GET AND SET LABEL METHOD----------------------------------------
 
-	public Label getlabel() {
-		return this.addedLabel;
+	public void setLabel(EditableLabel newLabel) {
+			
+			this.addedLabel = newLabel;
+	}
+		
+		public EditableLabel getlabel() {
+			
+			return this.addedLabel;
 	}
 
 	// ---------CIRCLE NEW COLOR GET AND SET COLOR METHODS--------------
