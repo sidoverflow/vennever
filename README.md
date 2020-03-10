@@ -33,9 +33,7 @@ VennProject contains our code for the implementation of an Application that allo
   
 ## Contributing
   
-  As this is a school project, users are not welcome to contribute.
-  
-  Pull requests will not be handeled.
+  Pull requests will not be handled as this is coursework.
   
   
   
