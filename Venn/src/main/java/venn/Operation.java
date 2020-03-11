@@ -12,7 +12,7 @@ public class Operation {
 	private Color currentColor;
 	private Color newColor;
 	private Circle c;
-	private EditableLabel addedLabel;
+	private DemoController.EditableLabel addedLabel;
 	private double currentCircleSize;
 	private double newCircleSize;
 	private String currentLabelData;
@@ -66,12 +66,12 @@ public class Operation {
 
 	// ---------GET AND SET LABEL METHOD----------------------------------------
 
-	public void setLabel(EditableLabel newLabel) {
+	public void setLabel(DemoController.EditableLabel newLabel) {
 			
 			this.addedLabel = newLabel;
 	}
 		
-		public EditableLabel getlabel() {
+		public DemoController.EditableLabel getlabel() {
 			
 			return this.addedLabel;
 	}

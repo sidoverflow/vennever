@@ -15,6 +15,7 @@ import javafx.stage.StageStyle;
 public class Main extends Application {
 	
 	public static void main(String[] args) {
+		System.out.println(System.getProperty("java.classpath"));
         launch(args);
     }
 	 
