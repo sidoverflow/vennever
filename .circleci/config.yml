@@ -51,7 +51,7 @@ jobs:
             cd Venn
             gradle jar
             cd ./build/libs/
-            zip ${ZIP_FILE_NAME}.zip CounterCI.jar 
+            zip ${ZIP_FILE_NAME}.zip Venn.jar 
             github-release upload --token ${GITHUB_TOKEN} --owner ${PROJECT_USERNAME} --repo ${PROJECT_REPONAME} --tag ${TAG} --name ${TAG} --body "Release date: ${NOW}" ${ZIP_FILE_NAME}.zip
 workflows:
   version: 2
