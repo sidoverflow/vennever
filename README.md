@@ -1,10 +1,13 @@
 # VennProject
+![Course](https://img.shields.io/badge/course-EECS2311-lightgrey)
 
-[![GitHub issues](https://img.shields.io/github/issues/sidharthsudarsan/VennProject)](https://github.com/sidharthsudarsan/VennProject/issues)
+![GitHub contributors](https://img.shields.io/github/contributors/sidharthsudarsan/VennProject)
 
-[![GitHub license](https://img.shields.io/github/license/sidharthsudarsan/VennProject)](https://github.com/sidharthsudarsan/VennProject/blob/master/LICENSE)
+![GitHub issues](https://img.shields.io/github/issues/sidharthsudarsan/VennProject)
 
-[![CircleCI](https://circleci.com/gh/sidharthsudarsan/VennProject/tree/master.svg?style=shield)](https://circleci.com/gh/sidharthsudarsan/VennProject/tree/master)
+![GitHub license](https://img.shields.io/github/license/sidharthsudarsan/VennProject)
+
+![CircleCI](https://img.shields.io/circleci/build/github/sidharthsudarsan/VennProject)
 
 VennProject contains our code for the implementation of an Application that allows a user to build a customizable Venn Diagram
 
