@@ -1,8 +1,8 @@
 # VennProject
 
-https://img.shields.io/github/license/sidharthsudarsan/VennProject
+[![GitHub issues](https://img.shields.io/github/issues/sidharthsudarsan/VennProject)](https://github.com/sidharthsudarsan/VennProject/issues)
 
-https://img.shields.io/github/issues/sidharthsudarsan/VennProject
+[![GitHub license](https://img.shields.io/github/license/sidharthsudarsan/VennProject)](https://github.com/sidharthsudarsan/VennProject/blob/master/LICENSE)
 
 [![CircleCI](https://circleci.com/gh/sidharthsudarsan/VennProject/tree/master.svg?style=svg)](https://circleci.com/gh/sidharthsudarsan/VennProject/tree/master)
 
