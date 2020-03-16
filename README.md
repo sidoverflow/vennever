@@ -2,7 +2,7 @@
 
 > *Coursework for EECS2311: Software Development Project | Winter 2020*
 
-> **VennEver** is desktop application that allows the user to create customizable venn diagrams to visually represent data.
+> **VennEver** is a desktop application that allows the user to create customizable venn diagrams to visually represent data.
 
 ![Course](https://img.shields.io/badge/course-EECS2311-lightgrey) ![CircleCI](https://img.shields.io/circleci/build/github/sidharthsudarsan/VennProject) ![GitHub contributors](https://img.shields.io/github/contributors/sidharthsudarsan/VennProject) ![GitHub issues](https://img.shields.io/github/issues/sidharthsudarsan/VennProject) ![GitHub license](https://img.shields.io/github/license/sidharthsudarsan/VennProject) 
 
