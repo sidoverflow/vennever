@@ -4,7 +4,7 @@
 
 [![GitHub license](https://img.shields.io/github/license/sidharthsudarsan/VennProject)](https://github.com/sidharthsudarsan/VennProject/blob/master/LICENSE)
 
-[![CircleCI](https://circleci.com/gh/sidharthsudarsan/VennProject/tree/master.svg?style=svg)](https://circleci.com/gh/sidharthsudarsan/VennProject/tree/master)
+[![CircleCI](https://circleci.com/gh/sidharthsudarsan/VennProject/tree/master.svg?style=shield)](https://circleci.com/gh/sidharthsudarsan/VennProject/tree/master)
 
 VennProject contains our code for the implementation of an Application that allows a user to build a customizable Venn Diagram
 
