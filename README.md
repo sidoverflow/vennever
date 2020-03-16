@@ -1,4 +1,7 @@
-# VennProject
+# VennEver
+> *Coursework for EECS2311: Software Development Project | Winter 2020*
+> **VennEver** is desktop application that allows the user to create customizable venn diagrams to visually represent data.
+
 ![Course](https://img.shields.io/badge/course-EECS2311-lightgrey)
 
 ![GitHub contributors](https://img.shields.io/github/contributors/sidharthsudarsan/VennProject)
@@ -8,8 +11,6 @@
 ![GitHub license](https://img.shields.io/github/license/sidharthsudarsan/VennProject)
 
 ![CircleCI](https://img.shields.io/circleci/build/github/sidharthsudarsan/VennProject)
-
-VennProject contains our code for the implementation of an Application that allows a user to build a customizable Venn Diagram
 
 ## Installation
 
@@ -22,23 +23,7 @@ VennProject contains our code for the implementation of an Application that allo
   Now type java -jar _____ file name and click enter, the App should now appear in a separate window.
   
 ## Usage
-  
-  Once you have run the file
-  click on "Add Data" to begin adding data into your sets in the text boxes. Click Done when completed which will add data to the circles.
-  
-  Click on "Color" and select either "right circle" or "left circle" to change their respective color ( a drop down menu with colors
-  should appear on the screen ).
-  
-  Click on "Add Label" to add a textbox with a label for the diagram.
-  
-  To use "BOLD" and "ITALICS" click on an existing textbox and then click "BOLD" or "ITALIC" to change the style of the text respectively.
-  
-  Click on "CIRCLE SIZE" to change the size of the circles, a slider will appear on the screen which you can use to change the circles size.
-  
-  Click on "Undo" to undo the last edit to the circles
-  
-  Click on "Redo" to redo what you have undone previously using the "Undo" button.
-  
+
   
 ## Contributing
   
