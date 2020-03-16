@@ -4,12 +4,13 @@
 
 > **VennEver** is desktop application that allows the user to create customizable venn diagrams to visually represent data.
 
-![Course](https://img.shields.io/badge/course-EECS2311-lightgrey) ![GitHub contributors](https://img.shields.io/github/contributors/sidharthsudarsan/VennProject) ![GitHub issues](https://img.shields.io/github/issues/sidharthsudarsan/VennProject) ![GitHub license](https://img.shields.io/github/license/sidharthsudarsan/VennProject) ![CircleCI](https://img.shields.io/circleci/build/github/sidharthsudarsan/VennProject)
+![Course](https://img.shields.io/badge/course-EECS2311-lightgrey) ![CircleCI](https://img.shields.io/circleci/build/github/sidharthsudarsan/VennProject) ![GitHub contributors](https://img.shields.io/github/contributors/sidharthsudarsan/VennProject) ![GitHub issues](https://img.shields.io/github/issues/sidharthsudarsan/VennProject) ![GitHub license](https://img.shields.io/github/license/sidharthsudarsan/VennProject) 
 
 ### Installation
 
 1. Download the *JAR* file from the latest release
 2. Run ``` java -jar VennEver.jar ``` to launch *VennEver.jar*  
+
 *MacOS users should be able to launch the JAR file by double clicking on it*
   
 ### Usage
