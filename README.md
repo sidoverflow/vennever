@@ -4,7 +4,7 @@
 
 > **VennEver** is a desktop application that allows the user to create customizable venn diagrams to visually represent data.
 
-![Course](https://img.shields.io/badge/course-EECS2311-lightgrey) ![CircleCI](https://img.shields.io/circleci/build/github/sidharthsudarsan/VennProject) ![GitHub contributors](https://img.shields.io/github/contributors/sidoverflow/VennProject) ![GitHub issues](https://img.shields.io/github/issues/sidoverflow/VennProject) ![GitHub license](https://img.shields.io/github/license/sidoverflow/VennProject) 
+![Course](https://img.shields.io/badge/course-EECS2311-lightgrey) ![CircleCI](https://img.shields.io/circleci/build/github/sidoverflow/VennProject) ![GitHub contributors](https://img.shields.io/github/contributors/sidoverflow/VennProject) ![GitHub issues](https://img.shields.io/github/issues/sidoverflow/VennProject) ![GitHub license](https://img.shields.io/github/license/sidoverflow/VennProject) 
 
 ### Installation
 
