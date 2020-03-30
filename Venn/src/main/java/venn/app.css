@@ -1,0 +1,96 @@
+@font-face {
+	src: url('../resources/Montserrat.ttf');
+}
+.first-set {
+	-fx-background-color : #FA2C56 ;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: Montserrat;
+	-fx-background-radius :  0 5 5 0;
+	
+}
+.second-set {
+	-fx-background-color : #FA2C56 ;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: Montserrat;
+	-fx-background-radius :  5 0 0 5;
+	
+}
+.intersection-set {
+	-fx-background-color : #FA2C56 ;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: Montserrat;
+	-fx-background-radius :  5 5 5 5;
+	
+}
+.footer {
+	-fx-text-fill: #ffffff;
+	-fx-font-family: Montserrat;
+	-fx-font-weight: normal;
+
+	
+}
+
+
+
+.button1
+{
+-fx-background-color : #222831;
+-fx-background-radius :  50 0 0 50;
+-fx-font-family: Montserrat;
+}
+
+.button
+{
+-fx-background-color : #222831;
+-fx-background-radius :  50 0 0 50;
+-fx-font-family: Montserrat;
+}
+
+
+
+.button:hover
+{
+-fx-background-color : #393e46 ;
+-fx-background-radius :  50 0 0 50;
+}
+.button:pressed
+{
+-fx-background-color : #FA2C56 ;
+-fx-background-radius :  50 0 0 50;
+}
+
+
+
+.intersection
+{
+-fx-background-color : #222831;
+-fx-background-radius :  50 0 0 50;
+-fx-font-family: Montserrat;
+}
+
+.intersection:hover
+{
+-fx-background-color : #282b30 ;
+-fx-background-radius :  50 0 0 50;
+}
+
+.menu-button .arrow {
+	-fx-background-color : #FA2C56 ;
+}
+
+
+.text-area {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 18;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #222831;
+
+}
+
+.text-area .content {
+    -fx-background-color:  #222831;
+    
+}
+
+
+

@@ -1,34 +1,51 @@
-.text-style {
-    -fx-padding: 5;
-    -fx-background-color: rgba(152, 251, 152, 0.2); 
-    -fx-font-family: Arial;
+@font-face {
+	src: url('../resources/Montserrat.ttf');
+}
+.editable-draggable-text {
+	-fx-font-family: Montserrat;
     -fx-font-weight: normal;
     -fx-font-style: normal;
     -fx-font-size: 14;
-}
-.editable-text {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-background-radius: 0;
-    -fx-padding: 0;
-}
-
-.editable-draggable-text:hover .editable-text {
-    -fx-background-color: yellow;
-}
-
-.editable-draggable-text {
     -fx-padding: 5;
-    -fx-background-color: rgba(152, 251, 152, 0.2); 
+    -fx-background-color:  #CECFD1;
+    -fx-background-opacity: 0.2;
+    -fx-background-radius: 5 5 5 5;
 }
 
 .editable-draggable-text:hover {
-    -fx-background-color: orange;
+    -fx-background-color: #FA2C56;
+}
+.editable-draggable-text:focused {
+    -fx-background-color: #000000;
+    
+}
+.color-picker {
+-fx-background-color : #FA2C56;
+-fx-background-radius :  50 50 50 50;
+-fx-font-family: Montserrat;
+-fx-font-fill: #ffffff;
+
 }
 
-.highlighted {
-    -fx-background-color: rgba(255, 182, 93, 0.3);  
-    -fx-border-style: dashed;
-    -fx-border-color: firebrick;
+.color-picker:hover {
+    -fx-background-color: #8a1a30;
+}
+.color-picker .arrow {
+	-fx-background-color : #ffffff ;
+}
+.color-picker .label {
+     -fx-text-fill: #ffffff;
+
 }
 
+.color-picker .color-picker-label
+{
+-fx-alignment : bottom-center;
+}
+
+.slider .track {
+	-fx-background-color: #FA2C56;
+}
+.slider .thumb {
+	-fx-background-color: #ffffff;
+}

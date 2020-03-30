@@ -17,7 +17,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -79,7 +83,7 @@ public class AddDataController {
     }
     @FXML
     public void openThirdScene(ActionEvent actionEvent) throws IOException {
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+    	Stage primaryStage = (Stage) done.getScene().getWindow();
         primaryStage.setScene(thirdScene);
         
     }
@@ -118,14 +122,29 @@ public class AddDataController {
 		}
 		scanner1.close();
 		scanner2.close();
+		
 
     	
     	
 		firstController.inflateCircle(firstDataArray, secondDataArray);
 		
-		
+	}
 	
-		
+
+	public void openBrowser(ActionEvent actionEvent) throws Exception {
+
+		try {
+		    Desktop.getDesktop().browse(new URL("https://www.github.com/sidoverflow/VennProject").toURI());
+		} catch (IOException e) {
+		    e.printStackTrace();
+		} catch (URISyntaxException e) {
+		    e.printStackTrace();
+		}
+
+    }
+	public void quitButton(ActionEvent actionEvent) {
+		Stage stage = (Stage) done.getScene().getWindow();
+	    stage.close();
 	}
 	
 

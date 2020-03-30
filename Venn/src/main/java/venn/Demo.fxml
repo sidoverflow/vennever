@@ -1,147 +1,239 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="650.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About VennBuilder" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefWidth="477.0" VBox.vgrow="ALWAYS">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
+   <children>
+      <AnchorPane layoutX="-24.0" layoutY="31.0" prefHeight="670.0" prefWidth="332.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-24.0" AnchorPane.topAnchor="31.0">
          <children>
-            <AnchorPane fx:id="toolbar" prefHeight="371.0" prefWidth="97.0" style="-fx-background-color: #474545#474545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="sidebar" layoutX="2.0" layoutY="-2.0" prefHeight="676.0" prefWidth="304.0" style="-fx-background-color: #222831; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="-2.0">
                <children>
-                  <Button fx:id="addData" alignment="CENTER" layoutX="4.0" layoutY="23.0" mnemonicParsing="false" onAction="#openSecondScene" prefHeight="29.0" prefWidth="78.0" text="ADD DATA" textAlignment="CENTER">
-                     <font>
-                        <Font name="Montserrat SemiBold" size="9.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <SplitMenuButton fx:id="splitMenuButton" alignment="CENTER" layoutX="4.0" layoutY="64.0" mnemonicParsing="false" onAction="#menuClick" prefHeight="27.0" prefWidth="78.0" text="COLOR" textAlignment="CENTER">
-                    <items>
-                      <MenuItem fx:id="lButton" mnemonicParsing="false" onAction="#leftCircleColour" text="Left Circle" />
-                      <MenuItem fx:id="rButton" mnemonicParsing="false" onAction="#rightCircleColour" text="Right Circle" />
-                    </items>
-                     <font>
-                        <Font name="Montserrat SemiBold" size="9.0" />
-                     </font>
-                  </SplitMenuButton>
-                  <Button fx:id="addLabel" alignment="CENTER" layoutX="4.0" layoutY="103.0" mnemonicParsing="false" onAction="#textButton" prefHeight="29.0" prefWidth="78.0" text="ADD LABEL" textAlignment="CENTER">
-                     <font>
-                        <Font name="Montserrat SemiBold" size="9.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="bold" alignment="CENTER" layoutX="5.0" layoutY="144.0" mnemonicParsing="false" onAction="#boldButton" prefHeight="29.0" prefWidth="78.0" text="BOLD" textAlignment="CENTER">
-                     <font>
-                        <Font name="Montserrat Black" size="9.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="italics" alignment="CENTER" layoutX="5.0" layoutY="184.0" mnemonicParsing="false" onAction="#italicsButton" prefHeight="29.0" prefWidth="78.0" text="ITALICS" textAlignment="CENTER">
-                     <font>
-                        <Font name="Montserrat SemiBold Italic" size="9.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="circleSize" alignment="CENTER" layoutX="5.0" layoutY="224.0" mnemonicParsing="false" onAction="#circleSizeAction" prefHeight="29.0" prefWidth="78.0" text="CIRCLE SIZE" textAlignment="CENTER">
-                     <font>
-                        <Font name="Montserrat SemiBold" size="9.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="undoButton" alignment="CENTER" layoutX="4.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleUndoButtonAction" prefHeight="29.0" prefWidth="78.0" text="UNDO" textAlignment="CENTER">
-                     <font>
-                        <Font name="Montserrat SemiBold" size="9.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="redoButton" alignment="CENTER" layoutX="4.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleRedoButtonAction" prefHeight="29.0" prefWidth="78.0" text=" REDO" textAlignment="CENTER">
-                     <font>
-                        <Font name="Montserrat SemiBold" size="9.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="89.0" layoutY="45.0" prefHeight="371.0" prefWidth="551.0" style="-fx-background-color: #F5EFEF#F5EFEF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <AnchorPane fx:id="canvas" layoutX="31.0" layoutY="40.0" prefHeight="266.0" prefWidth="487.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="40.0">
-                     <effect>
-                        <DropShadow color="#000000a8" />
-                     </effect>
+                  <VBox layoutX="22.0" layoutY="136.0" prefHeight="565.0" prefWidth="282.0" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="136.0">
                      <children>
-                        <AnchorPane fx:id="pane" layoutX="228.0" layoutY="63.0">
-                           <children>
-                              <Circle fx:id="rCircle" fill="#1fff7c74" layoutX="432.0" layoutY="209.0" radius="200.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="7.0" />
-                              <Circle fx:id="lCircle" fill="#1f93ff96" layoutX="201.0" layoutY="207.0" radius="200.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="7.0" />
-                           </children>
-                        </AnchorPane>
+                        <Button fx:id="editor" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" style="-fx-background-color: #FA2C56#FA2C56 #FA2C56#FA2C56;" stylesheets="@app.css" text="Editor" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-query_outer_join_right_white.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="addData" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#openSecondScene" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Data" textAlignment="CENTER" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-add_file.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <MenuButton alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="50.0" prefWidth="282.0" text="Colour" textAlignment="CENTER" textFill="WHITE">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#leftCircleColour" text="left circle" />
+                            <MenuItem mnemonicParsing="false" onAction="#rightCircleColour" text="right circle" />
+                          </items>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-paint_palette.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="-0.5" />
+                           </padding>
+                           <stylesheets>
+                              <URL value="@app.css" />
+                              <URL value="@menubar.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="menu-bar" />
+                              <String fx:value="button" />
+                           </styleClass>
+                        </MenuButton>
+                        <MenuButton alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="50.0" prefWidth="282.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#diagramTitleAction" text="add diagram title" />
+                              <MenuItem mnemonicParsing="false" onAction="#setTitleAction" text="add set titles" />
+                              <MenuItem mnemonicParsing="false" onAction="#textBoxAction" text="add text box" />
+                           </items>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-add_row.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="-0.5" />
+                           </padding>
+                           <stylesheets>
+                              <URL value="@app.css" />
+                              <URL value="@menubar.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="menu-bar" />
+                              <String fx:value="button" />
+                           </styleClass>
+                        </MenuButton>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Format" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-lowercase.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#handleUndoButtonAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Undo" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-undo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#handleRedoButtonAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Redo" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-redo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#circleSizeAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Resize" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-enlarge.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
-                  </AnchorPane>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </VBox>
+                  <Label contentDisplay="CENTER" layoutX="117.0" layoutY="632.0" prefHeight="21.0" prefWidth="51.0" styleClass="footer" stylesheets="@app.css" text="made on " textAlignment="CENTER" AnchorPane.bottomAnchor="25.0">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="167.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0">
+                     <image>
+                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-java.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
-         </children></AnchorPane>
-  </children>
-</VBox>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="canvas" layoutX="380.0" layoutY="95.0" onMouseClicked="#clickCanvas" onMousePressed="#clickCanvas" prefHeight="574.0" prefWidth="799.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="95.0">
+         <effect>
+            <DropShadow color="#00000046" height="130.0" radius="64.5" spread="0.66" width="130.0" />
+         </effect>
+         <children>
+            <StackPane prefHeight="564.0" prefWidth="802.0">
+               <children>
+                  <Group>
+                     <children>
+                        <Pane layoutX="26.0" layoutY="21.0" prefHeight="536.0" prefWidth="770.0">
+                           <children>
+                              <Circle fx:id="lCircle" fill="#64636896" layoutX="246.0" layoutY="267.0" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="200.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </Circle>
+                              <Circle fx:id="rCircle" fill="#fc2d5a73" layoutX="521.0" layoutY="267.0" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </Circle>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Group>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+      <MenuBar layoutX="-1.0" layoutY="-2.0" prefHeight="35.0" prefWidth="1250.0" stylesheets="@menubar.css">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="New" />
+                  <MenuItem mnemonicParsing="false" text="Open…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem mnemonicParsing="false" text="Export" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#quitButton" text="Quit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleUndoButtonAction" text="Undo" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleRedoButtonAction" text="Redo" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openBrowser" text="About VennEver" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

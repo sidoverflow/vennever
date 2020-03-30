@@ -1,34 +1,40 @@
 package venn;
 
+
+
+import org.aerofx.AeroFX;
 import javafx.scene.layout.BorderPane;
 import javafx.application.Application;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 	 
 
 public class Main extends Application {
-	
+
 	public static void main(String[] args) {
+		
+		System.out.println(System.getProperty("java.classpath"));
         launch(args);
     }
 	 
 // JavaFX entry point
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-			
+		try { 
 			// getting loader and a pane for the first scene. 
 	        // loader will then give a possibility to get related controller
+			
 	        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Demo.fxml"));
-	        Parent firstPane = firstPaneLoader.load();
-	        Scene firstScene = new Scene(firstPane);
+	        Parent root = firstPaneLoader.load();
+	        Scene firstScene = new Scene(root);
 
 	        // getting loader and a pane for the second scene
 	        FXMLLoader secondPaneLoader = new FXMLLoader(getClass().getResource("AddData.fxml"));
@@ -56,15 +62,32 @@ public class Main extends Application {
 	        thirdPaneController.setFirstScene(firstScene);
 	        thirdPaneController.setFirstController(firstPaneController);
 	        
+	        
+	        primaryStage = new Stage(StageStyle.DECORATED);
+//	        //grab your root here
+//	        root.setOnMousePressed(event -> {
+//	            xOffset = event.getSceneX();
+//	            yOffset = event.getSceneY();
+//	        });
+//
+//	        //move around here
+//	        root.setOnMouseDragged(event -> {
+//	            primaryStage.setX(event.getScreenX() - xOffset);
+//	            primaryStage.setY(event.getScreenY() - yOffset);
+//	        });
+			
 
-	        primaryStage.setTitle("Venn Builder");
+	        //set transparent
 	        
 	        
 	        
-			primaryStage = new Stage(StageStyle.DECORATED);
+	        firstScene.setFill(Color.TRANSPARENT);
+	        primaryStage.setTitle("VennEver");
 			primaryStage.setScene(firstScene);
 			firstScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
+//	        primaryStage.initStyle(StageStyle.TRANSPARENT);
 			primaryStage.show();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}       
@@ -74,4 +97,3 @@ public class Main extends Application {
 	
 	
 }
-

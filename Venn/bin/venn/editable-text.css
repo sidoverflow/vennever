@@ -1,0 +1,34 @@
+.text-style {
+    -fx-padding: 5;
+    -fx-background-color: rgba(152, 251, 152, 0.2); 
+    -fx-font-family: Arial;
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+    -fx-font-size: 14;
+}
+.editable-text {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+
+.editable-draggable-text:hover .editable-text {
+    -fx-background-color: yellow;
+}
+
+.editable-draggable-text {
+    -fx-padding: 5;
+    -fx-background-color: rgba(152, 251, 152, 0.2); 
+}
+
+.editable-draggable-text:hover {
+    -fx-background-color: orange;
+}
+
+.highlighted {
+    -fx-background-color: rgba(255, 182, 93, 0.3);  
+    -fx-border-style: dashed;
+    -fx-border-color: firebrick;
+}
+

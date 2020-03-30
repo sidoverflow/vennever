@@ -1,6 +1,9 @@
 package venn;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -72,7 +75,7 @@ public class AddDataIntersectionController {
     }
     @FXML
     public void openSecondScene(ActionEvent actionEvent) throws IOException {
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+    	Stage primaryStage = (Stage) done.getScene().getWindow();
         primaryStage.setScene(secondScene);
         
     }
@@ -125,6 +128,21 @@ public class AddDataIntersectionController {
 		
 	
 		
+	}
+	public void openBrowser(ActionEvent actionEvent) throws Exception {
+
+		try {
+		    Desktop.getDesktop().browse(new URL("https://www.github.com/sidoverflow/VennProject").toURI());
+		} catch (IOException e) {
+		    e.printStackTrace();
+		} catch (URISyntaxException e) {
+		    e.printStackTrace();
+		}
+
+    }
+	public void quitButton(ActionEvent actionEvent) {
+		Stage stage = (Stage) done.getScene().getWindow();
+	    stage.close();
 	}
 	
 }
