@@ -100,10 +100,13 @@ public class DemoController {
     @FXML
     private Group circleGroup;
     @FXML
-    private VBox sliderBox = new VBox(); 
+    Label dragInfo  = new Label();
     @FXML
-    private VBox colorBox = new VBox(); 
-
+    private Pane formatPaneColour = new Pane();
+    @FXML
+    private Pane formatPaneSize = new Pane();
+    @FXML
+    private AnchorPane mainPane = new AnchorPane();
 	
 	@FXML
 	private AnchorPane sidebar = new AnchorPane();
@@ -129,20 +132,18 @@ public class DemoController {
 	}
 
 	public void openSecondScene(ActionEvent actionEvent) {
-		sliderBox.setVisible(false);
-		sliderBox.managedProperty().bind(sliderBox.visibleProperty());
-		colorBox.setVisible(false);
-		colorBox.managedProperty().bind(colorBox.visibleProperty());
+		formatPaneColour.setVisible(false);
+		formatPaneSize.setVisible(false);
+		sidebar.getChildren().remove(dragInfo);
 		Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 		primaryStage.setScene(secondScene);
 	}
 
 	@FXML
 	public void textBoxAction(ActionEvent event) throws IOException {
-		sliderBox.setVisible(false);
-		sliderBox.managedProperty().bind(sliderBox.visibleProperty());
-		colorBox.setVisible(false);
-		colorBox.managedProperty().bind(colorBox.visibleProperty());
+		formatPaneColour.setVisible(false);
+		formatPaneSize.setVisible(false);
+		sidebar.getChildren().remove(dragInfo);
 		
 		EditableLabel newLABEL = new EditableLabel(350, 480, "type here");
 		canvas.getChildren().addAll(newLABEL);
@@ -153,11 +154,9 @@ public class DemoController {
 		
 	}
 	public void diagramTitleAction(ActionEvent event) throws IOException {
-		sliderBox.setVisible(false);
-		sliderBox.managedProperty().bind(sliderBox.visibleProperty());
-		colorBox.setVisible(false);
-		colorBox.managedProperty().bind(colorBox.visibleProperty());
-		
+		formatPaneColour.setVisible(false);
+		formatPaneSize.setVisible(false);
+		sidebar.getChildren().remove(dragInfo);
 		EditableLabel newLABEL = new EditableLabel(330, 15, "enter diagram title");
 		canvas.getChildren().addAll(newLABEL);
 		Operation change = new Operation();
@@ -167,10 +166,10 @@ public class DemoController {
 		
 	}
 	public void setTitleAction(ActionEvent event) throws IOException {
-		sliderBox.setVisible(false);
-		sliderBox.managedProperty().bind(sliderBox.visibleProperty());
-		colorBox.setVisible(false);
-		colorBox.managedProperty().bind(colorBox.visibleProperty());
+		formatPaneColour.setVisible(false);
+		formatPaneSize.setVisible(false);
+		sidebar.getChildren().remove(dragInfo);
+
 		
 		EditableLabel labelA = new EditableLabel(220, 70, "enter set-A title");
 		canvas.getChildren().addAll(labelA);
@@ -308,89 +307,107 @@ public class DemoController {
 		}
 	}
 
-	// to change the colour of the left circle
+	
+	@FXML
 	@SuppressWarnings("unchecked")
-	public void changeColour(Circle editCircle) {
-		sliderBox.setVisible(false);
-		sliderBox.managedProperty().bind(sliderBox.visibleProperty());
+	public void customizeCircleAction(ActionEvent event) {
+		formatPaneColour.setVisible(true);
 		
-		ColorPicker colorPicker = new ColorPicker((Color) editCircle.getFill());
-		colorBox = new VBox(colorPicker);
-		
-		VBox.setMargin(colorPicker, new Insets(50, 10, 10, 10));
-		colorBox.setLayoutX(70);
-		colorBox.setLayoutY(505);
-		sidebar.getChildren().add(colorBox);
-		colorPicker.setOnAction(new EventHandler() {
+		ColorPicker colorPicker1 = new ColorPicker((Color) lCircle.getFill());
+		VBox colorBox1 = new VBox(colorPicker1);
+		colorBox1.setCursor(Cursor.HAND);
+		colorBox1.setLayoutX(35);
+		colorBox1.setLayoutY(19);
+		formatPaneColour.getChildren().add(colorBox1);
+		colorPicker1.setOnAction(new EventHandler() {
 			public void handle(Event t) {
-				Color myColor = (Color) editCircle.getFill();
+				Color myColor = (Color) lCircle.getFill();
 				Operation change = new Operation();
 				change.setOperation("color");
-				change.setCircle(editCircle);
+				change.setCircle(lCircle);
 				change.setCurrentColor(myColor);
 
-				editCircle.setFill(colorPicker.getValue());
-				editCircle.setOpacity(0.51);
+				lCircle.setFill(colorPicker1.getValue());
+				lCircle.setOpacity(0.51);
 
-				change.setNewColor((Color) editCircle.getFill());
+				change.setNewColor((Color) lCircle.getFill());
 				undoStack.push(change);
 			}
 		});
-
-	}
-
-	// to change the colour of the right circle;
-	@SuppressWarnings("unchecked")
-	public void rightCircleColour() {
-		changeColour(rCircle);
-	}
-	
-	// to change the colour of the left circle;
-		@SuppressWarnings("unchecked")
-		public void leftCircleColour() {
-			changeColour(lCircle);
-		}
-
-	@FXML
-	void circleSizeAction(ActionEvent event) {
 		
-		colorBox.setVisible(false);
-		colorBox.managedProperty().bind(colorBox.visibleProperty());
+		ColorPicker colorPicker2 = new ColorPicker((Color) rCircle.getFill());
+		VBox colorBox2 = new VBox(colorPicker2);
+		colorBox2.setCursor(Cursor.HAND);
+		
+		formatPaneColour.getChildren().add(colorBox2);
+		colorBox2.setLayoutX(250);
+		colorBox2.setLayoutY(19);
+		colorPicker2.setOnAction(new EventHandler() {
+			public void handle(Event t) {
+				Color myColor = (Color) rCircle.getFill();
+				Operation change = new Operation();
+				change.setOperation("color");
+				change.setCircle(rCircle);
+				change.setCurrentColor(myColor);
+
+				rCircle.setFill(colorPicker2.getValue());
+				rCircle.setOpacity(0.51);
+
+				change.setNewColor((Color) rCircle.getFill());
+				undoStack.push(change);
+			}
+		});
+		
+		formatPaneSize.setVisible(true);
 		
 		slider.setId("slider");
 		slider.setOnDragDetected(mouseEvent -> {
 			sliderMethod();
 		});
-		sliderBox = new VBox(slider);
+		VBox sliderBox = new VBox(slider);
 		VBox.setMargin(slider, new Insets(10, 10, 10, 10));
-		sliderBox.setLayoutX(77);
-		sliderBox.setLayoutY(560);
-		sidebar.getChildren().addAll(sliderBox);
+		sliderBox.setLayoutX(55);
+		sliderBox.setLayoutY(5);
+		slider.setCursor(Cursor.HAND);
+		formatPaneSize.getChildren().addAll(sliderBox);
+		dragInfo = new Label("drag the circles to reposition on the editor");
+		dragInfo.setLayoutX(52);
+		dragInfo.setLayoutY(590);
+		dragInfo.getStyleClass().add("infoLabel");
+		sidebar.getChildren().addAll(dragInfo);
 		
-
 		
 	}
+	
+	
+
+
 	
 	@FXML
 	void clickCanvas(MouseEvent event) {
-		sliderBox.setVisible(false);
-		sliderBox.managedProperty().bind(sliderBox.visibleProperty());
-		colorBox.setVisible(false);
-		colorBox.managedProperty().bind(colorBox.visibleProperty());
-		
+		formatPaneColour.setVisible(false);
+		formatPaneSize.setVisible(false);
+		sidebar.getChildren().remove(dragInfo);
 	}
+	
+
 	
 	@FXML
     void circleOnMousePressedEventHandler(MouseEvent event) {
+		
+		
 		((Circle) event.getSource()).toFront();
 		orgSceneX = event.getSceneX();
         orgSceneY = event.getSceneY();
         orgTranslateX = ((Circle)(event.getSource())).getTranslateX();
         orgTranslateY = ((Circle)(event.getSource())).getTranslateY();
+        
     }
 
     @FXML
     void circleOnMouseDraggedEventHandler(MouseEvent event) {
+    	
+		
     	double offsetX = event.getSceneX() - orgSceneX;
         double offsetY = event.getSceneY() - orgSceneY;
         double newTranslateX = orgTranslateX + offsetX;
@@ -439,16 +456,18 @@ public class DemoController {
 		
 	}
 	
-
+	@FXML
+	private void formatButtonAction(ActionEvent e) {
+		
+	
+	}
 
 	@FXML
 	public void handleUndoButtonAction(ActionEvent e) {
 		
-		sliderBox.setVisible(false);
-		sliderBox.managedProperty().bind(sliderBox.visibleProperty());
-		colorBox.setVisible(false);
-		colorBox.managedProperty().bind(colorBox.visibleProperty());
-		
+		formatPaneColour.setVisible(false);
+		formatPaneSize.setVisible(false);
+		sidebar.getChildren().remove(dragInfo);
 		Operation undo = undoStack.pop();
 		redoStack.push(undo);
 		String operation = undo.getOperation();
@@ -472,11 +491,9 @@ public class DemoController {
 	@FXML
 	public void handleRedoButtonAction(ActionEvent e) {
 		
-		sliderBox.setVisible(false);
-		sliderBox.managedProperty().bind(sliderBox.visibleProperty());
-		colorBox.setVisible(false);
-		colorBox.managedProperty().bind(colorBox.visibleProperty());
-
+		formatPaneColour.setVisible(false);
+		formatPaneSize.setVisible(false);
+		sidebar.getChildren().remove(dragInfo);
 		Operation redo = redoStack.pop();
 		undoStack.push(redo);
 		String operation = redo.getOperation();
@@ -525,7 +542,7 @@ public class DemoController {
 			this(str);
 			relocate(x, y);
 			getChildren().add(tf);
-			getStyleClass().add("editable-draggable-text");
+			getStyleClass().add("editable-text");
 			enableDrag();
 			
 		}

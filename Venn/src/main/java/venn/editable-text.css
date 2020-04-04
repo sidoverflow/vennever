@@ -1,7 +1,9 @@
 @font-face {
-	src: url('../resources/Montserrat.ttf');
+    font-family: SF;
+    src: url('../resources/SFProMedium.ttf');
 }
-.editable-draggable-text {
+
+.editable-text {
 	-fx-font-family: Montserrat;
     -fx-font-weight: normal;
     -fx-font-style: normal;
@@ -12,10 +14,10 @@
     -fx-background-radius: 5 5 5 5;
 }
 
-.editable-draggable-text:hover {
+.editable-text:hover {
     -fx-background-color: #FA2C56;
 }
-.editable-draggable-text:focused {
+.editable-text:focused {
     -fx-background-color: #000000;
     
 }
@@ -25,6 +27,11 @@
 -fx-font-family: Montserrat;
 -fx-font-fill: #ffffff;
 
+}
+.infoLabel {
+	-fx-font-family: Montserrat;
+	-fx-font-size: 10;
+	-fx-text-fill: #ffffff;
 }
 
 .color-picker:hover {
@@ -49,3 +56,4 @@
 .slider .thumb {
 	-fx-background-color: #ffffff;
 }
+

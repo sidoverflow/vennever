@@ -22,7 +22,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
    <children>
       <AnchorPane layoutX="-24.0" layoutY="31.0" prefHeight="670.0" prefWidth="332.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-24.0" AnchorPane.topAnchor="31.0">
          <children>
@@ -37,10 +37,13 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-query_outer_join_right_white.png" />
+                                    <Image url="@../resources/icons8-query_outer_join_right_white.png" />
                                  </image>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <Button fx:id="addData" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#openSecondScene" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Data" textAlignment="CENTER" textFill="WHITE">
                            <graphic>
@@ -53,34 +56,10 @@
                            <font>
                               <Font size="15.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
-                        <MenuButton alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="50.0" prefWidth="282.0" text="Colour" textAlignment="CENTER" textFill="WHITE">
-                          <items>
-                            <MenuItem mnemonicParsing="false" onAction="#leftCircleColour" text="left circle" />
-                            <MenuItem mnemonicParsing="false" onAction="#rightCircleColour" text="right circle" />
-                          </items>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-paint_palette.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <padding>
-                              <Insets left="-0.5" />
-                           </padding>
-                           <stylesheets>
-                              <URL value="@app.css" />
-                              <URL value="@menubar.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="menu-bar" />
-                              <String fx:value="button" />
-                           </styleClass>
-                        </MenuButton>
                         <MenuButton alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="50.0" prefWidth="282.0" text="Label" textAlignment="CENTER" textFill="WHITE">
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#diagramTitleAction" text="add diagram title" />
@@ -108,8 +87,11 @@
                               <String fx:value="menu-bar" />
                               <String fx:value="button" />
                            </styleClass>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </MenuButton>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Format" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="format" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#formatButtonAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Format Text" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -120,6 +102,24 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="customizeCircle" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#customizeCircleAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Customize Circles" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-mastercard.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#handleUndoButtonAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Undo" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -132,6 +132,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#handleRedoButtonAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Redo" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -144,18 +147,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#circleSizeAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Resize" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-enlarge.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                      </children>
                      <padding>
@@ -170,6 +164,11 @@
                   <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="167.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0">
                      <image>
                         <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-java.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="78.0" fitWidth="116.0" layoutX="94.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/VennEver.png" />
                      </image>
                   </ImageView>
                </children>
@@ -190,7 +189,7 @@
                      <children>
                         <Pane layoutX="26.0" layoutY="21.0" prefHeight="536.0" prefWidth="770.0">
                            <children>
-                              <Circle fx:id="lCircle" fill="#64636896" layoutX="246.0" layoutY="267.0" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="200.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+                              <Circle fx:id="lCircle" fill="#64636896" layoutX="249.0" layoutY="267.0" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="200.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <cursor>
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor>
@@ -208,6 +207,32 @@
             </StackPane>
          </children>
       </AnchorPane>
+      <Pane fx:id="formatPaneSize" layoutX="875.0" layoutY="33.0" prefHeight="50.0" prefWidth="243.0" style="-fx-background-color: #222831 #222831; -fx-background-radius: 0 0 50 50;" visible="false">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#fa2d59a5" offsetY="3.0" />
+         </effect>
+         <children>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="27.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-enlarge.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="formatPaneColour" layoutX="402.0" layoutY="33.0" prefHeight="50.0" prefWidth="435.0" style="-fx-background-color: #222831 #222831; -fx-background-radius: 0 0 50 50;" visible="false">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#fa2f5f" offsetY="3.0" />
+         </effect>
+         <children>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="205.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-paint_palette.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="12.0" layoutY="3.0" prefWidth="48.0" styleClass="circle-label" stylesheets="@app.css" text="left circle" />
+            <Label layoutX="364.0" layoutY="3.0" styleClass="circle-label" stylesheets="@app.css" text="right circle" />
+         </children>
+      </Pane>
       <MenuBar layoutX="-1.0" layoutY="-2.0" prefHeight="35.0" prefWidth="1250.0" stylesheets="@menubar.css">
          <menus>
             <Menu mnemonicParsing="false" text="File">
@@ -236,4 +261,7 @@
          </menus>
       </MenuBar>
    </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>

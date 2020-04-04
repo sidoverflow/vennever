@@ -80,7 +80,6 @@ public class Main extends Application {
 	        //set transparent
 	        
 	        
-	        
 	        firstScene.setFill(Color.TRANSPARENT);
 	        primaryStage.setTitle("VennEver");
 			primaryStage.setScene(firstScene);

@@ -1,6 +1,4 @@
-@font-face {
-	src: url('../resources/Montserrat.ttf');
-}
+
 .first-set {
 	-fx-background-color : #FA2C56 ;
 	-fx-text-fill: #ffffff;
@@ -22,6 +20,7 @@
 	-fx-background-radius :  5 5 5 5;
 	
 }
+
 .footer {
 	-fx-text-fill: #ffffff;
 	-fx-font-family: Montserrat;
@@ -36,7 +35,7 @@
 {
 -fx-background-color : #222831;
 -fx-background-radius :  50 0 0 50;
--fx-font-family: Montserrat;
+-fx-font-family: SFProMedium;
 }
 
 .button
@@ -90,6 +89,14 @@
 .text-area .content {
     -fx-background-color:  #222831;
     
+}
+
+.circle-label {
+	-fx-text-fill: #ffffff;
+	-fx-font-size: 10;
+	-fx-font-family: Montserrat;
+	-fx-background-radius :  5 0 0 5;
+	
 }
 
 
