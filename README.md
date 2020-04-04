@@ -1,5 +1,7 @@
 # VennEver
 
+[logo]: https://github.com/sidoverflow/VennProject/blob/sid_develop/Venn/src/main/java/resources/VennEver.png "VennEver"
+
 > *Coursework for EECS2311: Software Development Project | Winter 2020*
 
 > **VennEver** is desktop application that allows the user to create customizable venn diagrams to visually represent data.
