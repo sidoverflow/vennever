@@ -1,29 +1,37 @@
+@font-face {
+    src: url('ProximaNova.ttf');
+}
+
 
 .first-set {
 	-fx-background-color : #FA2C56 ;
 	-fx-text-fill: #ffffff;
-	-fx-font-family: Montserrat;
+	-fx-font-family: "Proxima Nova";
 	-fx-background-radius :  0 5 5 0;
 	
 }
 .second-set {
 	-fx-background-color : #FA2C56 ;
 	-fx-text-fill: #ffffff;
-	-fx-font-family: Montserrat;
+	-fx-font-family: "Proxima Nova";
 	-fx-background-radius :  5 0 0 5;
 	
 }
 .intersection-set {
 	-fx-background-color : #FA2C56 ;
 	-fx-text-fill: #ffffff;
-	-fx-font-family: Montserrat;
+	-fx-font-family: "Proxima Nova";
+	-fx-font-size: 12pt;
 	-fx-background-radius :  5 5 5 5;
 	
+}
+.intersection-set:hover{
+	-fx-font-size: 11pt;
 }
 
 .footer {
 	-fx-text-fill: #ffffff;
-	-fx-font-family: Montserrat;
+	-fx-font-family: "Proxima Nova";
 	-fx-font-weight: normal;
 
 	
@@ -35,14 +43,16 @@
 {
 -fx-background-color : #222831;
 -fx-background-radius :  50 0 0 50;
--fx-font-family: SFProMedium;
+-fx-font-family: "Proxima Nova";
+-fx-font-size: 12pt;
 }
 
 .button
 {
 -fx-background-color : #222831;
 -fx-background-radius :  50 0 0 50;
--fx-font-family: Montserrat;
+-fx-font-family: "Proxima Nova";
+-fx-font-size: 12pt;
 }
 
 
@@ -51,6 +61,7 @@
 {
 -fx-background-color : #393e46 ;
 -fx-background-radius :  50 0 0 50;
+-fx-font-size: 11pt;
 }
 .button:pressed
 {
@@ -59,12 +70,26 @@
 }
 
 
+.format-button
+{
+-fx-background-color : #393e46;
+-fx-background-radius :  10 10 10 10;
+-fx-font-family: "Proxima Nova";
+-fx-font-size: 12pt;
+-fx-text-fill: #ffffff
+}
+
+.format-button:pressed
+{
+-fx-background-color : #222831;
+}
+
 
 .intersection
 {
 -fx-background-color : #222831;
 -fx-background-radius :  50 0 0 50;
--fx-font-family: Montserrat;
+-fx-font-family: "Proxima Nova";
 }
 
 .intersection:hover
@@ -79,7 +104,7 @@
 
 
 .text-area {
-    -fx-font-family: Montserrat;
+    -fx-font-family: "Proxima Nova";
     -fx-font-size: 18;
     -fx-text-fill: #ffffff;
     -fx-background-color: #222831;
@@ -94,10 +119,48 @@
 .circle-label {
 	-fx-text-fill: #ffffff;
 	-fx-font-size: 10;
-	-fx-font-family: Montserrat;
+	-fx-font-family: "Proxima Nova";
 	-fx-background-radius :  5 0 0 5;
 	
 }
 
 
+.split-menu-button .arrow {
+	-fx-background-color:  #ffffff;
+	-fx-border-color:  transparent;
+	
+}
+.split-menu-button {
+-fx-background-color :  #393e46;
+-fx-background-radius :  50 50 50 50;
+
+}
+
+.split-menu-button .arrow-button {
+-fx-background-color :  #393e46;
+-fx-background-radius :  50 50 50 50;
+
+	
+}
+
+.split-menu-button .arrow-button:hover {
+-fx-background-color :  #FA2C56;
+-fx-background-radius :  50 50 50 50;
+
+	
+}
+
+.split-menu-button .list-view .list-cell {
+	-fx-text-fill: #ffffff;
+	-fx-background-color :  #393e46;
+}
+
+.split-menu-button .list-view .list-cell:hover {
+	-fx-background-color :  #FA2C56;
+}
+
+.split-menu-button .list-cell {
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Proxima Nova";
+}
 

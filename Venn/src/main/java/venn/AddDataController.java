@@ -85,6 +85,7 @@ public class AddDataController {
     public void openThirdScene(ActionEvent actionEvent) throws IOException {
     	Stage primaryStage = (Stage) done.getScene().getWindow();
         primaryStage.setScene(thirdScene);
+        thirdScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
         
     }
     @FXML

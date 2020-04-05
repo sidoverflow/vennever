@@ -94,6 +94,11 @@ public class DemoController {
 	@FXML
 	private Button italics = new Button();
 	@FXML
+	private Button format = new Button();
+	@FXML
+	private Button customizeCircle = new Button();
+	private int cT = 1, cC = 1;
+	@FXML
 	private Slider slider = new Slider();
 
 	private EditableLabel currentText;
@@ -106,8 +111,16 @@ public class DemoController {
     @FXML
     private Pane formatPaneSize = new Pane();
     @FXML
+    private Pane formatPaneText = new Pane();
+    @FXML
     private AnchorPane mainPane = new AnchorPane();
-	
+    
+    String font[] = {"Arial","Comic Sans MS","Courier","Montserrat","Proxima Nova","Times New Roman","Verdana",};
+	@FXML
+	private ComboBox fontComboBox;
+	String fontSize[] = {"10","12","14","16","18","20","22","24","26","28","30"};
+	@FXML
+	private ComboBox sizeComboBox;
 	@FXML
 	private AnchorPane sidebar = new AnchorPane();
 
@@ -132,18 +145,52 @@ public class DemoController {
 	}
 
 	public void openSecondScene(ActionEvent actionEvent) {
+		if (cC % 2 == 0) {
+			cC++;
+			formatPaneColour.setVisible(false);
+			formatPaneSize.setVisible(false);
+			customizeCircle.setStyle("-fx-background-color: #222831");
+			
+		}
+		else if (cT % 2 == 0) {
+			cT++;
+			formatPaneText.setVisible(false);
+			format.setStyle("-fx-background-color: #222831");
+			
+			
+		}
+
 		formatPaneColour.setVisible(false);
 		formatPaneSize.setVisible(false);
+		formatPaneText.setVisible(false);
 		sidebar.getChildren().remove(dragInfo);
 		Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+		secondScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
 		primaryStage.setScene(secondScene);
 	}
 
 	@FXML
 	public void textBoxAction(ActionEvent event) throws IOException {
+		if (cC % 2 == 0) {
+			cC++;
+			formatPaneColour.setVisible(false);
+			formatPaneSize.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+			customizeCircle.setStyle("-fx-background-color: #222831");
+			
+		}
+		else if (cT % 2 == 0) {
+			cT++;
+			formatPaneText.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+			format.setStyle("-fx-background-color: #222831");
+			
+			
+		}
+
+		formatPaneText.setVisible(false);
 		formatPaneColour.setVisible(false);
 		formatPaneSize.setVisible(false);
-		sidebar.getChildren().remove(dragInfo);
 		
 		EditableLabel newLABEL = new EditableLabel(350, 480, "type here");
 		canvas.getChildren().addAll(newLABEL);
@@ -154,9 +201,24 @@ public class DemoController {
 		
 	}
 	public void diagramTitleAction(ActionEvent event) throws IOException {
-		formatPaneColour.setVisible(false);
-		formatPaneSize.setVisible(false);
-		sidebar.getChildren().remove(dragInfo);
+		if (cC % 2 == 0) {
+			cC++;
+			formatPaneColour.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+			formatPaneSize.setVisible(false);
+			customizeCircle.setStyle("-fx-background-color: #222831");
+			
+		}
+		else if (cT % 2 == 0) {
+			cT++;
+			formatPaneText.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+			format.setStyle("-fx-background-color: #222831");
+			
+			
+		}
+
+		
 		EditableLabel newLABEL = new EditableLabel(330, 15, "enter diagram title");
 		canvas.getChildren().addAll(newLABEL);
 		Operation change = new Operation();
@@ -166,9 +228,26 @@ public class DemoController {
 		
 	}
 	public void setTitleAction(ActionEvent event) throws IOException {
+		if (cC % 2 == 0) {
+			cC++;
+			formatPaneColour.setVisible(false);
+			formatPaneSize.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+			customizeCircle.setStyle("-fx-background-color: #222831");
+			
+		}
+		else if (cT % 2 == 0) {
+			cT++;
+			formatPaneText.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+			format.setStyle("-fx-background-color: #222831");
+			
+			
+		}
+
+		formatPaneText.setVisible(false);
 		formatPaneColour.setVisible(false);
 		formatPaneSize.setVisible(false);
-		sidebar.getChildren().remove(dragInfo);
 
 		
 		EditableLabel labelA = new EditableLabel(220, 70, "enter set-A title");
@@ -278,16 +357,19 @@ public class DemoController {
 
 	@FXML
 	void boldButton(ActionEvent event) {
-		if (selectedText.size() > 0) {
-			for (int i = 0; i < selectedText.size(); i++) {
-				selectedText.get(i).getStyleClass().add("text-style");
-				selectedText.get(i).setStyle("-fx-font-weight: bold");
-			}
-			selectedText.clear();
+		
+		if (currentText.getFont().getFamily().equals("Montserrat") || currentText.getFont().getFamily().equals("Proxima Nova")) {
+			
 		}
 		else {
-			currentText.getStyleClass().add("text-style");
-			currentText.setStyle("-fx-font-weight: bold");
+			if (selectedText.size() > 0) {
+				for (int i = 0; i < selectedText.size(); i++) {
+					selectedText.get(i).setStyle(currentText.getStyle() + ";" + "-fx-font-weight: bold");
+				}
+				selectedText.clear();
+			} else {
+				currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-weight: bold");
+			} 
 		}
 	}
 
@@ -296,14 +378,12 @@ public class DemoController {
 
 		if (selectedText.size() > 0) {
 			for (int i = 0; i < selectedText.size(); i++) {
-				selectedText.get(i).getStyleClass().add("text-style");
-				selectedText.get(i).setStyle("-fx-font-style: italic");
+				selectedText.get(i).setStyle(currentText.getStyle() + ";" +"-fx-font-style: italic");
 			}
 			selectedText.clear();
 		}
 		else {
-			currentText.getStyleClass().add("text-style");
-			currentText.setStyle("-fx-font-style: italic");
+			currentText.setStyle(currentText.getStyle() + ";" +"-fx-font-style: italic");
 		}
 	}
 
@@ -311,84 +391,176 @@ public class DemoController {
 	@FXML
 	@SuppressWarnings("unchecked")
 	public void customizeCircleAction(ActionEvent event) {
-		formatPaneColour.setVisible(true);
-		
-		ColorPicker colorPicker1 = new ColorPicker((Color) lCircle.getFill());
-		VBox colorBox1 = new VBox(colorPicker1);
-		colorBox1.setCursor(Cursor.HAND);
-		colorBox1.setLayoutX(35);
-		colorBox1.setLayoutY(19);
-		formatPaneColour.getChildren().add(colorBox1);
-		colorPicker1.setOnAction(new EventHandler() {
-			public void handle(Event t) {
-				Color myColor = (Color) lCircle.getFill();
-				Operation change = new Operation();
-				change.setOperation("color");
-				change.setCircle(lCircle);
-				change.setCurrentColor(myColor);
-
-				lCircle.setFill(colorPicker1.getValue());
-				lCircle.setOpacity(0.51);
-
-				change.setNewColor((Color) lCircle.getFill());
-				undoStack.push(change);
+		sidebar.getChildren().remove(dragInfo);
+		cC++;
+		if (cC % 2 == 0) {
+			
+			if (cT % 2 == 0) {
+				cT++;
+				format.setStyle("-fx-background-color: #222831");
 			}
-		});
-		
-		ColorPicker colorPicker2 = new ColorPicker((Color) rCircle.getFill());
-		VBox colorBox2 = new VBox(colorPicker2);
-		colorBox2.setCursor(Cursor.HAND);
-		
-		formatPaneColour.getChildren().add(colorBox2);
-		colorBox2.setLayoutX(250);
-		colorBox2.setLayoutY(19);
-		colorPicker2.setOnAction(new EventHandler() {
-			public void handle(Event t) {
-				Color myColor = (Color) rCircle.getFill();
-				Operation change = new Operation();
-				change.setOperation("color");
-				change.setCircle(rCircle);
-				change.setCurrentColor(myColor);
+			
+			customizeCircle.setStyle("-fx-background-color: #FA2C56");
+			
+			formatPaneText.setVisible(false);
+			formatPaneColour.setVisible(true);
+			ColorPicker colorPicker1 = new ColorPicker((Color) lCircle.getFill());
+			VBox colorBox1 = new VBox(colorPicker1);
+			colorBox1.setCursor(Cursor.HAND);
+			colorBox1.setLayoutX(35);
+			colorBox1.setLayoutY(19);
+			formatPaneColour.getChildren().add(colorBox1);
+			colorPicker1.setOnAction(new EventHandler() {
+				public void handle(Event t) {
+					Color myColor = (Color) lCircle.getFill();
+					Operation change = new Operation();
+					change.setOperation("color");
+					change.setCircle(lCircle);
+					change.setCurrentColor(myColor);
 
-				rCircle.setFill(colorPicker2.getValue());
-				rCircle.setOpacity(0.51);
+					lCircle.setFill(colorPicker1.getValue());
+					lCircle.setOpacity(0.51);
 
-				change.setNewColor((Color) rCircle.getFill());
-				undoStack.push(change);
-			}
-		});
-		
-		formatPaneSize.setVisible(true);
-		
-		slider.setId("slider");
-		slider.setOnDragDetected(mouseEvent -> {
-			sliderMethod();
-		});
-		VBox sliderBox = new VBox(slider);
-		VBox.setMargin(slider, new Insets(10, 10, 10, 10));
-		sliderBox.setLayoutX(55);
-		sliderBox.setLayoutY(5);
-		slider.setCursor(Cursor.HAND);
-		formatPaneSize.getChildren().addAll(sliderBox);
-		dragInfo = new Label("drag the circles to reposition on the editor");
-		dragInfo.setLayoutX(52);
-		dragInfo.setLayoutY(590);
-		dragInfo.getStyleClass().add("infoLabel");
-		sidebar.getChildren().addAll(dragInfo);
+					change.setNewColor((Color) lCircle.getFill());
+					undoStack.push(change);
+				}
+			});
+			ColorPicker colorPicker2 = new ColorPicker((Color) rCircle.getFill());
+			VBox colorBox2 = new VBox(colorPicker2);
+			colorBox2.setCursor(Cursor.HAND);
+			formatPaneColour.getChildren().add(colorBox2);
+			colorBox2.setLayoutX(250);
+			colorBox2.setLayoutY(19);
+			colorPicker2.setOnAction(new EventHandler() {
+				public void handle(Event t) {
+					Color myColor = (Color) rCircle.getFill();
+					Operation change = new Operation();
+					change.setOperation("color");
+					change.setCircle(rCircle);
+					change.setCurrentColor(myColor);
+
+					rCircle.setFill(colorPicker2.getValue());
+					rCircle.setOpacity(0.51);
+
+					change.setNewColor((Color) rCircle.getFill());
+					undoStack.push(change);
+				}
+			});
+			formatPaneSize.setVisible(true);
+			slider.setId("slider");
+			slider.setOnDragDetected(mouseEvent -> {
+				sliderMethod();
+			});
+			VBox sliderBox = new VBox(slider);
+			VBox.setMargin(slider, new Insets(10, 10, 10, 10));
+			sliderBox.setLayoutX(55);
+			sliderBox.setLayoutY(5);
+			slider.setCursor(Cursor.HAND);
+			formatPaneSize.getChildren().addAll(sliderBox);
+			dragInfo = new Label("drag the circles to reposition on the editor");
+			dragInfo.setLayoutX(40);
+			dragInfo.setLayoutY(590);
+			dragInfo.getStyleClass().add("infoLabel");
+			sidebar.getChildren().addAll(dragInfo);
+		}
+		else {
+			customizeCircle.setStyle("-fx-background-color: #222831");
+			
+			formatPaneColour.setVisible(false);
+			formatPaneSize.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+		}
 		
 		
 	}
-	
-	
-
-
 	
 	@FXML
-	void clickCanvas(MouseEvent event) {
-		formatPaneColour.setVisible(false);
-		formatPaneSize.setVisible(false);
+	@SuppressWarnings("unchecked")
+	public void circleClick(MouseEvent event) {
 		sidebar.getChildren().remove(dragInfo);
+		cC++;
+		if (cC % 2 == 0) {
+			
+			if (cT % 2 == 0) {
+				cT++;
+				format.setStyle("-fx-background-color: #222831");
+			}
+			
+			customizeCircle.setStyle("-fx-background-color: #FA2C56");
+			
+			formatPaneText.setVisible(false);
+			formatPaneColour.setVisible(true);
+			ColorPicker colorPicker1 = new ColorPicker((Color) lCircle.getFill());
+			VBox colorBox1 = new VBox(colorPicker1);
+			colorBox1.setCursor(Cursor.HAND);
+			colorBox1.setLayoutX(35);
+			colorBox1.setLayoutY(19);
+			formatPaneColour.getChildren().add(colorBox1);
+			colorPicker1.setOnAction(new EventHandler() {
+				public void handle(Event t) {
+					Color myColor = (Color) lCircle.getFill();
+					Operation change = new Operation();
+					change.setOperation("color");
+					change.setCircle(lCircle);
+					change.setCurrentColor(myColor);
+
+					lCircle.setFill(colorPicker1.getValue());
+					lCircle.setOpacity(0.51);
+
+					change.setNewColor((Color) lCircle.getFill());
+					undoStack.push(change);
+				}
+			});
+			ColorPicker colorPicker2 = new ColorPicker((Color) rCircle.getFill());
+			VBox colorBox2 = new VBox(colorPicker2);
+			colorBox2.setCursor(Cursor.HAND);
+			formatPaneColour.getChildren().add(colorBox2);
+			colorBox2.setLayoutX(250);
+			colorBox2.setLayoutY(19);
+			colorPicker2.setOnAction(new EventHandler() {
+				public void handle(Event t) {
+					Color myColor = (Color) rCircle.getFill();
+					Operation change = new Operation();
+					change.setOperation("color");
+					change.setCircle(rCircle);
+					change.setCurrentColor(myColor);
+
+					rCircle.setFill(colorPicker2.getValue());
+					rCircle.setOpacity(0.51);
+
+					change.setNewColor((Color) rCircle.getFill());
+					undoStack.push(change);
+				}
+			});
+			formatPaneSize.setVisible(true);
+			slider.setId("slider");
+			slider.setOnDragDetected(mouseEvent -> {
+				sliderMethod();
+			});
+			VBox sliderBox = new VBox(slider);
+			VBox.setMargin(slider, new Insets(10, 10, 10, 10));
+			sliderBox.setLayoutX(55);
+			sliderBox.setLayoutY(5);
+			slider.setCursor(Cursor.HAND);
+			formatPaneSize.getChildren().addAll(sliderBox);
+			dragInfo = new Label("drag the circles to reposition on the editor");
+			dragInfo.setLayoutX(40);
+			dragInfo.setLayoutY(590);
+			dragInfo.getStyleClass().add("infoLabel");
+			sidebar.getChildren().addAll(dragInfo);
+		}
+		else {
+			customizeCircle.setStyle("-fx-background-color: #222831");
+			
+			formatPaneColour.setVisible(false);
+			formatPaneSize.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+		}
+		
+		
 	}
+	
+
 	
 
 	
@@ -458,16 +630,72 @@ public class DemoController {
 	
 	@FXML
 	private void formatButtonAction(ActionEvent e) {
+		if (cT == 1) {
+			fontComboBox.getItems().addAll(font);
+			sizeComboBox.getItems().addAll(fontSize);
+		}
+		
+//		cT++;
+		
+//		if (cT % 2 == 0) {
+			if (cC % 2 == 0) {
+				cC++;
+				customizeCircle.setStyle("-fx-background-color: #222831");
+				formatPaneColour.setVisible(false);
+				formatPaneSize.setVisible(false);
+				sidebar.getChildren().remove(dragInfo);
+			}
+			format.setStyle("-fx-background-color: #FA2C56");
+			formatPaneText.setVisible(true);
+			dragInfo = new Label("select the text box to edit by clicking on it");
+			dragInfo.setLayoutX(40);
+			dragInfo.setLayoutY(590);
+			dragInfo.getStyleClass().add("infoLabel");
+			sidebar.getChildren().addAll(dragInfo);
+//		}
+//		else {
+//			
+//			format.setStyle("-fx-background-color: #222831");
+//			formatPaneText.setVisible(false);
+//		}
 		
 	
+	}
+	
+	@FXML
+	public void changeFont(ActionEvent e) {
+	
+		currentText.setStyle(currentText.getStyle()+ ";" + "-fx-font-family: " + '"' + fontComboBox.getValue().toString() + '"' +  "; -fx-font-weight: normal;-fx-font-style: normal;" );
+		
+	}
+	
+	@FXML
+	public void changeFontSize(ActionEvent e) {
+		
+		currentText.setStyle(currentText.getStyle()+ ";" + "-fx-font-size: " + sizeComboBox.getValue().toString() );
+		
 	}
 
 	@FXML
 	public void handleUndoButtonAction(ActionEvent e) {
+		if (cC % 2 == 0) {
+			cC++;
+			formatPaneColour.setVisible(false);
+			formatPaneSize.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+			customizeCircle.setStyle("-fx-background-color: #222831");
+			
+		}
+		else if (cT % 2 == 0) {
+			cT++;
+			formatPaneText.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+			format.setStyle("-fx-background-color: #222831");
+			
+			
+		}
+
 		
-		formatPaneColour.setVisible(false);
-		formatPaneSize.setVisible(false);
-		sidebar.getChildren().remove(dragInfo);
 		Operation undo = undoStack.pop();
 		redoStack.push(undo);
 		String operation = undo.getOperation();
@@ -490,10 +718,24 @@ public class DemoController {
 
 	@FXML
 	public void handleRedoButtonAction(ActionEvent e) {
+		if (cC % 2 == 0) {
+			cC++;
+			formatPaneColour.setVisible(false);
+			formatPaneSize.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+			customizeCircle.setStyle("-fx-background-color: #222831");
+			
+		}
+		else if (cT % 2 == 0) {
+			cT++;
+			formatPaneText.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+			format.setStyle("-fx-background-color: #222831");
+			
+			
+		}
+
 		
-		formatPaneColour.setVisible(false);
-		formatPaneSize.setVisible(false);
-		sidebar.getChildren().remove(dragInfo);
 		Operation redo = redoStack.pop();
 		undoStack.push(redo);
 		String operation = redo.getOperation();
@@ -560,10 +802,70 @@ public class DemoController {
 					tf.requestFocus();
 					
 				} else if (e.isControlDown()) {
+					if (cT == 1) {
+						fontComboBox.getItems().addAll(font);
+						sizeComboBox.getItems().addAll(fontSize);
+					}
+					
+					cT++;
+					
+					if (cT % 2 == 0) {
+						if (cC % 2 == 0) {
+							cC++;
+							customizeCircle.setStyle("-fx-background-color: #222831");
+							formatPaneColour.setVisible(false);
+							formatPaneSize.setVisible(false);
+							sidebar.getChildren().remove(dragInfo);
+						}
+						format.setStyle("-fx-background-color: #FA2C56");
+						formatPaneText.setVisible(true);
+						dragInfo = new Label("select the text box to edit by clicking on it");
+						dragInfo.setLayoutX(40);
+						dragInfo.setLayoutY(590);
+						dragInfo.getStyleClass().add("infoLabel");
+						sidebar.getChildren().addAll(dragInfo);
+					}
+					else {
+						
+						format.setStyle("-fx-background-color: #222831");
+						formatPaneText.setVisible(false);
+						sidebar.getChildren().remove(dragInfo);
+					}
 					selectedText.add(this);
+					
 				}
 				else {
+					if (cT == 1) {
+						fontComboBox.getItems().addAll(font);
+						sizeComboBox.getItems().addAll(fontSize);
+					}
+					
+					cT++;
+					
+					if (cT % 2 == 0) {
+						if (cC % 2 == 0) {
+							cC++;
+							customizeCircle.setStyle("-fx-background-color: #222831");
+							formatPaneColour.setVisible(false);
+							formatPaneSize.setVisible(false);
+							sidebar.getChildren().remove(dragInfo);
+						}
+						format.setStyle("-fx-background-color: #FA2C56");
+						formatPaneText.setVisible(true);
+						dragInfo = new Label("select the text box to edit by clicking on it");
+						dragInfo.setLayoutX(40);
+						dragInfo.setLayoutY(590);
+						dragInfo.getStyleClass().add("infoLabel");
+						sidebar.getChildren().addAll(dragInfo);
+					}
+					else {
+						
+						format.setStyle("-fx-background-color: #222831");
+						formatPaneText.setVisible(false);
+						sidebar.getChildren().remove(dragInfo);
+					}
 					currentText = this;
+					
 				}
 			});
 

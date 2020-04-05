@@ -23,12 +23,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.AddDataIntersectionController">
    <children>
-      <Polygon fill="#8f1b32" layoutX="866.0" layoutY="124.0" points="-22.0, 21.0, 1.0, 119.0, 1.0, 0.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Polygon fill="#8f1b32" layoutX="855.0" layoutY="124.0" points="-22.0, 21.0, 1.0, 119.0, 1.0, 0.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <rotationAxis>
             <Point3D y="1.0" />
          </rotationAxis>
       </Polygon>
-      <Polygon fill="#8f1b32" layoutX="715.0" layoutY="124.0" points="-22.0, 21.0, 1.0, 119.0, 1.0, 0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Polygon fill="#8f1b32" layoutX="733.0" layoutY="124.0" points="-22.0, 21.0, 1.0, 119.0, 1.0, 0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <AnchorPane layoutX="-24.0" layoutY="31.0" prefHeight="670.0" prefWidth="332.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-24.0" AnchorPane.topAnchor="31.0">
          <children>
             <AnchorPane layoutX="2.0" layoutY="-2.0" prefHeight="676.0" prefWidth="304.0" style="-fx-background-color: #222831; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="-2.0">
@@ -117,7 +117,7 @@
                               </ImageView>
                            </graphic>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" styleClass="button1" stylesheets="@app.css" text="Undo" textAlignment="CENTER" textFill="WHITE">
@@ -149,12 +149,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </VBox>
-                  <Label contentDisplay="CENTER" layoutX="117.0" layoutY="632.0" prefHeight="21.0" prefWidth="51.0" styleClass="footer" stylesheets="@app.css" text="made on " textAlignment="CENTER" AnchorPane.bottomAnchor="25.0">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="167.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0">
+				  <Label contentDisplay="CENTER" layoutX="113.0" layoutY="632.0" prefHeight="21.0" prefWidth="51.0" styleClass="footer" stylesheets="@app.css" text="made on" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" />                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="167.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0">
                      <image>
                         <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-java.png" />
                      </image>
@@ -200,11 +195,7 @@
       </MenuBar>
       <TextArea fx:id="firstSet" layoutX="367.0" layoutY="145.0" prefHeight="428.0" prefWidth="261.0" stylesheets="@app.css" />
       <TextArea fx:id="secondSet" layoutX="934.0" layoutY="145.0" prefHeight="428.0" prefWidth="261.0" stylesheets="@app.css" />
-      <Label layoutX="635.0" layoutY="658.0" text="enter data for each set separated by a new line" textFill="WHITE">
-         <font>
-            <Font name="Montserrat Regular" size="13.0" />
-         </font>
-      </Label>
+      <Label layoutX="656.0" layoutY="658.0" text="enter data for each set separated by a new line" textFill="WHITE" />
       <Button fx:id="done" graphicTextGap="13.0" layoutX="721.0" layoutY="606.0" mnemonicParsing="false" onAction="#doneButtonAction" stylesheets="@app.css" text="done" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -217,12 +208,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label contentDisplay="CENTER" layoutX="367.0" layoutY="127.0" prefHeight="21.0" prefWidth="70.0" styleClass="first-set" stylesheets="@app.css" text=" first set" textAlignment="CENTER">
+      <Label contentDisplay="CENTER" layoutX="367.0" layoutY="127.0" prefHeight="21.0" prefWidth="58.0" styleClass="first-set" stylesheets="@app.css" text=" first set" textAlignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label contentDisplay="CENTER" layoutX="1102.0" layoutY="126.0" prefHeight="21.0" prefWidth="93.0" styleClass="second-set" stylesheets="@app.css" text=" second set" textAlignment="CENTER">
+      <Label contentDisplay="CENTER" layoutX="1115.0" layoutY="126.0" prefHeight="21.0" prefWidth="80.0" styleClass="second-set" stylesheets="@app.css" text=" second set" textAlignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>
@@ -264,7 +255,7 @@
          </cursor>
       </MenuButton>
       <TextArea fx:id="thirdSet" layoutX="650.0" layoutY="145.0" prefHeight="428.0" prefWidth="261.0" stylesheets="@app.css" />
-      <Label contentDisplay="CENTER" layoutX="713.0" layoutY="124.0" prefHeight="21.0" prefWidth="134.0" styleClass="intersection-set" stylesheets="@app.css" text=" intersection set" textAlignment="CENTER">
+      <Label contentDisplay="CENTER" layoutX="731.0" layoutY="124.0" prefHeight="21.0" prefWidth="104.0" styleClass="intersection-set" stylesheets="@app.css" text=" intersection set" textAlignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>

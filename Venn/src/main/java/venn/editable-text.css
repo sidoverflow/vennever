@@ -1,10 +1,14 @@
 @font-face {
-    font-family: SF;
-    src: url('../resources/SFProMedium.ttf');
+    src: url('ProximaNova.ttf');
+}
+
+.root{
+
+    -fx-font-family: "Proxima Nova";
 }
 
 .editable-text {
-	-fx-font-family: Montserrat;
+	-fx-font-family: "Proxima Nova";
     -fx-font-weight: normal;
     -fx-font-style: normal;
     -fx-font-size: 14;
@@ -24,13 +28,13 @@
 .color-picker {
 -fx-background-color : #FA2C56;
 -fx-background-radius :  50 50 50 50;
--fx-font-family: Montserrat;
+-fx-font-family: "Proxima Nova";
 -fx-font-fill: #ffffff;
 
 }
 .infoLabel {
-	-fx-font-family: Montserrat;
-	-fx-font-size: 10;
+	-fx-font-family: "Proxima Nova";
+	-fx-font-size: 10pt;
 	-fx-text-fill: #ffffff;
 }
 
