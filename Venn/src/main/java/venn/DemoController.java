@@ -114,6 +114,10 @@ public class DemoController {
     private Pane formatPaneText = new Pane();
     @FXML
     private AnchorPane mainPane = new AnchorPane();
+    @FXML
+    private Button vennTest = new Button();
+    @FXML
+    MenuBar menuBar = new MenuBar();
     
     String font[] = {"Arial","Comic Sans MS","Courier","Montserrat","Proxima Nova","Times New Roman","Verdana",};
 	@FXML
@@ -139,6 +143,7 @@ public class DemoController {
 
 
 	private Scene secondScene;
+	private Scene fourthScene;
 
 	public void setSecondScene(Scene scene) {
 		secondScene = scene;
@@ -930,10 +935,51 @@ public class DemoController {
 		}
 
 		// records relative x and y co-ordinates.
-		private class Delta {
+		public class Delta {
 			double x, y;
 		}
 	}
+	
+	
+
+	public void setFourthScene(Scene scene) {
+		fourthScene = scene;
+	}
+	
+	@FXML
+    void openFourthScene(ActionEvent event) {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you really want to close this application?", ButtonType.OK);
+		alert.setTitle("VennTest");
+	    alert.setHeaderText("Launching VennTest mode");
+	    alert.setContentText("In VennTest mode, you can upload a .csv file in a specific format containing data for the tags "
+	    		+ "and the correct answer. \n \nOn uploading the file, the tags will be populated on the side for you to arrange on the diagram. Once you are finished, click Done to compare your attempt with "
+	    		+ "the correct answer. \n \nThe format for the .csv file is as follows: \n \nLine 1 must be all the tags in double"
+	    		+ " quotes and separated by commas. \n \nLine 2, 3 and 4 will have information about the correct answer sorted by "
+	    		+ "the diagram sets. \n \nLine 2 must be the tags for the LEFT set of the diagram in double quotes and separated by "
+	    		+ "commas. \n \nLine 3 must be the tags for the INTERSECTION set of the diagram in double quotes and separated by commas. "
+	    		+ "\n \nLine 4 must be the tags for the RIGHT set of the diagram in double quotes and separated by commas. "
+	    		+ "\n \nExample Apples&Oranges.csv file: \n \n\"orange\",\"thin peel\",\"grow on trees\",\"red\",\"fruit\",\"thick peel\""
+	    		+ "\n\"red\",\"thin peel\""
+	    		+ "\n\"fruit\",\"grow on trees\""
+	    		+ "\n\"orange\",\"thick peel\"");
+		
+		DialogPane dialogPane = alert.getDialogPane();
+		dialogPane.setPrefHeight(550);
+		dialogPane.setPrefWidth(800);
+		dialogPane.getStylesheets().add(
+		   getClass().getResource("editable-text.css").toExternalForm());
+		dialogPane.getStyleClass().add("alert-pane");
+		
+		// clicking X also means no
+		ButtonType result = alert.showAndWait().orElse(ButtonType.OK);
+
+		
+		Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		fourthScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
+		primaryStage.setScene(fourthScene);
+		
+
+    }
 
 }
 

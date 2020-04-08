@@ -3,7 +3,6 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,31 +11,31 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.AddDataController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.VennTestController">
    <children>
       <AnchorPane layoutX="-24.0" layoutY="31.0" prefHeight="670.0" prefWidth="332.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-24.0" AnchorPane.topAnchor="31.0">
          <children>
-            <AnchorPane layoutX="2.0" layoutY="-2.0" prefHeight="676.0" prefWidth="304.0" style="-fx-background-color: #222831; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="-2.0">
+            <AnchorPane fx:id="sidebar" layoutX="2.0" layoutY="-2.0" prefHeight="676.0" prefWidth="304.0" style="-fx-background-color: #222831; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="-2.0">
                <children>
                   <VBox layoutX="22.0" layoutY="136.0" prefHeight="565.0" prefWidth="282.0" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="136.0">
                      <children>
-                        <Button fx:id="editor" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#openFirstScene" prefHeight="50.0" prefWidth="282.0" style="-fx-background-color: #393e46#393e46;" stylesheets="@app.css" text="Editor" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="editor" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#openFirstScene" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Editor" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-query_outer_join_right.png" />
+                                    <Image url="@../resources/icons8-query_outer_join_right.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -44,11 +43,26 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="addData" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" style="-fx-background-color: #FA2C56#FA2C56;" stylesheets="@app.css" text="Data" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="addData" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Data" textAlignment="CENTER" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-add_file_white.png" />
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-add_file.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="vennTest" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" style="-fx-background-color: #FA2C56 #FA2C56;" stylesheets="@app.css" text="VennTest" textAlignment="CENTER" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-puzzle_white.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -86,8 +100,11 @@
                               <String fx:value="menu-bar" />
                               <String fx:value="button" />
                            </styleClass>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
                         </MenuButton>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" styleClass="button1" stylesheets="@app.css" text="Format Text" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="format" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Format Text" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -98,6 +115,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
                         </Button>
                         <Button fx:id="customizeCircle" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Customize Circles" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -114,7 +134,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" styleClass="button1" stylesheets="@app.css" text="Undo" textAlignment="CENTER" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Undo" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -125,8 +145,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" styleClass="button1" stylesheets="@app.css" text="Redo" textAlignment="CENTER" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Redo" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -137,6 +160,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
                         </Button>
                      </children>
                      <padding>
@@ -144,14 +170,14 @@
                      </padding>
                   </VBox>
                   <Label contentDisplay="CENTER" layoutX="113.0" layoutY="632.0" prefHeight="21.0" prefWidth="51.0" styleClass="footer" stylesheets="@app.css" text="made on" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" />
-                  <ImageView fitHeight="78.0" fitWidth="116.0" layoutX="94.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/VennEver.png" />
-                     </image>
-                  </ImageView>
                   <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="167.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0">
                      <image>
                         <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-java.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="78.0" fitWidth="116.0" layoutX="94.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/VennEver.png" />
                      </image>
                   </ImageView>
                </children>
@@ -161,6 +187,63 @@
             <DropShadow />
          </effect>
       </AnchorPane>
+      <AnchorPane fx:id="canvas" layoutX="343.0" layoutY="113.0" prefHeight="549.0" prefWidth="872.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="343.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="113.0">
+         <effect>
+            <DropShadow color="#00000046" height="130.0" radius="64.5" spread="0.66" width="130.0" />
+         </effect>
+         <children>
+            <Circle fx:id="lCircle" fill="#64636896" layoutX="211.0" layoutY="277.0" radius="180.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Circle>
+            <Circle fx:id="rCircle" fill="#fc2d5a73" layoutX="441.0" layoutY="277.0" radius="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Circle>
+            <Label fx:id="infoLabel1" alignment="CENTER" layoutX="98.0" layoutY="34.0" prefHeight="21.0" prefWidth="476.0" style="-fx-background-color: #393e46 #393e46; -fx-background-radius: 5 5 5 5;" text="drag the tags into their appropriate sets and click done to compare your answer" textFill="WHITE" />
+            <Label fx:id="tagsLabel" alignment="CENTER" layoutX="735.0" layoutY="33.0" prefHeight="21.0" prefWidth="42.0" style="-fx-background-color: #393e46 #393e46; -fx-background-radius: 5 5 5 5;" text="TAGS" textFill="WHITE" />
+            <Label fx:id="infoLabel2" alignment="CENTER" layoutX="157.0" layoutY="492.0" prefHeight="21.0" prefWidth="348.0" style="-fx-background-color: #393e46 #393e46; -fx-background-radius: 5 5 5 5;" text="ensure the tags are completely within the respective sets" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <Pane fx:id="formatPaneText" layoutX="618.0" layoutY="33.0" prefHeight="59.0" prefWidth="323.0" style="-fx-background-color: #222831 #222831; -fx-background-radius: 0 0 50 50;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#fa2f5f" offsetY="3.0" />
+         </effect>
+         <children>
+            <Button fx:id="done" graphicTextGap="9.0" layoutX="177.0" layoutY="12.0" mnemonicParsing="false" onAction="#doneButtonAction" prefHeight="37.0" prefWidth="100.0" style="-fx-background-color: #393e46 #393e46;" stylesheets="@app.css" text="done" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-ok.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="upload" graphicTextGap="9.0" layoutX="49.0" layoutY="12.0" mnemonicParsing="false" onAction="#uploadButtonAction" prefHeight="37.0" prefWidth="115.0" style="-fx-background-color: #393e46 #393e46; -fx-background-radius: 0 50 50 0;" stylesheets="@app.css" text="upload" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-csv.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
       <MenuBar fx:id="menuBar" layoutX="-1.0" layoutY="-2.0" prefHeight="35.0" prefWidth="1250.0" stylesheets="@menubar.css">
          <menus>
             <Menu mnemonicParsing="false" text="File">
@@ -188,69 +271,8 @@
             </Menu>
          </menus>
       </MenuBar>
-      <TextArea fx:id="firstSet" layoutX="385.0" layoutY="145.0" prefHeight="428.0" prefWidth="344.0" stylesheets="@app.css" />
-      <TextArea fx:id="secondSet" layoutX="823.0" layoutY="145.0" prefHeight="428.0" prefWidth="344.0" stylesheets="@app.css" />
-      <Label layoutX="656.0" layoutY="658.0" text="enter data for each set separated by a new line" textFill="WHITE" />
-      <Button fx:id="done" graphicTextGap="9.0" layoutX="721.0" layoutY="606.0" mnemonicParsing="false" onAction="#doneButtonAction" stylesheets="@app.css" text="done" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-ok.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-         </graphic>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label contentDisplay="CENTER" layoutX="385.0" layoutY="127.0" prefHeight="21.0" prefWidth="58.0" styleClass="first-set" stylesheets="@app.css" text=" first set" textAlignment="CENTER">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label contentDisplay="CENTER" layoutX="1087.0" layoutY="126.0" prefHeight="21.0" prefWidth="80.0" styleClass="second-set" stylesheets="@app.css" text=" second set" textAlignment="RIGHT">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Polygon fill="#8f1b32" layoutX="391.0" layoutY="161.0" points="-17.7440185546875, -2.2598876953125, -6.0, 119.31512451171875, -6.0, -34.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Polygon fill="#8f1b32" layoutX="1184.0" layoutY="159.0" points="-17.7440185546875, -2.2598876953125, -6.0, 124.094482421875, -6.0, -34.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
-         <rotationAxis>
-            <Point3D y="1.0" />
-         </rotationAxis>
-      </Polygon>
-      <MenuButton alignment="BASELINE_LEFT" graphicTextGap="20.0" layoutX="372.0" layoutY="57.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="50.0" prefWidth="261.0" text="intersection set input" textAlignment="CENTER" textFill="WHITE">
-         <items>
-            <MenuItem mnemonicParsing="false" onAction="#openThirdScene" text="enter explicitly" />
-            <MenuItem mnemonicParsing="false" text="compute from two sets" />
-         </items>
-         <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-query_inner_join.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <font>
-            <Font size="15.0" />
-         </font>
-         <stylesheets>
-            <URL value="@menubar.css" />
-            <URL value="@app.css" />
-         </stylesheets>
-         <styleClass>
-            <String fx:value="menu-bar" />
-            <String fx:value="intersection" />
-         </styleClass>
-         <padding>
-            <Insets left="-0.5" />
-         </padding>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </MenuButton>
    </children>
+   <effect>
+      <DropShadow />
+   </effect>
 </AnchorPane>

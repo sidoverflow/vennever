@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -53,7 +54,8 @@ public class AddDataController {
 
     @FXML
     private Button twoCol = new Button();
-
+    @FXML
+    MenuBar menuBar = new MenuBar();
 	
 	
 	private Scene firstScene;

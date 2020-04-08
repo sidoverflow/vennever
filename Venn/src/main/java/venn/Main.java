@@ -2,7 +2,6 @@ package venn;
 
 
 
-import org.aerofx.AeroFX;
 import javafx.scene.layout.BorderPane;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -18,8 +17,10 @@ import javafx.stage.StageStyle;
 	 
 
 public class Main extends Application {
-
+	double xOffset = 0;
+	double yOffset = 0;
 	public static void main(String[] args) {
+		
 		
 		System.out.println(System.getProperty("java.classpath"));
         launch(args);
@@ -28,9 +29,12 @@ public class Main extends Application {
 // JavaFX entry point
 	@Override
 	public void start(Stage primaryStage) {
+		
 		try { 
 			// getting loader and a pane for the first scene. 
 	        // loader will then give a possibility to get related controller
+			
+			
 			
 	        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Demo.fxml"));
 	        Parent root = firstPaneLoader.load();
@@ -45,46 +49,90 @@ public class Main extends Application {
 	        FXMLLoader thirdPaneLoader = new FXMLLoader(getClass().getResource("AddDataIntersection.fxml"));
 	        Parent thirdPane = thirdPaneLoader.load();
 	        Scene thirdScene = new Scene(thirdPane);
+	        
+	     // getting loader and a pane for the third scene
+	        FXMLLoader fourthPaneLoader = new FXMLLoader(getClass().getResource("VennTest.fxml"));
+	        Parent fourthPane = fourthPaneLoader.load();
+	        Scene fourthScene = new Scene(fourthPane);
 
-	        // injecting second scene into the controller of the first scene
+	        // injecting second and fourth scene into the controller of the first scene
 	        DemoController firstPaneController = (DemoController) firstPaneLoader.getController();
 	        firstPaneController.setSecondScene(secondScene);
+	        firstPaneController.setFourthScene(fourthScene);
 
-	        // injecting first scene into the controller of the second scene
+	        // injecting first and third scene into the controller of the second scene
 	        AddDataController secondPaneController = (AddDataController) secondPaneLoader.getController();
 	        secondPaneController.setFirstScene(firstScene);
 	        secondPaneController.setThirdScene(thirdScene);
 	        secondPaneController.setFirstController(firstPaneController);
 	        
-	        // injecting second scene into the controller of the first scene
+	        // injecting first and second scene into the controller of the third scene
 	        AddDataIntersectionController thirdPaneController = (AddDataIntersectionController) thirdPaneLoader.getController();
 	        thirdPaneController.setSecondScene(secondScene);
 	        thirdPaneController.setFirstScene(firstScene);
 	        thirdPaneController.setFirstController(firstPaneController);
 	        
+	     // injecting first scene into the controller of the third scene
+	        VennTestController fourthPaneController = (VennTestController) fourthPaneLoader.getController();
+	        fourthPaneController.setFirstScene(firstScene);
+	        fourthPaneController.setFirstController(firstPaneController);
 	        
-	        primaryStage = new Stage(StageStyle.DECORATED);
-//	        //grab your root here
-//	        root.setOnMousePressed(event -> {
-//	            xOffset = event.getSceneX();
-//	            yOffset = event.getSceneY();
-//	        });
-//
-//	        //move around here
-//	        root.setOnMouseDragged(event -> {
-//	            primaryStage.setX(event.getScreenX() - xOffset);
-//	            primaryStage.setY(event.getScreenY() - yOffset);
-//	        });
+	        
+//	        primaryStage = new Stage(StageStyle.DECORATED);
+	        //grab your root here
+	        firstPaneController.menuBar.setOnMousePressed(event -> {
+	            xOffset = event.getSceneX();
+	            yOffset = event.getSceneY();
+	        });
+
+	        //move around here
+	        firstPaneController.menuBar.setOnMouseDragged(event -> {
+	            primaryStage.setX(event.getScreenX() - xOffset);
+	            primaryStage.setY(event.getScreenY() - yOffset);
+	        });
+	        
+	        secondPaneController.menuBar.setOnMousePressed(event -> {
+	            xOffset = event.getSceneX();
+	            yOffset = event.getSceneY();
+	        });
+
+	        //move around here
+	        secondPaneController.menuBar.setOnMouseDragged(event -> {
+	            primaryStage.setX(event.getScreenX() - xOffset);
+	            primaryStage.setY(event.getScreenY() - yOffset);
+	        });
+	        
+	        thirdPaneController.menuBar.setOnMousePressed(event -> {
+	            xOffset = event.getSceneX();
+	            yOffset = event.getSceneY();
+	        });
+
+	        //move around here
+	        thirdPaneController.menuBar.setOnMouseDragged(event -> {
+	            primaryStage.setX(event.getScreenX() - xOffset);
+	            primaryStage.setY(event.getScreenY() - yOffset);
+	        });
+	        
+	        fourthPaneController.menuBar.setOnMousePressed(event -> {
+	            xOffset = event.getSceneX();
+	            yOffset = event.getSceneY();
+	        });
+
+	        //move around here
+	        fourthPaneController.menuBar.setOnMouseDragged(event -> {
+	            primaryStage.setX(event.getScreenX() - xOffset);
+	            primaryStage.setY(event.getScreenY() - yOffset);
+	        });
 			
 
-	        //set transparent
+	      
 	        
 	        
 	        firstScene.setFill(Color.TRANSPARENT);
 	        primaryStage.setTitle("VennEver");
 			primaryStage.setScene(firstScene);
 			firstScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
-//	        primaryStage.initStyle(StageStyle.TRANSPARENT);
+	        primaryStage.initStyle(StageStyle.TRANSPARENT);
 			primaryStage.show();
 			
 		} catch(Exception e) {

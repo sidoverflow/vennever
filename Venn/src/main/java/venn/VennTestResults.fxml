@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="650.0" minWidth="900.0" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
+   <children>
+      <AnchorPane fx:id="canvas" layoutX="119.0" layoutY="123.0" prefHeight="446.0" pref Width="660.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="81.0" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="121.0" AnchorPane.topAnchor="123.0">
+         <effect>
+            <DropShadow color="#00000046" height="130.0" radius="64.5" spread="0.66" width="130.0" />
+         </effect>
+         <children>
+            <Pane layoutX="-5.0" layoutY="6.0" prefHeight="419.0" prefWidth="660.0" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="6.0">
+               <children>
+                  <Circle fx:id="lCircle" fill="#64636896" layoutX="239.0" layoutY="214.0" onMouseClicked="#circleClick" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="190.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Circle>
+                  <Circle fx:id="rCircle" fill="#fc2d5a73" layoutX="431.0" layoutY="214.0" onMouseClicked="#circleClick" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="190.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Circle>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>

@@ -36,8 +36,25 @@
 
 	
 }
+.upload-button
+{
+-fx-background-color : #393e46;
+-fx-background-radius :  0 50 50 0;
+-fx-font-family: "Proxima Nova";
+-fx-font-size: 12pt;
+}
 
-
+.upload-button:hover
+{
+-fx-background-color : #FA2C56 ;
+-fx-background-radius :  0 50 50 0;
+-fx-font-size: 11pt;
+}
+.upload-button:pressed
+{
+-fx-background-color :  #222831;
+-fx-background-radius :  0 50 50 0;
+}
 
 .button1
 {
@@ -133,6 +150,13 @@
 .split-menu-button {
 -fx-background-color :  #393e46;
 -fx-background-radius :  50 50 50 50;
+
+}
+
+.split-menu-button .text-field {
+-fx-background-color :  #393e46;
+-fx-background-radius :  50 50 50 50;
+-fx-text-fill: #ffffff
 
 }
 

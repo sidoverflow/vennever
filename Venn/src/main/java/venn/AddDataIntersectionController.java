@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
@@ -48,6 +49,8 @@ public class AddDataIntersectionController {
 
     @FXML
     private Label intersectionSetLabel;
+    @FXML
+    MenuBar menuBar = new MenuBar();
 
     private Scene firstScene;
     private Scene secondScene;

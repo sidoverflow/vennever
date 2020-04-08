@@ -166,7 +166,7 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <MenuBar layoutX="-1.0" layoutY="-2.0" prefHeight="35.0" prefWidth="1250.0" stylesheets="@menubar.css">
+      <MenuBar fx:id="menuBar" layoutX="-1.0" layoutY="-2.0" prefHeight="35.0" prefWidth="1250.0" stylesheets="@menubar.css">
          <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>
