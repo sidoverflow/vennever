@@ -46,7 +46,7 @@ public class VennTestController {
     private Button editor;
 
     @FXML
-    private AnchorPane canvas;
+    public AnchorPane canvas;
 
     @FXML
     private Circle lCircle;
@@ -70,9 +70,9 @@ public class VennTestController {
     @FXML
     MenuBar menuBar = new MenuBar();
     
-    private String[] leftCorrect;
-    private String[] intersectionCorrect;
-    private String[] rightCorrect;
+    public String[] leftCorrect;
+    public String[] intersectionCorrect;
+    public String[] rightCorrect;
     
     private DemoController firstController;
     
@@ -87,7 +87,7 @@ public class VennTestController {
     }
 	
 	public void openFirstScene(ActionEvent actionEvent) {
-		Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+		Stage primaryStage = (Stage) ((Node) lCircle).getScene().getWindow();
 		firstScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
 		primaryStage.setScene(firstScene);
 	}
@@ -101,6 +101,7 @@ public class VennTestController {
 		
 		ObservableList<Node> boxes = canvas.getChildren();
 		for (int i = 0 ; i < boxes.size(); i++) {
+			
 			
 			if (boxes.get(i) != lCircle && boxes.get(i) != rCircle ) {
 				if (boxes.get(i).getLayoutX() <= 196 && boxes.get(i).getLayoutX() >= 31 && boxes.get(i).getLayoutY() >= 98 && boxes.get(i).getLayoutY() <= 430) {
@@ -135,28 +136,73 @@ public class VennTestController {
 			rightBoxesString[i] = rightBoxes.get(i).toString().substring(startI + 1, lastI);
 		}
 		
+		boolean check = false;
 		
-		if (Arrays.asList(leftCorrect).containsAll(Arrays.asList(leftBoxesString)) && 
-				Arrays.asList(intersectionCorrect).containsAll(Arrays.asList(intersectionBoxesString)) && 
-				Arrays.asList(rightCorrect).containsAll(Arrays.asList(rightBoxesString)) && leftCorrect.length == leftBoxesString.length && intersectionCorrect.length == intersectionBoxesString.length && rightCorrect.length == rightBoxesString.length ) {
-			
-			
-			Parent root;
+		if (Arrays.asList(intersectionCorrect).containsAll(Arrays.asList(intersectionBoxesString)) && intersectionCorrect.length == intersectionBoxesString.length) {
+			if ((Arrays.asList(leftCorrect).containsAll(Arrays.asList(leftBoxesString)) && Arrays.asList(rightCorrect).containsAll(Arrays.asList(rightBoxesString)) && leftCorrect.length == leftBoxesString.length && rightCorrect.length == rightBoxesString.length) 
+					|| (Arrays.asList(leftCorrect).containsAll(Arrays.asList(rightBoxesString)) && Arrays.asList(rightCorrect).containsAll(Arrays.asList(leftBoxesString)) && leftCorrect.length == rightBoxesString.length && rightCorrect.length == leftBoxesString.length) ) {
+				check = true;
+			}
+		}
+		
+		if (check) {
 	        try {
-	            root = FXMLLoader.load(Main.class.getResource("VennTestResults.fxml"));
+	        	
+	        	FXMLLoader fifthPaneLoader = new FXMLLoader();
+	        	fifthPaneLoader.setLocation(getClass().getResource("/venn/VenTestResults.fxml"));
+		        Parent fifthPane = fifthPaneLoader.load();
+		        Scene fifthScene = new Scene(fifthPane);
+		        
+		       
+		        VennTestResultsController fifthController = (VennTestResultsController) fifthPaneLoader.getController();
+		        fifthController.setFourthController(this);
+		        fifthController.setFirstController(firstController);
+		        fifthScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
 	            Stage stage = new Stage();
 	            stage.setTitle("VennTest Results");
-	            stage.setScene(new Scene(root));
+	            stage.setScene(fifthScene);
 	            stage.initStyle(StageStyle.TRANSPARENT);
+	            
+	            fifthController.showCorrectView();
+	            
+	            fifthController.inflateCircle();
+	            
 	            stage.show();
+	            
+	            
 	        }
 	        catch (IOException e) {
 	            e.printStackTrace();
 	        }
+	        
 		}
 		else {
-			System.out.println(false);
-		}
+			try {
+	        	
+	        	FXMLLoader fifthPaneLoader = new FXMLLoader();
+	        	fifthPaneLoader.setLocation(getClass().getResource("/venn/VenTestResults.fxml"));
+		        Parent fifthPane = fifthPaneLoader.load();
+		        Scene fifthScene = new Scene(fifthPane);
+		        
+		       
+		        VennTestResultsController fifthController = (VennTestResultsController) fifthPaneLoader.getController();
+		        fifthController.setFourthController(this);
+		        fifthController.setFirstController(firstController);
+		        fifthScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
+	            Stage stage = new Stage();
+	            stage.setTitle("VennTest Results");
+	            stage.setScene(fifthScene);
+	            stage.initStyle(StageStyle.TRANSPARENT);
+	            
+	            fifthController.showWrongView();
+	          
+	            stage.show();
+	            
+	            
+	        }
+	        catch (IOException e) {
+	            e.printStackTrace();
+	        }		}
 		
     }
     @FXML
@@ -229,6 +275,13 @@ public class VennTestController {
 	public void quitButton(ActionEvent actionEvent) {
 		Stage stage = (Stage) editor.getScene().getWindow();
 	    stage.close();
+	}
+	
+	public void clearAll() {
+		
+		canvas.getChildren().clear();
+		canvas.getChildren().addAll(infoLabel1, infoLabel2, tagsLabel, lCircle, rCircle);
+		
 	}
 	
 

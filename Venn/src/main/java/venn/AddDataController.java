@@ -93,6 +93,8 @@ public class AddDataController {
     @FXML
 	private void doneButtonAction(ActionEvent event) throws IOException{
 		getVennData();
+		firstSet.clear();
+		secondSet.clear();
 		openFirstScene(event);
 		
 	}

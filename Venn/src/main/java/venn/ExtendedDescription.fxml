@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.ExtendedDescriptionController">
+   <children>
+      <TextArea fx:id="descriptionArea" layoutX="33.0" layoutY="37.0" prefHeight="297.0" prefWidth="334.0" stylesheets="@app.css" />
+      <Button fx:id="ok" graphicTextGap="9.0" layoutX="149.0" layoutY="345.0" mnemonicParsing="false" onAction="#okAction" stylesheets="@app.css" text="OK" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-ok.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="19.0" prefHeight="21.0" prefWidth="165.0" styleClass="first-set" stylesheets="@app.css" text="extended description" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Polygon fill="#8f1b32" layoutX="39.0" layoutY="53.0" points="-17.7440185546875, -2.2598876953125, -6.0, 119.31512451171875, -6.0, -34.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+   </children>
+</AnchorPane>

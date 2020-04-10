@@ -2,6 +2,7 @@ package venn;
 
 import java.util.List;
 import java.awt.Desktop;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -46,6 +47,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.skin.TextFieldSkin;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -94,24 +97,30 @@ public class DemoController {
 	@FXML
 	private Button italics = new Button();
 	@FXML
-	private Button format = new Button();
+	public Button format = new Button();
 	@FXML
 	private Button customizeCircle = new Button();
-	private int cT = 1, cC = 1;
+	public int cT = 1, cC = 1, cB = 0, cIt = 0;
 	@FXML
 	private Slider slider = new Slider();
 
-	private EditableLabel currentText;
-    @FXML
+	public EditableLabel currentText;
+	
     private Group circleGroup;
     @FXML
     Label dragInfo  = new Label();
     @FXML
+    Label selectInfo = new Label();
+    @FXML
     private Pane formatPaneColour = new Pane();
+    @FXML
+    private ImageView ctrl;
+    @FXML
+    private ImageView click;
     @FXML
     private Pane formatPaneSize = new Pane();
     @FXML
-    private Pane formatPaneText = new Pane();
+    public Pane formatPaneText = new Pane();
     @FXML
     private AnchorPane mainPane = new AnchorPane();
     @FXML
@@ -119,14 +128,14 @@ public class DemoController {
     @FXML
     MenuBar menuBar = new MenuBar();
     
-    String font[] = {"Arial","Comic Sans MS","Courier","Montserrat","Proxima Nova","Times New Roman","Verdana",};
+    String font[] = {"choose your font","Arial","Comic Sans MS","Courier","Montserrat","Proxima Nova","Times New Roman","Verdana",};
 	@FXML
 	private ComboBox fontComboBox;
-	String fontSize[] = {"10","12","14","16","18","20","22","24","26","28","30"};
+	String fontSize[] = {"size","10","12","14","16","18","20","22","24","26","28","30"};
 	@FXML
 	private ComboBox sizeComboBox;
 	@FXML
-	private AnchorPane sidebar = new AnchorPane();
+	public AnchorPane sidebar = new AnchorPane();
 
 	public Stack undoStack = new Stack();
 
@@ -161,7 +170,9 @@ public class DemoController {
 			cT++;
 			formatPaneText.setVisible(false);
 			format.setStyle("-fx-background-color: #222831");
-			
+			selectInfo.setVisible(false);
+			ctrl.setVisible(false);
+			click.setVisible(false);
 			
 		}
 
@@ -189,7 +200,9 @@ public class DemoController {
 			formatPaneText.setVisible(false);
 			sidebar.getChildren().remove(dragInfo);
 			format.setStyle("-fx-background-color: #222831");
-			
+			selectInfo.setVisible(false);
+			ctrl.setVisible(false);
+			click.setVisible(false);
 			
 		}
 
@@ -219,6 +232,9 @@ public class DemoController {
 			formatPaneText.setVisible(false);
 			sidebar.getChildren().remove(dragInfo);
 			format.setStyle("-fx-background-color: #222831");
+			selectInfo.setVisible(false);
+			ctrl.setVisible(false);
+			click.setVisible(false);
 			
 			
 		}
@@ -246,6 +262,9 @@ public class DemoController {
 			formatPaneText.setVisible(false);
 			sidebar.getChildren().remove(dragInfo);
 			format.setStyle("-fx-background-color: #222831");
+			selectInfo.setVisible(false);
+			ctrl.setVisible(false);
+			click.setVisible(false);
 			
 			
 		}
@@ -360,38 +379,6 @@ public class DemoController {
 
 	}
 
-	@FXML
-	void boldButton(ActionEvent event) {
-		
-		if (currentText.getFont().getFamily().equals("Montserrat") || currentText.getFont().getFamily().equals("Proxima Nova")) {
-			
-		}
-		else {
-			if (selectedText.size() > 0) {
-				for (int i = 0; i < selectedText.size(); i++) {
-					selectedText.get(i).setStyle(currentText.getStyle() + ";" + "-fx-font-weight: bold");
-				}
-				selectedText.clear();
-			} else {
-				currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-weight: bold");
-			} 
-		}
-	}
-
-	@FXML
-	void italicsButton(ActionEvent event) {
-
-		if (selectedText.size() > 0) {
-			for (int i = 0; i < selectedText.size(); i++) {
-				selectedText.get(i).setStyle(currentText.getStyle() + ";" +"-fx-font-style: italic");
-			}
-			selectedText.clear();
-		}
-		else {
-			currentText.setStyle(currentText.getStyle() + ";" +"-fx-font-style: italic");
-		}
-	}
-
 	
 	@FXML
 	@SuppressWarnings("unchecked")
@@ -406,7 +393,9 @@ public class DemoController {
 			}
 			
 			customizeCircle.setStyle("-fx-background-color: #FA2C56");
-			
+			selectInfo.setVisible(false);
+			ctrl.setVisible(false);
+			click.setVisible(false);
 			formatPaneText.setVisible(false);
 			formatPaneColour.setVisible(true);
 			ColorPicker colorPicker1 = new ColorPicker((Color) lCircle.getFill());
@@ -474,6 +463,9 @@ public class DemoController {
 			formatPaneColour.setVisible(false);
 			formatPaneSize.setVisible(false);
 			sidebar.getChildren().remove(dragInfo);
+			selectInfo.setVisible(false);
+			ctrl.setVisible(false);
+			click.setVisible(false);
 		}
 		
 		
@@ -494,6 +486,9 @@ public class DemoController {
 			customizeCircle.setStyle("-fx-background-color: #FA2C56");
 			
 			formatPaneText.setVisible(false);
+			selectInfo.setVisible(false);
+			ctrl.setVisible(false);
+			click.setVisible(false);
 			formatPaneColour.setVisible(true);
 			ColorPicker colorPicker1 = new ColorPicker((Color) lCircle.getFill());
 			VBox colorBox1 = new VBox(colorPicker1);
@@ -560,6 +555,9 @@ public class DemoController {
 			formatPaneColour.setVisible(false);
 			formatPaneSize.setVisible(false);
 			sidebar.getChildren().remove(dragInfo);
+			selectInfo.setVisible(false);
+			ctrl.setVisible(false);
+			click.setVisible(false);
 		}
 		
 		
@@ -635,49 +633,182 @@ public class DemoController {
 	
 	@FXML
 	private void formatButtonAction(ActionEvent e) {
+		
+		
+	if (((Color) format.getBackground().getFills().get(0).getFill()).toString().equals("0x222831ff")) {
+		
 		if (cT == 1) {
 			fontComboBox.getItems().addAll(font);
 			sizeComboBox.getItems().addAll(fontSize);
 		}
-		
+		//		if (cT % 2 == 0) {
+		if (cC % 2 == 0) {
+			cC++;
+			customizeCircle.setStyle("-fx-background-color: #222831");
+			formatPaneColour.setVisible(false);
+			formatPaneSize.setVisible(false);
+			sidebar.getChildren().remove(dragInfo);
+		}
+		format.setStyle("-fx-background-color: #FA2C56");
+		formatPaneText.setVisible(true);
+		dragInfo = new Label("select the text box to edit by clicking on it");
+		dragInfo.setLayoutX(40);
+		dragInfo.setLayoutY(590);
+		dragInfo.getStyleClass().add("infoLabel");
+		sidebar.getChildren().add(dragInfo);
+		//		}
+		//		else {
+		//			
+		//			format.setStyle("-fx-background-color: #222831");
+		//			formatPaneText.setVisible(false);
+		//		}
 //		cT++;
+	}
 		
-//		if (cT % 2 == 0) {
-			if (cC % 2 == 0) {
-				cC++;
-				customizeCircle.setStyle("-fx-background-color: #222831");
-				formatPaneColour.setVisible(false);
-				formatPaneSize.setVisible(false);
-				sidebar.getChildren().remove(dragInfo);
+	
+	}
+
+	@FXML
+	void boldButton(ActionEvent event) {
+		
+		if (cB % 2 == 0) {
+			if (currentText.getFont().getFamily().equals("Montserrat")
+					|| currentText.getFont().getFamily().equals("Proxima Nova")) {
+				if (selectedText.size() > 0) {
+					for (int i = 0; i < selectedText.size(); i++) {
+						selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-weight: bold");
+					}
+//					selectedText.clear();
+				} else {
+					currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-weight: bold");
+				}
+
+			} else {
+				if (selectedText.size() > 0) {
+					for (int i = 0; i < selectedText.size(); i++) {
+						selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-weight: bold");
+					}
+//					selectedText.clear();
+				} else {
+					currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-weight: bold");
+				}
+			} 
+		}
+		else {
+			if (currentText.getFont().getFamily().equals("Montserrat")
+					|| currentText.getFont().getFamily().equals("Proxima Nova")) {
+
+			} else {
+				if (selectedText.size() > 0) {
+					for (int i = 0; i < selectedText.size(); i++) {
+						selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-weight: normal");
+					}
+//					selectedText.clear();
+				} else {
+					currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-weight: normal");
+				}
 			}
-			format.setStyle("-fx-background-color: #FA2C56");
-			formatPaneText.setVisible(true);
-			dragInfo = new Label("select the text box to edit by clicking on it");
-			dragInfo.setLayoutX(40);
-			dragInfo.setLayoutY(590);
-			dragInfo.getStyleClass().add("infoLabel");
-			sidebar.getChildren().addAll(dragInfo);
-//		}
-//		else {
-//			
-//			format.setStyle("-fx-background-color: #222831");
-//			formatPaneText.setVisible(false);
-//		}
-		
+		}
+		cB++;
+	}
+
+	@FXML
+	void italicsButton(ActionEvent event) {
+
+		if (cIt % 2 == 0) {
+			if (selectedText.size() > 0) {
+				for (int i = 0; i < selectedText.size(); i++) {
+					selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-style: italic");
+				}
+//				selectedText.clear();
+			} else {
+				currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-style: italic");
+			} 
+		}
+		else {
+			if (selectedText.size() > 0) {
+				for (int i = 0; i < selectedText.size(); i++) {
+					selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-style: normal");
+				}
+//				selectedText.clear();
+			} else {
+				currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-style: normal");
+			} 
+		}
+		cIt++;
+	}
+
+	
+	
+	@FXML
+	public void descriptionAction(ActionEvent event) {
+		try {
+        	
+        	FXMLLoader descriptionLoader = new FXMLLoader();
+        	descriptionLoader.setLocation(getClass().getResource("/venn/ExtendedDescription.fxml"));
+	        Parent descriptionPane = descriptionLoader.load();
+	        Scene descriptionscene = new Scene(descriptionPane);
+	        
+	        ExtendedDescriptionController descriptionController = (ExtendedDescriptionController) descriptionLoader.getController();
+	        descriptionController.setFirstController(this);
+            Stage stage = new Stage();
+            stage.setScene(descriptionscene);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            
+            stage.show();
+            
+            descriptionController.descriptionArea.setText(currentText.extendedDescription);
+            
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 	
 	}
 	
 	@FXML
-	public void changeFont(ActionEvent e) {
+	public void removeAction(ActionEvent event) {
+		if (selectedText.size() > 0) {
+			for (int i = 0; i < selectedText.size(); i++) {
+				canvas.getChildren().remove(selectedText.get(i));
+			}
+			selectedText.clear();
+		}
+		else {
+			canvas.getChildren().remove(currentText);
+		}
+		
+	}
 	
-		currentText.setStyle(currentText.getStyle()+ ";" + "-fx-font-family: " + '"' + fontComboBox.getValue().toString() + '"' +  "; -fx-font-weight: normal;-fx-font-style: normal;" );
+	@FXML
+	public void changeFont(ActionEvent e) {
+		if (fontComboBox.getValue().toString() != "choose your font") {
+			if (selectedText.size() > 0) {
+				for (int i = 0; i < selectedText.size(); i++) {
+					selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-family: " + '"'
+							+ fontComboBox.getValue().toString() + '"');
+				}
+
+			} else {
+				currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-family: " + '"'
+						+ fontComboBox.getValue().toString() + '"');
+
+			} 
+		} 
 		
 	}
 	
 	@FXML
 	public void changeFontSize(ActionEvent e) {
-		
-		currentText.setStyle(currentText.getStyle()+ ";" + "-fx-font-size: " + sizeComboBox.getValue().toString() );
+		if (fontComboBox.getValue().toString() != "size") {
+			if (selectedText.size() > 0) {
+				for (int i = 0; i < selectedText.size(); i++) {
+					selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-size: " + sizeComboBox.getValue().toString() );
+				}
+			} else {
+				currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-size: " + sizeComboBox.getValue().toString() );
+			}
+		}
 		
 	}
 
@@ -695,6 +826,9 @@ public class DemoController {
 			cT++;
 			formatPaneText.setVisible(false);
 			sidebar.getChildren().remove(dragInfo);
+			selectInfo.setVisible(false);
+			ctrl.setVisible(false);
+			click.setVisible(false);
 			format.setStyle("-fx-background-color: #222831");
 			
 			
@@ -735,6 +869,9 @@ public class DemoController {
 			cT++;
 			formatPaneText.setVisible(false);
 			sidebar.getChildren().remove(dragInfo);
+			selectInfo.setVisible(false);
+			ctrl.setVisible(false);
+			click.setVisible(false);
 			format.setStyle("-fx-background-color: #222831");
 			
 			
@@ -779,6 +916,7 @@ public class DemoController {
 
 	class EditableLabel extends Label {
 		TextField tf = new TextField();
+		String extendedDescription = "please type the description here";
 
 		/***
 		 * backup is used to cancel when press ESC...
@@ -796,7 +934,6 @@ public class DemoController {
 
 		public EditableLabel(String str) {
 			super(str);
-
 			this.setOnMouseClicked(e -> {
 				if (e.getClickCount() == 2) {
 					tf.setText(this.getText());
@@ -807,36 +944,48 @@ public class DemoController {
 					tf.requestFocus();
 					
 				} else if (e.isControlDown()) {
-					if (cT == 1) {
-						fontComboBox.getItems().addAll(font);
-						sizeComboBox.getItems().addAll(fontSize);
-					}
-					
-					cT++;
-					
-					if (cT % 2 == 0) {
-						if (cC % 2 == 0) {
-							cC++;
-							customizeCircle.setStyle("-fx-background-color: #222831");
-							formatPaneColour.setVisible(false);
-							formatPaneSize.setVisible(false);
-							sidebar.getChildren().remove(dragInfo);
-						}
-						format.setStyle("-fx-background-color: #FA2C56");
-						formatPaneText.setVisible(true);
-						dragInfo = new Label("select the text box to edit by clicking on it");
-						dragInfo.setLayoutX(40);
-						dragInfo.setLayoutY(590);
-						dragInfo.getStyleClass().add("infoLabel");
-						sidebar.getChildren().addAll(dragInfo);
-					}
-					else {
-						
-						format.setStyle("-fx-background-color: #222831");
-						formatPaneText.setVisible(false);
-						sidebar.getChildren().remove(dragInfo);
-					}
+//					if (cT == 1) {
+//						fontComboBox.getItems().addAll(font);
+//						sizeComboBox.getItems().addAll(fontSize);
+//					}
+//					
+//					cT++;
+//					
+//					if (currentText != this) {
+//						cT++;
+//					}
+//					
+//					
+//					if (cT % 2 == 0 || currentText != this) {
+//						if (cC % 2 == 0) {
+//							cC++;
+//							customizeCircle.setStyle("-fx-background-color: #222831");
+//							formatPaneColour.setVisible(false);
+//							formatPaneSize.setVisible(false);
+//							sidebar.getChildren().remove(dragInfo);
+//						}
+//						format.setStyle("-fx-background-color: #FA2C56");
+//						formatPaneText.setVisible(true);
+//						dragInfo = new Label("select the text box to edit by clicking on it");
+//						dragInfo.setLayoutX(40);
+//						dragInfo.setLayoutY(590);
+//						dragInfo.getStyleClass().add("infoLabel");
+//						sidebar.getChildren().addAll(dragInfo);
+//						selectedText.add(this);
+//						currentText = new EditableLabel(0,0,"");
+//						
+//					}
+//					else {
+//						
+//						format.setStyle("-fx-background-color: #222831");
+//						formatPaneText.setVisible(false);
+//						sidebar.getChildren().remove(dragInfo);
+//						selectedText.clear();
+//					}
+					selectedText.add(currentText);
 					selectedText.add(this);
+					
+					
 					
 				}
 				else {
@@ -846,7 +995,11 @@ public class DemoController {
 					}
 					
 					cT++;
-					
+						
+					if (currentText != this && currentText != null) {
+						cT++;
+					}
+					currentText = this;
 					if (cT % 2 == 0) {
 						if (cC % 2 == 0) {
 							cC++;
@@ -855,21 +1008,29 @@ public class DemoController {
 							formatPaneSize.setVisible(false);
 							sidebar.getChildren().remove(dragInfo);
 						}
+						
+						fontComboBox.getSelectionModel().select(0);
+						sizeComboBox.getSelectionModel().select(0);
 						format.setStyle("-fx-background-color: #FA2C56");
+						
+						
 						formatPaneText.setVisible(true);
-						dragInfo = new Label("select the text box to edit by clicking on it");
-						dragInfo.setLayoutX(40);
-						dragInfo.setLayoutY(590);
-						dragInfo.getStyleClass().add("infoLabel");
-						sidebar.getChildren().addAll(dragInfo);
+						
+						click.setVisible(true);
+						ctrl.setVisible(true);
+						sidebar.getChildren().remove(dragInfo);
+						selectInfo.setVisible(true);
+						selectedText.clear();
 					}
 					else {
-						
 						format.setStyle("-fx-background-color: #222831");
 						formatPaneText.setVisible(false);
 						sidebar.getChildren().remove(dragInfo);
+						selectInfo.setVisible(false);
+						ctrl.setVisible(false);
+						click.setVisible(false);
+						currentText = null;
 					}
-					currentText = this;
 					
 				}
 			});
@@ -940,7 +1101,18 @@ public class DemoController {
 		}
 	}
 	
-	
+	public void clearAllAction(ActionEvent e) {
+		ObservableList<Node> boxes = canvas.getChildren();
+		List<EditableLabel> toBeDeleted = new ArrayList<EditableLabel>();
+		for (int i = 0 ; i < boxes.size(); i++) { 
+			if (boxes.get(i).getClass().toString().equals("class venn.DemoController$EditableLabel")) {
+				toBeDeleted.add((EditableLabel) boxes.get(i)); 
+			}
+		}
+		for (EditableLabel l: toBeDeleted) {
+			canvas.getChildren().remove(l);
+		}
+	}
 
 	public void setFourthScene(Scene scene) {
 		fourthScene = scene;
@@ -953,15 +1125,15 @@ public class DemoController {
 	    alert.setHeaderText("Launching VennTest mode");
 	    alert.setContentText("In VennTest mode, you can upload a .csv file in a specific format containing data for the tags "
 	    		+ "and the correct answer. \n \nOn uploading the file, the tags will be populated on the side for you to arrange on the diagram. Once you are finished, click Done to compare your attempt with "
-	    		+ "the correct answer. \n \nThe format for the .csv file is as follows: \n \nLine 1 must be all the tags in double"
-	    		+ " quotes and separated by commas. \n \nLine 2, 3 and 4 will have information about the correct answer sorted by "
-	    		+ "the diagram sets. \n \nLine 2 must be the tags for the LEFT set of the diagram in double quotes and separated by "
-	    		+ "commas. \n \nLine 3 must be the tags for the INTERSECTION set of the diagram in double quotes and separated by commas. "
+	    		+ "the correct answer. \n \nThe format for the .csv file is as follows: \n \nLine 1 must be all the tags"
+	    		+ " separated by commas. \n \nLine 2, 3 and 4 will have information about the correct answer sorted by "
+	    		+ "the diagram sets. \n \nLine 2 must be the tags for the LEFT set of the diagram separated by "
+	    		+ "commas. \n \nLine 3 must be the tags for the INTERSECTION set of the diagram separated by commas. "
 	    		+ "\n \nLine 4 must be the tags for the RIGHT set of the diagram in double quotes and separated by commas. "
-	    		+ "\n \nExample Apples&Oranges.csv file: \n \n\"orange\",\"thin peel\",\"grow on trees\",\"red\",\"fruit\",\"thick peel\""
-	    		+ "\n\"red\",\"thin peel\""
-	    		+ "\n\"fruit\",\"grow on trees\""
-	    		+ "\n\"orange\",\"thick peel\"");
+	    		+ "\n \nExample Apples&Oranges.csv file: \n \norange,thin peel,grow on trees,red,fruit,thick peel"
+	    		+ "\nred,thin peel"
+	    		+ "\nfruit,grow on trees"
+	    		+ "\norange,thick peel");
 		
 		DialogPane dialogPane = alert.getDialogPane();
 		dialogPane.setPrefHeight(550);
