@@ -651,9 +651,9 @@ public class DemoController {
 		}
 		format.setStyle("-fx-background-color: #FA2C56");
 		formatPaneText.setVisible(true);
-		dragInfo = new Label("select the text box to edit by clicking on it");
+		dragInfo = new Label("select the text box to edit by clicking on it \n              click again to deselect");
 		dragInfo.setLayoutX(40);
-		dragInfo.setLayoutY(590);
+		dragInfo.setLayoutY(575);
 		dragInfo.getStyleClass().add("infoLabel");
 		sidebar.getChildren().add(dragInfo);
 		//		}
@@ -672,8 +672,7 @@ public class DemoController {
 	void boldButton(ActionEvent event) {
 		
 		if (cB % 2 == 0) {
-			if (currentText.getFont().getFamily().equals("Montserrat")
-					|| currentText.getFont().getFamily().equals("Proxima Nova")) {
+			
 				if (selectedText.size() > 0) {
 					for (int i = 0; i < selectedText.size(); i++) {
 						selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-weight: bold");
@@ -682,23 +681,10 @@ public class DemoController {
 				} else {
 					currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-weight: bold");
 				}
-
-			} else {
-				if (selectedText.size() > 0) {
-					for (int i = 0; i < selectedText.size(); i++) {
-						selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-weight: bold");
-					}
-//					selectedText.clear();
-				} else {
-					currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-weight: bold");
-				}
-			} 
+			
 		}
 		else {
-			if (currentText.getFont().getFamily().equals("Montserrat")
-					|| currentText.getFont().getFamily().equals("Proxima Nova")) {
-
-			} else {
+		
 				if (selectedText.size() > 0) {
 					for (int i = 0; i < selectedText.size(); i++) {
 						selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-weight: normal");
@@ -707,7 +693,7 @@ public class DemoController {
 				} else {
 					currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-weight: normal");
 				}
-			}
+			
 		}
 		cB++;
 	}

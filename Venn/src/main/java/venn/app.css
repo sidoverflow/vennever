@@ -1,7 +1,64 @@
 @font-face {
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
     src: url('../resources/ProximaNova.ttf');
+    
+}
+@font-face {
+  -fx-font-weight: normal;
+  -fx-font-style: italic;
+  src: url('../resources/ProximaNovaIt.ttf');
+  
 }
 
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: normal;
+  src: url('../resources/ProximaNovaB.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: italic;
+  src: url('../resources/ProximaNovaBIt.ttf');
+  
+}
+
+@font-face {
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+    src: url('../resources/Montserrat.ttf');
+    
+    
+}
+@font-face {
+  -fx-font-weight: normal;
+  -fx-font-style: italic;
+  src: url('../resources/MontserratIt.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: normal;
+  src: url('../resources/MontserratB.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: italic;
+  src: url('../resources/MontserratBIt.ttf');
+  
+}
+
+.root{
+
+    -fx-font-family: "Proxima Nova";
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+}
 
 .first-set {
 	-fx-background-color : #FA2C56 ;
