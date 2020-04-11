@@ -21,7 +21,7 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.AddDataController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.AddDataController">
    <children>
       <AnchorPane layoutX="-24.0" layoutY="31.0" prefHeight="670.0" prefWidth="332.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-24.0" AnchorPane.topAnchor="31.0">
          <children>
@@ -191,7 +191,7 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <MenuBar fx:id="menuBar" layoutX="-1.0" layoutY="-2.0" prefHeight="35.0" prefWidth="1250.0" stylesheets="@menubar.css">
+      <MenuBar layoutX="-1.0" layoutY="-2.0" prefHeight="35.0" prefWidth="1250.0" stylesheets="@menubar.css">
          <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>
@@ -282,5 +282,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </MenuButton>
+      <Label alignment="CENTER" layoutX="946.0" layoutY="53.0" prefHeight="19.0" prefWidth="100.0" style="-fx-background-radius: 5 5 5 5;" styleClass="second-set" stylesheets="@app.css" text="Toggle View" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

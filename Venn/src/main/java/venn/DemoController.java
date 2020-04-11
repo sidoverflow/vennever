@@ -11,11 +11,14 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
+import javafx.animation.FillTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -47,6 +50,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.skin.TextFieldSkin;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -61,10 +65,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import javafx.scene.control.*;
 
 public class DemoController {
@@ -141,6 +147,8 @@ public class DemoController {
 
 	public Stack redoStack = new Stack();
 	private List<EditableLabel> selectedText = new ArrayList<EditableLabel>();
+	public ToggleSwitch toggle;
+	public Label text = new Label();
 
 	public double xCoord;
 	int yCoordI = 180;
@@ -153,7 +161,13 @@ public class DemoController {
 
 	private Scene secondScene;
 	private Scene fourthScene;
-
+	private AddDataController secondController;
+	
+	
+	public void setSecondController(AddDataController controller) {
+        secondController = controller;
+    }
+	
 	public void setSecondScene(Scene scene) {
 		secondScene = scene;
 	}
@@ -182,6 +196,18 @@ public class DemoController {
 		sidebar.getChildren().remove(dragInfo);
 		Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 		secondScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
+		
+		toggle = new ToggleSwitch();
+		
+        toggle.setTranslateX(910);
+        toggle.setTranslateY(70);
+
+        text.setTranslateX(997);
+        text.setTranslateY(85);
+        text.setStyle("-fx-text-fill: #ffffff");
+        text.textProperty().bind(Bindings.when(toggle.switchedOnProperty()).then("Count View").otherwise("Text View"));
+
+        secondController.mainPane.getChildren().addAll(toggle, text);
 		primaryStage.setScene(secondScene);
 	}
 
@@ -295,6 +321,11 @@ public class DemoController {
 //		splitMenuButton.getItems().add(lButton);
 //		splitMenuButton.getItems().add(rButton);
 //	}
+	public void inflateCircle(int left, int intersection, int right) {
+		canvas.getChildren().addAll(new EditableLabel(220, 135, Integer.toString(left)));
+		canvas.getChildren().addAll(new EditableLabel(380, 180, Integer.toString(intersection)));
+		canvas.getChildren().addAll(new EditableLabel(520, 135, Integer.toString(right)));
+	}
 
 	public void inflateCircle(List<String> first, List<String> second) {
 
@@ -975,6 +1006,9 @@ public class DemoController {
 					
 				}
 				else {
+					cB++;
+					cIt++;
+					
 					if (cT == 1) {
 						fontComboBox.getItems().addAll(font);
 						sizeComboBox.getItems().addAll(fontSize);
@@ -1098,6 +1132,9 @@ public class DemoController {
 		for (EditableLabel l: toBeDeleted) {
 			canvas.getChildren().remove(l);
 		}
+		yCoordI = 180;
+		yCoordL = 135;
+		yCoordR = 135;
 	}
 
 	public void setFourthScene(Scene scene) {
@@ -1137,6 +1174,61 @@ public class DemoController {
 		primaryStage.setScene(fourthScene);
 		
 
+    }
+	
+	public static class ToggleSwitch extends Parent {
+
+        private BooleanProperty switchedOn = new SimpleBooleanProperty(false);
+
+        private TranslateTransition translateAnimation = new TranslateTransition(Duration.seconds(0.25));
+        private FillTransition fillAnimation = new FillTransition(Duration.seconds(0.25));
+
+        private ParallelTransition animation = new ParallelTransition(translateAnimation, fillAnimation);
+
+        public BooleanProperty switchedOnProperty() {
+            return switchedOn;
+        }
+
+        public ToggleSwitch() {
+        	setScaleX(0.5);
+        	setScaleY(0.5);
+        	setScaleZ(0.5);
+        	
+        	
+            Rectangle background = new Rectangle(100, 50);
+            background.setArcWidth(50);
+            background.setArcHeight(50);
+            background.setFill(Color.web("#222831"));
+            background.setStroke(Color.web("#FA2C56"));
+
+            Circle trigger = new Circle(25);
+            trigger.setCenterX(25);
+            trigger.setCenterY(25);
+            trigger.setFill(Color.WHITE);
+            trigger.setStroke(Color.LIGHTGRAY);
+
+            DropShadow shadow = new DropShadow();
+            shadow.setRadius(2);
+            trigger.setEffect(shadow);
+
+            translateAnimation.setNode(trigger);
+            fillAnimation.setShape(background);
+
+            getChildren().addAll(background, trigger);
+
+            switchedOn.addListener((obs, oldState, newState) -> {
+                boolean isOn = newState.booleanValue();
+                translateAnimation.setToX(isOn ? 100 - 50 : 0);
+                fillAnimation.setFromValue(isOn ? Color.web("#222831") : Color.web("#FA2C56"));
+                fillAnimation.setToValue(isOn ? Color.web("#FA2C56") : Color.web("#222831"));
+
+                animation.play();
+            });
+
+            setOnMouseClicked(event -> {
+                switchedOn.set(!switchedOn.get());
+            });
+        }
     }
 
 }

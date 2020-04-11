@@ -227,12 +227,12 @@
                      <children>
                         <Pane layoutX="26.0" layoutY="21.0" prefHeight="536.0" prefWidth="770.0">
                            <children>
-                              <Circle fx:id="lCircle" fill="#64636896" layoutX="249.0" layoutY="267.0" onMouseClicked="#circleClick" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="200.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+                              <Circle fx:id="lCircle" fill="#64636896" layoutX="273.0" layoutY="267.0" onMouseClicked="#circleClick" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="200.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
                                  <cursor>
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor>
                               </Circle>
-                              <Circle fx:id="rCircle" fill="#fc2d5a73" layoutX="521.0" layoutY="267.0" onMouseClicked="#circleClick" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                              <Circle fx:id="rCircle" fill="#fc2d5a73" layoutX="493.0" layoutY="267.0" onMouseClicked="#circleClick" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                                  <cursor>
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor>

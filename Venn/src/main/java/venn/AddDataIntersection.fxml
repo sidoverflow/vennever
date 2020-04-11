@@ -21,9 +21,9 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.AddDataIntersectionController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.AddDataIntersectionController">
    <children>
-      <Polygon fill="#8f1b32" layoutX="855.0" layoutY="124.0" points="-22.0, 21.0, 1.0, 119.0, 1.0, 0.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Polygon fill="#8f1b32" layoutX="867.0" layoutY="124.0" points="-22.0, 21.0, 1.0, 119.0, 1.0, 0.0" rotate="180.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <rotationAxis>
             <Point3D y="1.0" />
          </rotationAxis>
@@ -285,7 +285,7 @@
          </cursor>
       </MenuButton>
       <TextArea fx:id="thirdSet" layoutX="650.0" layoutY="145.0" prefHeight="428.0" prefWidth="261.0" stylesheets="@app.css" />
-      <Label contentDisplay="CENTER" layoutX="731.0" layoutY="124.0" prefHeight="21.0" prefWidth="104.0" styleClass="intersection-set" stylesheets="@app.css" text=" intersection set" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="731.0" layoutY="124.0" prefHeight="21.0" prefWidth="116.0" styleClass="intersection-set" stylesheets="@app.css" text=" intersection set" textAlignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>

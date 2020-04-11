@@ -59,6 +59,7 @@ public class Main extends Application {
 	        DemoController firstPaneController = (DemoController) firstPaneLoader.getController();
 	        firstPaneController.setSecondScene(secondScene);
 	        firstPaneController.setFourthScene(fourthScene);
+	        
 
 	        // injecting first and third scene into the controller of the second scene
 	        AddDataController secondPaneController = (AddDataController) secondPaneLoader.getController();
@@ -76,6 +77,9 @@ public class Main extends Application {
 	        VennTestController fourthPaneController = (VennTestController) fourthPaneLoader.getController();
 	        fourthPaneController.setFirstScene(firstScene);
 	        fourthPaneController.setFirstController(firstPaneController);
+	        
+	        firstPaneController.setSecondController(secondPaneController);
+	        secondPaneController.setThirdController(thirdPaneController);
 	        
 	        
 //	        primaryStage = new Stage(StageStyle.DECORATED);

@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class AddDataIntersectionController {
@@ -37,6 +38,9 @@ public class AddDataIntersectionController {
 
     @FXML
     private TextArea firstSet;
+    
+    @FXML
+    public AnchorPane mainPane = new AnchorPane();
 
     @FXML
     private Button threeCol;
@@ -56,7 +60,9 @@ public class AddDataIntersectionController {
     private Scene secondScene;
 
 	private DemoController firstController;
-	
+	List<String> firstDataArray = new ArrayList<String>();
+	List<String> secondDataArray = new ArrayList<String>();
+	List<String> thirdDataArray = new ArrayList<String>();
 	
 
     public void setFirstScene(Scene scene) {
@@ -78,17 +84,33 @@ public class AddDataIntersectionController {
     }
     @FXML
     public void openSecondScene(ActionEvent actionEvent) throws IOException {
-    	Stage primaryStage = (Stage) done.getScene().getWindow();
-        primaryStage.setScene(secondScene);
+        firstController.openSecondScene(actionEvent);
+        mainPane.getChildren().addAll(firstController.toggle, firstController.text);
         
     }
     
     @FXML
 	private void doneButtonAction(ActionEvent event) throws IOException{
-		getVennData();
-		firstSet.clear();
-		secondSet.clear();
-		openFirstScene(event);
+    	if (firstController.toggle.switchedOnProperty().toString().equals("BooleanProperty [value: false]")) {
+			getVennData();
+			firstController.inflateCircle(firstDataArray, secondDataArray, thirdDataArray);
+			firstSet.clear();
+			secondSet.clear();
+			openFirstScene(event);
+		}
+		else {
+			getVennData();
+			
+			firstController.inflateCircle(firstDataArray.size(), thirdDataArray.size(), secondDataArray.size());
+			
+			firstSet.clear();
+			secondSet.clear();
+			openFirstScene(event);
+		}
+		mainPane.getChildren().removeAll(firstController.toggle,firstController.text);
+		firstDataArray.clear();
+		secondDataArray.clear();
+		thirdDataArray.clear();
 		
 	}
 	
@@ -101,9 +123,7 @@ public class AddDataIntersectionController {
 	
 	private void getVennData() throws IOException {
 		
-		List<String> firstDataArray = new ArrayList<String>();
-		List<String> secondDataArray = new ArrayList<String>();
-		List<String> thirdDataArray = new ArrayList<String>();
+		
 		
 		String firstData = firstSet.getText();
 		String secondData = secondSet.getText();
@@ -129,7 +149,7 @@ public class AddDataIntersectionController {
 		scanner2.close();
 		scanner3.close();
 		
-		firstController.inflateCircle(firstDataArray, secondDataArray, thirdDataArray);
+		
 		
 	
 		
