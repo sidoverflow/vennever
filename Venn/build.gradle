@@ -35,10 +35,8 @@ dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:28.0-jre'
-	implementation 'org.aerofx:aerofx:0.2'
 	testCompile 'org.testfx:testfx-junit:4.0+'
 	
-	implementation 'org.jfxtras:jmetro:11.6.9'
     testCompile "junit:junit:4.13-beta-3"
 
     testImplementation("junit:junit:4.13")
@@ -51,7 +49,7 @@ dependencies {
 
 jar {
 	manifest {
-		attributes 'Main-Class': 'venn.Main'
+		attributes 'Main-Class': 'com.venn.Main'
 	}
 }
 
