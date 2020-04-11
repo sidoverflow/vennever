@@ -8,16 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import venn.DemoController.ToggleSwitch;
 
 public class AddDataIntersectionController {
 
@@ -53,6 +58,9 @@ public class AddDataIntersectionController {
 
     @FXML
     private Label intersectionSetLabel;
+    
+    public ToggleSwitch toggle;
+    public Label text = new Label();
     @FXML
     MenuBar menuBar = new MenuBar();
 
@@ -63,6 +71,11 @@ public class AddDataIntersectionController {
 	List<String> firstDataArray = new ArrayList<String>();
 	List<String> secondDataArray = new ArrayList<String>();
 	List<String> thirdDataArray = new ArrayList<String>();
+	
+	Boolean duplicateCheck;
+
+    @FXML
+	Alert a = new Alert(AlertType.NONE);
 	
 
     public void setFirstScene(Scene scene) {
@@ -79,38 +92,56 @@ public class AddDataIntersectionController {
     public void openFirstScene(ActionEvent actionEvent) throws IOException {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(firstScene);
+        mainPane.getChildren().remove(toggle);
         firstScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
         
     }
     @FXML
     public void openSecondScene(ActionEvent actionEvent) throws IOException {
-        firstController.openSecondScene(actionEvent);
-        mainPane.getChildren().addAll(firstController.toggle, firstController.text);
+    	Stage primaryStage = (Stage) done.getScene().getWindow();
+		secondScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
+		
+		toggle = new ToggleSwitch();
+		
+        toggle.setTranslateX(910);
+        toggle.setTranslateY(70);
+
+        text.setStyle("-fx-text-fill: #ffffff");
+        text.textProperty().bind(Bindings.when(toggle.switchedOnProperty()).then("Count View").otherwise("Text View"));
+
+        mainPane.getChildren().add(toggle);
+		primaryStage.setScene(secondScene);
+    	
         
     }
     
     @FXML
 	private void doneButtonAction(ActionEvent event) throws IOException{
-    	if (firstController.toggle.switchedOnProperty().toString().equals("BooleanProperty [value: false]")) {
+    	if (toggle.switchedOnProperty().toString().equals("BooleanProperty [value: false]")) {
 			getVennData();
-			firstController.inflateCircle(firstDataArray, secondDataArray, thirdDataArray);
-			firstSet.clear();
-			secondSet.clear();
-			openFirstScene(event);
+			if (!duplicateCheck) {
+				firstController.inflateCircle(firstDataArray, secondDataArray, thirdDataArray);
+				firstSet.clear();
+				secondSet.clear();
+				mainPane.getChildren().remove(toggle);
+				openFirstScene(event);
+			}
 		}
 		else {
 			getVennData();
-			
-			firstController.inflateCircle(firstDataArray.size(), thirdDataArray.size(), secondDataArray.size());
-			
-			firstSet.clear();
-			secondSet.clear();
-			openFirstScene(event);
+			if (!duplicateCheck) {
+				firstController.inflateCircle(firstDataArray.size(), thirdDataArray.size(), secondDataArray.size());
+				firstSet.clear();
+				secondSet.clear();
+				mainPane.getChildren().remove(toggle);
+				openFirstScene(event);
+			}
 		}
-		mainPane.getChildren().removeAll(firstController.toggle,firstController.text);
+		
 		firstDataArray.clear();
 		secondDataArray.clear();
 		thirdDataArray.clear();
+		duplicateCheck = false;
 		
 	}
 	
@@ -156,7 +187,125 @@ public class AddDataIntersectionController {
 		scanner2.close();
 		scanner3.close();
 		
+		for (int i = 0; i < firstDataArray.size(); i++) {
+			for (int j = 0; j < firstDataArray.size(); j++) {
+				if (firstDataArray.get(i).equals(firstDataArray.get(j)) && i != j) {
+					DialogPane dialogPane = a.getDialogPane();
+					dialogPane.getStylesheets().add(
+					   getClass().getResource("editable-text.css").toExternalForm());
+					dialogPane.getStyleClass().add("alert-pane");
+					a.setAlertType(AlertType.ERROR);
+					a.setHeaderText("Duplicate Warning");
+					a.setContentText("Duplicate entries found in the first set.");
+					a.show();
+					duplicateCheck = true;
+				}
+			}
+		}
 		
+		for (int i = 0; i < secondDataArray.size(); i++) {
+			for (int j = 0; j < secondDataArray.size(); j++) {
+				if (secondDataArray.get(i).equals(secondDataArray.get(j)) && i != j) {
+					DialogPane dialogPane = a.getDialogPane();
+					dialogPane.getStylesheets().add(
+					   getClass().getResource("editable-text.css").toExternalForm());
+					dialogPane.getStyleClass().add("alert-pane");
+					a.setAlertType(AlertType.ERROR);
+					a.setHeaderText("Duplicate Warning");
+					a.setContentText("Duplicate entries found in the second set.");
+					a.show();
+					duplicateCheck = true;
+				}
+			}
+		}
+		
+		for (int i = 0; i < thirdDataArray.size(); i++) {
+			for (int j = 0; j < thirdDataArray.size(); j++) {
+				if (thirdDataArray.get(i).equals(thirdDataArray.get(j)) && i != j) {
+					DialogPane dialogPane = a.getDialogPane();
+					dialogPane.getStylesheets().add(
+					   getClass().getResource("editable-text.css").toExternalForm());
+					dialogPane.getStyleClass().add("alert-pane");
+					a.setAlertType(AlertType.ERROR);
+					a.setHeaderText("Duplicate Warning");
+					a.setContentText("Duplicate entries found in the intersection set.");
+					a.show();
+					duplicateCheck = true;
+				}
+			}
+		}
+		
+		for (int i = 0; i < firstDataArray.size(); i++) {
+			for (int j = 0; j < secondDataArray.size(); j++) {
+				if (firstDataArray.get(i).equals(secondDataArray.get(j))) {
+					for (int k = 0; k < thirdDataArray.size(); k++) {
+						if (firstDataArray.get(i).equals(thirdDataArray.get(k))) {
+							DialogPane dialogPane = a.getDialogPane();
+							a.setWidth(500);
+							dialogPane.getStylesheets()
+									.add(getClass().getResource("editable-text.css").toExternalForm());
+							dialogPane.getStyleClass().add("alert-pane");
+							a.setAlertType(AlertType.ERROR);
+							a.setHeaderText("Duplicate Warning");
+							a.setContentText("Duplicate entries found between the first, second and intersection set.");
+							a.show();
+							duplicateCheck = true;
+						}
+					}
+				}
+			}
+		}
+		
+		for (int i = 0; i < firstDataArray.size(); i++) {
+			for (int j = 0; j < secondDataArray.size(); j++) {
+				if (firstDataArray.get(i).equals(secondDataArray.get(j))) {
+					DialogPane dialogPane = a.getDialogPane();
+					a.setWidth(500);
+					dialogPane.getStylesheets().add(
+					   getClass().getResource("editable-text.css").toExternalForm());
+					dialogPane.getStyleClass().add("alert-pane");
+					a.setAlertType(AlertType.ERROR);
+					a.setHeaderText("Duplicate Warning");
+					a.setContentText("Duplicate entries found between the first and second set.");
+					a.show();
+					duplicateCheck = true;
+				}
+			}
+		}
+		
+		for (int i = 0; i < firstDataArray.size(); i++) {
+			for (int j = 0; j < thirdDataArray.size(); j++) {
+				if (firstDataArray.get(i).equals(thirdDataArray.get(j))) {
+					DialogPane dialogPane = a.getDialogPane();
+					a.setWidth(500);
+					dialogPane.getStylesheets().add(
+					   getClass().getResource("editable-text.css").toExternalForm());
+					dialogPane.getStyleClass().add("alert-pane");
+					a.setAlertType(AlertType.ERROR);
+					a.setHeaderText("Duplicate Warning");
+					a.setContentText("Duplicate entries found between the first and intersection set.");
+					a.show();
+					duplicateCheck = true;
+				}
+			}
+		}
+		
+		for (int i = 0; i < secondDataArray.size(); i++) {
+			for (int j = 0; j < thirdDataArray.size(); j++) {
+				if (secondDataArray.get(i).equals(thirdDataArray.get(j))) {
+					DialogPane dialogPane = a.getDialogPane();
+					a.setWidth(500);
+					dialogPane.getStylesheets().add(
+					   getClass().getResource("editable-text.css").toExternalForm());
+					dialogPane.getStyleClass().add("alert-pane");
+					a.setAlertType(AlertType.ERROR);
+					a.setHeaderText("Duplicate Warning");
+					a.setContentText("Duplicate entries found between the second and intersection set.");
+					a.show();
+					duplicateCheck = true;
+				}
+			}
+		}
 		
 	
 		

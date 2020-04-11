@@ -47,7 +47,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-add_file.png" />
+                                    <Image url="@../resources/icons8-add_file.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -62,7 +62,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-puzzle_white.png" />
+                                    <Image url="@../resources/icons8-puzzle_white.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -82,7 +82,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-add_row.png" />
+                                    <Image url="@../resources/icons8-add_row.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -111,7 +111,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-lowercase.png" />
+                                    <Image url="@../resources/icons8-lowercase.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -126,7 +126,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-mastercard.png" />
+                                    <Image url="@../resources/icons8-mastercard.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -141,7 +141,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-undo.png" />
+                                    <Image url="@../resources/icons8-undo.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -156,7 +156,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-redo.png" />
+                                    <Image url="@../resources/icons8-redo.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -171,7 +171,7 @@
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-delete_bin.png" />
+                                    <Image url="@../resources/icons8-delete_bin.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -187,12 +187,12 @@
                   <Label contentDisplay="CENTER" layoutX="113.0" layoutY="632.0" prefHeight="21.0" prefWidth="51.0" styleClass="footer" stylesheets="@app.css" text="made on" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" />
                   <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="167.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0">
                      <image>
-                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-java.png" />
+                        <Image url="@../resources/icons8-java.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="78.0" fitWidth="116.0" layoutX="94.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/VennEver.png" />
+                        <Image url="@../resources/VennEver.png" />
                      </image>
                   </ImageView>
                </children>
@@ -231,7 +231,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-ok.png" />
+                        <Image url="@../resources/icons8-ok.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -246,7 +246,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-csv.png" />
+                        <Image url="@../resources/icons8-csv.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />

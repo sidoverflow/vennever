@@ -36,7 +36,7 @@
       </Label>
       <ImageView fx:id="correctIcon" fitHeight="30.0" fitWidth="30.0" layoutX="89.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-checked.png" />
+            <Image url="@../resources/icons8-checked.png" />
          </image>
       </ImageView>
       <Label fx:id="correctInfo1" layoutX="129.0" layoutY="38.0" prefHeight="30.0" prefWidth="124.0" styleClass="footer" stylesheets="@app.css" text="Spot on!" visible="false">
@@ -53,7 +53,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-puzzle_white.png" />
+                  <Image url="@../resources/icons8-puzzle_white.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -68,7 +68,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-query_outer_join_right_white.png" />
+                  <Image url="@../resources/icons8-query_outer_join_right_white.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -81,7 +81,7 @@
       </Button>
       <ImageView fx:id="wrongIcon" fitHeight="30.0" fitWidth="30.0" layoutX="89.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-cancel.png" />
+            <Image url="@../resources/icons8-cancel.png" />
          </image>
       </ImageView>
       <Label fx:id="wrongInfo1" layoutX="129.0" layoutY="38.0" prefHeight="30.0" prefWidth="152.0" styleClass="footer" stylesheets="@app.css" text="Better luck next time!" visible="false">
@@ -98,7 +98,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-faq.png" />
+                  <Image url="@../resources/icons8-faq.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -113,7 +113,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-puzzle_white.png" />
+                  <Image url="@../resources/icons8-puzzle_white.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

@@ -4,6 +4,7 @@ import javafx.animation.FillTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -12,13 +13,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -59,7 +63,9 @@ public class AddDataController {
 
     @FXML
     private Label firstSetLabel = new Label();
-
+    
+    public ToggleSwitch toggle;
+    
     @FXML
     private Label secondSetLabel = new Label();
     @FXML
@@ -69,13 +75,21 @@ public class AddDataController {
     private Button twoCol = new Button();
     @FXML
     MenuBar menuBar = new MenuBar();
+    @FXML
+    public Label text = new Label();
+    
+    Boolean duplicateCheck;
 
+    @FXML
+	Alert a = new Alert(AlertType.NONE);
+    
 	private Scene firstScene;
 
 	private Scene thirdScene;
 	private DemoController firstController;
 	List<String> firstDataArray = new ArrayList<String>();
 	List<String> secondDataArray = new ArrayList<String>();
+	List<String> intersection = new ArrayList<String>();
 	private AddDataIntersectionController thirdController;
 
     public void setFirstScene(Scene scene) {
@@ -99,52 +113,67 @@ public class AddDataController {
     public void openFirstScene(ActionEvent actionEvent) throws IOException {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(firstScene);
+        mainPane.getChildren().remove(toggle);
         firstScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
         
     }
     @FXML
     public void openThirdScene(ActionEvent actionEvent) throws IOException {
     	Stage primaryStage = (Stage) done.getScene().getWindow();
-        primaryStage.setScene(thirdScene);
+        
+        toggle = new ToggleSwitch();
+		
+        toggle.setTranslateX(910);
+        toggle.setTranslateY(70);
+
+        text.setStyle("-fx-text-fill: #ffffff");
+        text.textProperty().bind(Bindings.when(toggle.switchedOnProperty()).then("Count View").otherwise("Text View"));
+
         thirdScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
-       
+        mainPane.getChildren().add(toggle);
+        primaryStage.setScene(thirdScene);
         
     }
     @FXML
 	private void doneButtonAction(ActionEvent event) throws IOException{
-		if (firstController.toggle.switchedOnProperty().toString().equals("BooleanProperty [value: false]")) {
+		if (toggle.switchedOnProperty().toString().equals("BooleanProperty [value: false]")) {
 			getVennData();
-			firstController.inflateCircle(firstDataArray, secondDataArray);
-			firstSet.clear();
-			secondSet.clear();
-			openFirstScene(event);
+			if (!duplicateCheck) {
+				firstController.inflateCircle(firstDataArray, secondDataArray, intersection);
+				firstSet.clear();
+				secondSet.clear();
+				mainPane.getChildren().remove(toggle);
+				openFirstScene(event);
+			}
 		}
 		else {
 			getVennData();
-			List<String> intersection = new ArrayList<String>();
-			for (int i = 0; i < firstDataArray.size(); i++) {
-				for (int j = 0; j < secondDataArray.size(); j++) {
-					if (firstDataArray.get(i).equals(secondDataArray.get(j))) {
-						intersection.add(firstDataArray.get(i));
+			if (!duplicateCheck) {
+				List<String> intersection = new ArrayList<String>();
+				for (int i = 0; i < firstDataArray.size(); i++) {
+					for (int j = 0; j < secondDataArray.size(); j++) {
+						if (firstDataArray.get(i).equals(secondDataArray.get(j))) {
+							intersection.add(firstDataArray.get(i));
+						}
 					}
 				}
+				// remove the intersecting elements from the respective arrays
+				for (int i = 0; i < intersection.size(); i++) {
+					firstDataArray.remove(intersection.get(i));
+					secondDataArray.remove(intersection.get(i));
+				}
+				firstController.inflateCircle(firstDataArray.size(), intersection.size(), secondDataArray.size());
+				firstSet.clear();
+				secondSet.clear();
+				mainPane.getChildren().remove(toggle);
+				openFirstScene(event);
 			}
-
-			// remove the intersecting elements from the respective arrays
-			for (int i = 0; i < intersection.size(); i++) {
-				firstDataArray.remove(intersection.get(i));
-				secondDataArray.remove(intersection.get(i));
-			}
-			
-			firstController.inflateCircle(firstDataArray.size(), intersection.size(), secondDataArray.size());
-			
-			firstSet.clear();
-			secondSet.clear();
-			openFirstScene(event);
 		}
-		mainPane.getChildren().removeAll(firstController.toggle,firstController.text);
+		
 		firstDataArray.clear();
 		secondDataArray.clear();
+		intersection.clear();
+		duplicateCheck = false;
 		
 	}
 	
@@ -182,8 +211,58 @@ public class AddDataController {
 		scanner1.close();
 		scanner2.close();
 		
+		
+		for (int i = 0; i < firstDataArray.size(); i++) {
+			for (int j = 0; j < firstDataArray.size(); j++) {
+				if (firstDataArray.get(i).equals(firstDataArray.get(j)) && i != j) {
+					DialogPane dialogPane = a.getDialogPane();
+					dialogPane.getStylesheets().add(
+					   getClass().getResource("editable-text.css").toExternalForm());
+					dialogPane.getStyleClass().add("alert-pane");
+					a.setAlertType(AlertType.ERROR);
+					a.setHeaderText("Duplicate Warning");
+					a.setContentText("Duplicate entries found in the first set.");
+					a.show();
+					duplicateCheck = true;
+				}
+			}
+		}
+		
+		for (int i = 0; i < secondDataArray.size(); i++) {
+			for (int j = 0; j < secondDataArray.size(); j++) {
+				if (secondDataArray.get(i).equals(secondDataArray.get(j)) && i != j) {
+					DialogPane dialogPane = a.getDialogPane();
+					dialogPane.getStylesheets().add(
+					   getClass().getResource("editable-text.css").toExternalForm());
+					dialogPane.getStyleClass().add("alert-pane");
+					a.setAlertType(AlertType.ERROR);
+					a.setHeaderText("Duplicate Warning");
+					a.setContentText("Duplicate entries found in the second set.");
+					a.show();
+					duplicateCheck = true;
+				}
+			}
+		}
+		
 
-    	
+		
+		
+		// find the elements of the intersection set of the two user-input data sets and
+				// add them to an array called intersection
+		
+		for (int i = 0; i < firstDataArray.size(); i++) {
+			for (int j = 0; j < secondDataArray.size(); j++) {
+				if (firstDataArray.get(i).equals(secondDataArray.get(j))) {
+					intersection.add(firstDataArray.get(i));
+				}
+			}
+		}
+
+		// remove the intersecting elements from the respective arrays
+		for (int i = 0; i < intersection.size(); i++) {
+			firstDataArray.remove(intersection.get(i));
+			secondDataArray.remove(intersection.get(i));
+		}
     	
 		
 		

@@ -156,8 +156,10 @@ public class DemoController {
 
 	public Stack redoStack = new Stack();
 	private List<EditableLabel> selectedText = new ArrayList<EditableLabel>();
-	public ToggleSwitch toggle;
-	public Label text = new Label();
+	
+	
+	
+	
 
 	public double xCoord;
 	int yCoordI = 180;
@@ -216,17 +218,15 @@ public class DemoController {
 		Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 		secondScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
 		
-		toggle = new ToggleSwitch();
+		secondController.toggle = new ToggleSwitch();
 		
-        toggle.setTranslateX(910);
-        toggle.setTranslateY(70);
+        secondController.toggle.setTranslateX(910);
+        secondController.toggle.setTranslateY(70);
 
-        text.setTranslateX(997);
-        text.setTranslateY(85);
-        text.setStyle("-fx-text-fill: #ffffff");
-        text.textProperty().bind(Bindings.when(toggle.switchedOnProperty()).then("Count View").otherwise("Text View"));
+        secondController.text.setStyle("-fx-text-fill: #ffffff");
+        secondController.text.textProperty().bind(Bindings.when(secondController.toggle.switchedOnProperty()).then("Count View").otherwise("Text View"));
 
-        secondController.mainPane.getChildren().addAll(toggle, text);
+        secondController.mainPane.getChildren().add(secondController.toggle);
 		primaryStage.setScene(secondScene);
 	}
 
@@ -346,66 +346,7 @@ public class DemoController {
 		canvas.getChildren().addAll(new EditableLabel(520, 135, Integer.toString(right)));
 	}
 
-	public void inflateCircle(List<String> first, List<String> second) {
-
-		// find the elements of the intersection set of the two user-input data sets and
-		// add them to an array called intersection
-		List<String> intersection = new ArrayList<String>();
-		for (int i = 0; i < first.size(); i++) {
-			for (int j = 0; j < second.size(); j++) {
-				if (first.get(i).equals(second.get(j))) {
-					intersection.add(first.get(i));
-				}
-			}
-		}
-
-		// remove the intersecting elements from the respective arrays
-		for (int i = 0; i < intersection.size(); i++) {
-			first.remove(intersection.get(i));
-			second.remove(intersection.get(i));
-		}
-
-		// display the elements of the intersection set one below the other by
-		// incrementing the y coordinate of the draggable textbox in a loop
-
-		for (int i = 0; i < intersection.size(); i++) {
-			if ((i + 1) % 8 == 0) {
-				yCoordI = 180;
-				xCoordI += 50;
-			}
-			canvas.getChildren().addAll(new EditableLabel(xCoordI, yCoordI, intersection.get(i)));
-			yCoordI += 40;
-		}
-
-		// display the elements of the first set one below the other by incrementing the
-		// y coordinate of the draggable textbox in a loop
-
-		for (int i = 0; i < first.size(); i++) {
-			if ((i + 1) % 8 == 0) {
-				yCoordL = 135;
-				xCoordL += 50;
-			}
-			canvas.getChildren().addAll(new EditableLabel(xCoordL, yCoordL, first.get(i)));
-			yCoordL += 40;
-		}
-
-		// display the elements of the second set one below the other by incrementing
-		// the y coordinate of the draggable textbox in a loop
-
-		for (int i = 0; i < second.size(); i++) {
-			if ((i + 1) % 8 == 0) {
-				yCoordR = 135;
-				xCoordR += 50;
-			}
-			canvas.getChildren().addAll(new EditableLabel(xCoordR, yCoordR, second.get(i)));
-			yCoordR += 40;
-		}
-		
-		
-		
-		
-
-	}
+	
 
 	public void inflateCircle(List<String> first, List<String> second, List<String> third) {
 
