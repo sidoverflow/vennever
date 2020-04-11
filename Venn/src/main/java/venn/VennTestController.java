@@ -273,8 +273,26 @@ public class VennTestController {
 
     }
 	public void quitButton(ActionEvent actionEvent) {
-		Stage stage = (Stage) editor.getScene().getWindow();
-	    stage.close();
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit VennEver?", ButtonType.YES, ButtonType.NO);
+	    DialogPane dialogPane = alert.getDialogPane();
+	    alert.setTitle("VennEver");
+	    alert.setHeaderText("Quit VennEver");
+		dialogPane.getStylesheets().add(
+		   getClass().getResource("editable-text.css").toExternalForm());
+		dialogPane.getStyleClass().add("dialog-pane-close");
+		dialogPane.getStyleClass().add("alert-pane-close");
+		
+        // clicking X also means no
+        ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+        
+        if (ButtonType.NO.equals(result)) {
+            // consume event i.e. ignore close request 
+            actionEvent.consume();
+        }
+        else {
+        	   //close all windows and terminate
+        	System.exit(0);
+        }
 	}
 	
 	public void clearAll() {

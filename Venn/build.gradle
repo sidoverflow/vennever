@@ -60,4 +60,4 @@ test {
 	}
 }
 
-mainClassName = 'Main'
+mainClassName = 'com.venn.Main'

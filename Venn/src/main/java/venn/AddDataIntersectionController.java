@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -322,8 +323,26 @@ public class AddDataIntersectionController {
 
     }
 	public void quitButton(ActionEvent actionEvent) {
-		Stage stage = (Stage) done.getScene().getWindow();
-	    stage.close();
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit VennEver?", ButtonType.YES, ButtonType.NO);
+	    DialogPane dialogPane = alert.getDialogPane();
+	    alert.setTitle("VennEver");
+	    alert.setHeaderText("Quit VennEver");
+		dialogPane.getStylesheets().add(
+		   getClass().getResource("editable-text.css").toExternalForm());
+		dialogPane.getStyleClass().add("dialog-pane-close");
+		dialogPane.getStyleClass().add("alert-pane-close");
+		
+        // clicking X also means no
+        ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+        
+        if (ButtonType.NO.equals(result)) {
+            // consume event i.e. ignore close request 
+            actionEvent.consume();
+        }
+        else {
+        	   //close all windows and terminate
+        	System.exit(0);
+        }
 	}
 	
 }
