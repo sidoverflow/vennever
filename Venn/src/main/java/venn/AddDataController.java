@@ -167,12 +167,18 @@ public class AddDataController {
 		Scanner scanner2 = new Scanner(secondData);
 		while (scanner1.hasNextLine()) {
 			String line = scanner1.nextLine();
-			firstDataArray.add(line);
+			if (!line.equals("")) {
+				firstDataArray.add(line);
+			}
 		}
 		while (scanner2.hasNextLine()) {
 			String line = scanner2.nextLine();
-			secondDataArray.add(line);
+			if (!line.equals("")) {	
+				secondDataArray.add(line);
+		
+			}
 		}
+			
 		scanner1.close();
 		scanner2.close();
 		

@@ -135,15 +135,22 @@ public class AddDataIntersectionController {
 		Scanner scanner3 = new Scanner(thirdData);
 		while (scanner1.hasNextLine()) {
 			String line = scanner1.nextLine();
-			firstDataArray.add(line);
+			if (!line.equals("")) {
+				firstDataArray.add(line);
+			}
 		}
 		while (scanner2.hasNextLine()) {
 			String line = scanner2.nextLine();
-			secondDataArray.add(line);
+			if (!line.equals("")) {	
+				secondDataArray.add(line);
+		
+			}
 		}
 		while (scanner3.hasNextLine()) {
 			String line = scanner3.nextLine();
-			thirdDataArray.add(line);
+			if (!line.equals("")) {	
+				thirdDataArray.add(line);
+			}
 		}
 		scanner1.close();
 		scanner2.close();

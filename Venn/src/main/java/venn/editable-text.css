@@ -153,3 +153,43 @@
 .alert.confirmation.dialog-pane {
     -fx-graphic: url("../resources/icons8-csv_pink.png");
 }
+
+.alert-pane-close{
+  -fx-background-color : #222831;
+}
+
+
+.alert-pane-close .content{
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+.alert-pane-close:header *.header-panel{
+    -fx-background-color: #393e46;
+}
+.alert-pane-close:header *.header-panel *.label{
+    -fx-font-size: 18px;
+    -fx-text-fill: #FA2C56;
+}
+/* Button style */
+.dialog-pane-close .button {
+-fx-background-color : #393e46;
+-fx-background-radius :  50 50 50 50;
+-fx-font-family: "Proxima Nova";
+-fx-text-fill: #ffffff;
+-fx-font-size: 12pt;
+}
+
+.dialog-pane-close .button:hover {
+-fx-background-color : #FA2C56 ;
+-fx-background-radius :  50 50 50 50;
+-fx-font-size: 11pt;
+}
+
+.dialog-pane-close .button:pressed {
+-fx-background-color :  #222831;
+-fx-background-radius :  50 0 0 50;
+}
+
+.alert.confirmation.dialog-pane-close {
+    -fx-graphic: url("../resources/icons8-shutdown.png");
+}

@@ -2,14 +2,26 @@ package venn;
 
 import java.util.List;
 import java.awt.Desktop;
+import java.awt.image.RenderedImage;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
+
+import javax.imageio.ImageIO;
 
 import javafx.animation.FillTransition;
 import javafx.animation.ParallelTransition;
@@ -28,6 +40,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.SetChangeListener;
 import javafx.css.PseudoClass;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -40,19 +53,13 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.skin.TextFieldSkin;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -68,10 +75,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 
 public class DemoController {
 	@FXML
@@ -155,6 +164,10 @@ public class DemoController {
 	int yCoordL = 135;
 	int yCoordR = 135;
 	
+	int xCoordI = 380;
+	int xCoordL = 220;
+	int xCoordR = 520;
+	
 	double orgSceneX, orgSceneY;
     double orgTranslateX, orgTranslateY;
 
@@ -163,6 +176,12 @@ public class DemoController {
 	private Scene fourthScene;
 	private AddDataController secondController;
 	
+	private static ObservableList<EditableLabel> itemList = FXCollections.observableArrayList();
+
+	@FXML
+	Alert a = new Alert(AlertType.NONE);
+
+	private File openFile = null;
 	
 	public void setSecondController(AddDataController controller) {
         secondController = controller;
@@ -350,8 +369,11 @@ public class DemoController {
 		// incrementing the y coordinate of the draggable textbox in a loop
 
 		for (int i = 0; i < intersection.size(); i++) {
-
-			canvas.getChildren().addAll(new EditableLabel(380, yCoordI, intersection.get(i)));
+			if ((i + 1) % 8 == 0) {
+				yCoordI = 180;
+				xCoordI += 50;
+			}
+			canvas.getChildren().addAll(new EditableLabel(xCoordI, yCoordI, intersection.get(i)));
 			yCoordI += 40;
 		}
 
@@ -359,8 +381,11 @@ public class DemoController {
 		// y coordinate of the draggable textbox in a loop
 
 		for (int i = 0; i < first.size(); i++) {
-
-			canvas.getChildren().addAll(new EditableLabel(220, yCoordL, first.get(i)));
+			if ((i + 1) % 8 == 0) {
+				yCoordL = 135;
+				xCoordL += 50;
+			}
+			canvas.getChildren().addAll(new EditableLabel(xCoordL, yCoordL, first.get(i)));
 			yCoordL += 40;
 		}
 
@@ -368,10 +393,17 @@ public class DemoController {
 		// the y coordinate of the draggable textbox in a loop
 
 		for (int i = 0; i < second.size(); i++) {
-
-			canvas.getChildren().addAll(new EditableLabel(520, yCoordR, second.get(i)));
+			if ((i + 1) % 8 == 0) {
+				yCoordR = 135;
+				xCoordR += 50;
+			}
+			canvas.getChildren().addAll(new EditableLabel(xCoordR, yCoordR, second.get(i)));
 			yCoordR += 40;
 		}
+		
+		
+		
+		
 
 	}
 
@@ -381,8 +413,11 @@ public class DemoController {
 		// incrementing the y coordinate of the draggable textbox in a loop
 
 		for (int i = 0; i < third.size(); i++) {
-
-			EditableLabel text = new EditableLabel(380, yCoordI, third.get(i));
+			if ((i + 1) % 8 == 0) {
+				yCoordI = 180;
+				xCoordI += 50;
+			}
+			EditableLabel text = new EditableLabel(xCoordI, yCoordI, third.get(i));
 			canvas.getChildren().addAll(text);
 			yCoordI += 40;
 		}
@@ -391,7 +426,11 @@ public class DemoController {
 		// y coordinate of the draggable textbox in a loop
 
 		for (int i = 0; i < first.size(); i++) {
-			EditableLabel text = new EditableLabel(220, yCoordL, first.get(i));
+			if ((i + 1) % 8 == 0) {
+				yCoordL = 135;
+				xCoordL += 50;
+			}
+			EditableLabel text = new EditableLabel(xCoordL, yCoordL, first.get(i));
 			canvas.getChildren().addAll(text);
 
 			yCoordL += 40;
@@ -401,12 +440,16 @@ public class DemoController {
 		// the y coordinate of the draggable textbox in a loop
 
 		for (int i = 0; i < second.size(); i++) {
-
-			EditableLabel text = new EditableLabel(520, yCoordR, second.get(i));
+			if ((i + 1) % 8 == 0) {
+				yCoordR = 135;
+				xCoordR += 50;
+			}
+			EditableLabel text = new EditableLabel(xCoordR, yCoordR, second.get(i));
 			canvas.getChildren().addAll(text);
 
 			yCoordR += 40;
 		}
+	
 
 	}
 
@@ -788,11 +831,13 @@ public class DemoController {
 		if (selectedText.size() > 0) {
 			for (int i = 0; i < selectedText.size(); i++) {
 				canvas.getChildren().remove(selectedText.get(i));
+				DemoController.itemList.remove(selectedText.get(i));
 			}
 			selectedText.clear();
 		}
 		else {
 			canvas.getChildren().remove(currentText);
+			DemoController.itemList.remove(currentText);
 		}
 		
 	}
@@ -927,8 +972,28 @@ public class DemoController {
 
     }
 	public void quitButton(ActionEvent actionEvent) {
-		Stage stage = (Stage) addData.getScene().getWindow();
-	    stage.close();
+//		Stage stage = (Stage) addData.getScene().getWindow();
+//	    stage.close();
+	    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit VennEver?", ButtonType.YES, ButtonType.NO);
+	    DialogPane dialogPane = alert.getDialogPane();
+	    alert.setTitle("VennEver");
+	    alert.setHeaderText("Quit VennEver");
+		dialogPane.getStylesheets().add(
+		   getClass().getResource("editable-text.css").toExternalForm());
+		dialogPane.getStyleClass().add("dialog-pane-close");
+		dialogPane.getStyleClass().add("alert-pane-close");
+		
+        // clicking X also means no
+        ButtonType result = alert.showAndWait().orElse(ButtonType.NO);
+        
+        if (ButtonType.NO.equals(result)) {
+            // consume event i.e. ignore close request 
+            actionEvent.consume();
+        }
+        else {
+        	   //close all windows and terminate
+        	System.exit(0);
+        }
 	}
 
 	class EditableLabel extends Label {
@@ -945,6 +1010,7 @@ public class DemoController {
 			relocate(x, y);
 			getChildren().add(tf);
 			getStyleClass().add("editable-text");
+			DemoController.itemList.add(this);
 			enableDrag();
 			
 		}
@@ -1072,6 +1138,7 @@ public class DemoController {
 				if (!hasFocus && getParent() != null && getParent() instanceof Pane
 						&& (tf.getText() == null || tf.getText().trim().isEmpty())) {
 					((Pane) getParent()).getChildren().remove(this);
+					DemoController.itemList.remove(this);
 				}
 			});
 
@@ -1131,10 +1198,15 @@ public class DemoController {
 		}
 		for (EditableLabel l: toBeDeleted) {
 			canvas.getChildren().remove(l);
+			DemoController.itemList.remove(l);
 		}
 		yCoordI = 180;
 		yCoordL = 135;
 		yCoordR = 135;
+		
+		xCoordI = 380;
+		xCoordL = 220;
+		xCoordR = 520;
 	}
 
 	public void setFourthScene(Scene scene) {
@@ -1230,6 +1302,266 @@ public class DemoController {
             });
         }
     }
+	
+	public void loadFile() {
+
+		try {
+			FileChooser fc = new FileChooser();
+			List<String> extensions = new ArrayList<String>();
+			extensions.add("*.venn");
+
+			fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Venn files (*.venn)", "*.venn"));
+			File file = fc.showOpenDialog(canvas.getScene().getWindow());
+			String elements[];
+			Color  leftColor, rightColor;
+			double leftScale, rightScale;
+			ObservableList<String> unassignedItems = FXCollections.observableArrayList();
+			ObservableList<EditableLabel> inDiagram = FXCollections.observableArrayList();
+			ZipFile vennFile = new ZipFile(file);
+
+			// Config
+			ZipEntry ze = vennFile.getEntry("Config.vlist");
+			BufferedReader br = new BufferedReader(new InputStreamReader(vennFile.getInputStream(ze)));
+
+			elements = br.readLine().split("𔓱");
+			leftColor = Color.web(elements[0]);
+			leftScale = Double.parseDouble(elements[1]);
+
+			elements = br.readLine().split("𔓱");
+			rightColor = Color.web(elements[0]);
+			rightScale = Double.parseDouble(elements[1]);
+			
+
+			String line;
+			// Unassigned
+			ze = vennFile.getEntry("Unassigned.csv");
+			br = new BufferedReader(new InputStreamReader(vennFile.getInputStream(ze)));
+			while ((line = br.readLine()) != null) {
+				if (line.contains(",")) {
+					line = line.substring(1, line.length() - 1);
+				}
+				unassignedItems.add(line);
+
+			}
+			br.close();
+
+			// InDiagram
+			ze = vennFile.getEntry("InDiagram.vlist");
+			
+			br = new BufferedReader(new InputStreamReader(vennFile.getInputStream(ze)));
+			while ((line = br.readLine()) != null) {
+				elements = line.split("𔓱");
+				EditableLabel a = new EditableLabel(Double.parseDouble(elements[1]),Double.parseDouble(elements[2]), elements[0]);
+				
+				inDiagram.add(a);
+			}
+			br.close();
+			vennFile.close();
+
+			
+			
+			lCircle.setFill(leftColor);
+			lCircle.setRadius(leftScale);
+			rCircle.setFill(rightColor);
+			rCircle.setRadius(rightScale);
+			
+//			itemList.clear();
+			
+			canvas.getChildren().removeAll();
+			canvas.getChildren().addAll(inDiagram);
+			
+			
+
+			openFile = file;
+			// FIXME: Crashes the JUnit tests because they don't have a title bar on the
+			// window to change
+			
+			
+		} catch (Exception e) {
+			System.out.println("Error: File not opened.");
+			System.out.println(e);
+			e.printStackTrace();
+			DialogPane dialogPane = a.getDialogPane();
+			dialogPane.getStylesheets().add(
+			   getClass().getResource("editable-text.css").toExternalForm());
+			dialogPane.getStyleClass().add("alert-pane");
+			a.setAlertType(AlertType.ERROR);
+			a.setHeaderText("File could not be opened");
+			a.setContentText("");
+			a.setTitle("Error");
+			a.show();
+		}
+	}
+	
+	public void saveFile(File file) {
+		/*
+		 * Heirarchy
+		 * 1. LCircle
+		 * 2. RCircle
+		 * 3. textbox text, position 
+		 */
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			ZipOutputStream zos = new ZipOutputStream(fos);
+
+			File config = new File("Config.vlist");
+			StringBuilder sb = new StringBuilder();
+			sb.append( lCircle.getFill() + "𔓱" + lCircle.getRadius() + "\n"); 
+			sb.append( rCircle.getFill() + "𔓱" + rCircle.getRadius() + "\n");
+			sb.append(slider.getValue() + "\n");
+
+
+
+			BufferedWriter bw = new BufferedWriter(new FileWriter(config));
+			bw.write(sb.toString());
+			bw.close();
+			File unassigned = new File("Unassigned.csv");
+			sb = new StringBuilder();
+			bw = new BufferedWriter(new FileWriter(unassigned));
+			if (!itemList.isEmpty()) {
+				bw.write(itemList.get(0).getText());
+				if (itemList.size() > 1) {
+					for (int i = 1; i < itemList.size(); i++) {
+						if (itemList.get(i).getText().equals(",")) {
+							bw.append("\n\"" + itemList.get(i).getText() + "\"");
+						} else {
+							bw.append("\n" + itemList.get(i).getText());
+						}
+					}
+				}
+			}
+			bw.close();
+
+			File inDiagram = new File("InDiagram.vlist");
+			sb = new StringBuilder();
+			for (int i = 0; i < itemList.size(); i++) {
+				EditableLabel d = itemList.get(i);
+				sb.append(d.getText() + "𔓱" + d.getLayoutX() + "𔓱"
+						+ d.getLayoutY() + "𔓱" );
+				if (i != itemList.size() - 1) {
+					sb.append("\n");
+				}
+			}
+			bw = new BufferedWriter(new FileWriter(inDiagram));
+			bw.write(sb.toString());
+			bw.close();
+
+			File[] files = { config, unassigned, inDiagram };
+			byte[] buffer = new byte[128];
+			for (int i = 0; i < files.length; i++) {
+				File f = files[i];
+				if (!f.isDirectory()) {
+					ZipEntry entry = new ZipEntry(f.getName());
+					FileInputStream fis = new FileInputStream(f);
+					zos.putNextEntry(entry);
+					int read = 0;
+					while ((read = fis.read(buffer)) != -1) {
+						zos.write(buffer, 0, read);
+					}
+					zos.closeEntry();
+					fis.close();
+				}
+			}
+			zos.close();
+			fos.close();
+
+			for (File f : files) {
+				f.delete();
+			}
+
+			openFile = file;
+
+		} 
+		catch (Exception e) {
+			System.out.println("Error: File not saved.");
+			System.out.println(e);
+			e.printStackTrace();
+			DialogPane dialogPane = a.getDialogPane();
+			dialogPane.getStylesheets().add(
+			   getClass().getResource("editable-text.css").toExternalForm());
+			dialogPane.getStyleClass().add("alert-pane");
+			a.setAlertType(AlertType.ERROR);
+			a.setHeaderText("File could not be saved");
+			a.setContentText("");
+			a.show();
+		}
+
+	}
+	
+	@FXML
+	void save() {
+		if (openFile!= null) {
+			saveFile(openFile);
+		}
+		else {
+			saveAs();
+		}
+		
+	}
+	
+	
+	@FXML
+	void saveAs() {
+		try {
+			String name;
+			
+			
+				name = "Venn Diagram.venn";
+			
+
+			FileChooser fc = new FileChooser();
+			fc.setTitle("Save");
+			fc.setInitialFileName(name);
+			fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("VennEver files (*.venn)", "*.venn"));
+			File selectedFile = fc.showSaveDialog(canvas.getScene().getWindow());
+
+			if (!(selectedFile.getName().length() > 5 && selectedFile.getName()
+					.substring(selectedFile.getName().length() - 5).toLowerCase().equals(".venn"))) {
+				selectedFile.renameTo(new File(selectedFile.getAbsolutePath() + ".venn"));
+			}
+			
+			saveFile(selectedFile);
+			
+
+		} catch (Exception e) {
+			
+			System.out.println("Error: File not saved.");
+			System.out.println(e);
+			e.printStackTrace();
+			DialogPane dialogPane = a.getDialogPane();
+			dialogPane.getStylesheets().add(
+			   getClass().getResource("editable-text.css").toExternalForm());
+			dialogPane.getStyleClass().add("alert-pane");
+			a.setAlertType(AlertType.ERROR);
+			a.setHeaderText("File could not be saved");
+			a.setContentText("");
+			a.show();
+		}
+	}
+	
+	@FXML
+	public void export() {
+		FileChooser fileChooser = new FileChooser();
+        
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = 
+                new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+       
+        //Show save file dialog
+        File file = fileChooser.showSaveDialog(canvas.getScene().getWindow());
+         
+        if(file != null){
+            try {
+                WritableImage writableImage = canvas.snapshot(new SnapshotParameters(), null);
+                RenderedImage renderedImage = SwingFXUtils.fromFXImage(writableImage, null);
+                ImageIO.write(renderedImage, "png", file);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+	}
+
 
 }
 
