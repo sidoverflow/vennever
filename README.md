@@ -13,9 +13,36 @@
 2. Run ``` java -jar VennEver.jar ``` to launch *VennEver.jar*  
 
 *MacOS users should be able to launch the JAR file by double clicking on it*
-  
-### Usage
-[*VennEver* User Manual](https://github.com/sidharthsudarsan/VennProject/blob/master/Documentation/User%20Manual_Version_4.0.pdf)
+
+### Demo
+<img src="https://github.com/sidoverflow/VennProject/blob/sid_develop/Venn/src/main/java/resources/gif1.gif" width="750">
+
+> - Add data on to the diagram
+> - Choose between text and count view
+
+<img src="https://github.com/sidoverflow/VennProject/blob/sid_develop/Venn/src/main/java/resources/gif2.gif" width="750">
+
+> - Add titles
+> - Customize text individually or by selecting multiple text boxes
+> - Show extended description for each text box
+
+<img src="https://github.com/sidoverflow/VennProject/blob/sid_develop/Venn/src/main/java/resources/gif3.gif" width="750">
+
+> - Customize circles 
+> - Undo/Redo changes
+> - Save/Open project as .venn files
+> - Export as PNG
+
+<img src="https://github.com/sidoverflow/VennProject/blob/sid_develop/Venn/src/main/java/resources/gif4.gif" width="750">
+
+> - VennTest, a mode where the user is asked to arrange a set of tags on the Venn diagram loaded from a .csv file. 
+> - Once finished, the user can compare their arrangement to a previously hidden correct answer
+
+
+### Documentation
+[*VennEver* User Manual](https://github.com/sidharthsudarsan/VennProject/blob/master/Documentation/User%20Manual_Version_4.0.pdf) 
+
+[Other Documentation](https://github.com/sidharthsudarsan/VennProject/blob/master/Documentation)
   
 ### Team
 [Sidharth Sudarsan](https://github.com/sidharthsudarsan)
