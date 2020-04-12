@@ -79,7 +79,7 @@ public class AddDataController {
     @FXML
     public Label text = new Label();
     
-    Boolean duplicateCheck;
+    Boolean duplicateCheck = false;
 
     @FXML
 	Alert a = new Alert(AlertType.NONE);

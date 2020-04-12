@@ -1272,6 +1272,7 @@ public class DemoController {
 			rightColor = Color.web(elements[0]);
 			rightScale = Double.parseDouble(elements[1]);
 			
+			
 
 			String line;
 			// Unassigned
@@ -1293,7 +1294,7 @@ public class DemoController {
 			while ((line = br.readLine()) != null) {
 				elements = line.split("𔓱");
 				EditableLabel a = new EditableLabel(Double.parseDouble(elements[1]),Double.parseDouble(elements[2]), elements[0]);
-				
+				a.setStyle(elements[3]);
 				inDiagram.add(a);
 			}
 			br.close();
@@ -1302,7 +1303,9 @@ public class DemoController {
 			
 			
 			lCircle.setFill(leftColor);
+			lCircle.setOpacity(0.51);
 			lCircle.setRadius(leftScale);
+			rCircle.setOpacity(0.51);
 			rCircle.setFill(rightColor);
 			rCircle.setRadius(rightScale);
 			
@@ -1378,7 +1381,7 @@ public class DemoController {
 			for (int i = 0; i < itemList.size(); i++) {
 				EditableLabel d = itemList.get(i);
 				sb.append(d.getText() + "𔓱" + d.getLayoutX() + "𔓱"
-						+ d.getLayoutY() + "𔓱" );
+						+ d.getLayoutY() + "𔓱" + d.getStyle() + "𔓱");
 				if (i != itemList.size() - 1) {
 					sb.append("\n");
 				}
