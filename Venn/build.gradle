@@ -6,7 +6,17 @@
  * User Manual available at https://docs.gradle.org/5.6.1/userguide/java_library_plugin.html
  */
  
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.7.0'
+        classpath 'org.openjfx:javafx:11'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
 
+    }
+}
 
 
 plugins {
@@ -14,25 +24,24 @@ plugins {
   id 'eclipse'
   id 'application'
   id 'org.openjfx.javafxplugin' version '0.0.8'
+  id "org.beryx.jlink" version "2.9.4"
 	
 }
-
-
-
 repositories {
+	jcenter()
     mavenCentral()
 }
 
 
 javafx {
-    version = "13"
+    version = "11"
     modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing', 'javafx.media', 'javafx.graphics' ]
 }
 
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
-    
-
+    implementation 'org.openjfx:javafx:11'
+	compile group: 'org.openjfx', name: 'javafx', version: '11.0.2'
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:28.0-jre'
 	testCompile 'org.testfx:testfx-junit:4.0+'
@@ -49,8 +58,13 @@ dependencies {
 
 jar {
 	manifest {
-		attributes 'Main-Class': 'com.venn.Main'
+		attributes ( 
+			'Main-Class': 'com.venn.Main'	
+		)
 	}
+	from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 test {
@@ -60,4 +74,14 @@ test {
 	}
 }
 
+compileJava {
+    doFirst {
+        options.compilerArgs = [
+                '--module-path', classpath.asPath,
+                '--add-modules', 'javafx.controls,javafx.fxml,javafx.graphics'
+        ]
+        println options.compilerArgs
+    }
+
+}
 mainClassName = 'com.venn.Main'
