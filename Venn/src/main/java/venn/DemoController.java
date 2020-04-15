@@ -739,22 +739,40 @@ public class DemoController {
 
 		if (cIt % 2 == 0) {
 			if (selectedText.size() > 0) {
+				Operation change = new Operation();
+				change.setOperation("text style");
+				change.setCurrentStyle(selectedText.get(0).getStyle());
 				for (int i = 0; i < selectedText.size(); i++) {
 					selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-style: italic");
 				}
-//				selectedText.clear();
+				change.setNewStyle(selectedText.get(0).getStyle());
+				undoStack.push(change);
 			} else {
+				Operation change = new Operation();
+				change.setOperation("text style");
+				change.setCurrentStyle(currentText.getStyle());
 				currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-style: italic");
+				change.setNewStyle(currentText.getStyle());
+				undoStack.push(change);
 			} 
 		}
 		else {
 			if (selectedText.size() > 0) {
+				Operation change = new Operation();
+				change.setOperation("text style");
+				change.setCurrentStyle(selectedText.get(0).getStyle());
 				for (int i = 0; i < selectedText.size(); i++) {
 					selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-style: normal");
 				}
-//				selectedText.clear();
+				change.setNewStyle(selectedText.get(0).getStyle());
+				undoStack.push(change);
 			} else {
+				Operation change = new Operation();
+				change.setOperation("text style");
+				change.setCurrentStyle(currentText.getStyle());
 				currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-style: normal");
+				change.setNewStyle(currentText.getStyle());
+				undoStack.push(change);
 			} 
 		}
 		cIt++;
@@ -808,14 +826,24 @@ public class DemoController {
 	public void changeFont(ActionEvent e) {
 		if (fontComboBox.getValue().toString() != "choose your font") {
 			if (selectedText.size() > 0) {
+				Operation change = new Operation();
+				change.setOperation("text style");
+				change.setCurrentStyle(selectedText.get(0).getStyle());
 				for (int i = 0; i < selectedText.size(); i++) {
 					selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-family: " + '"'
 							+ fontComboBox.getValue().toString() + '"');
 				}
+				change.setNewStyle(selectedText.get(0).getStyle());
+				undoStack.push(change);
 
 			} else {
+				Operation change = new Operation();
+				change.setOperation("text style");
+				change.setCurrentStyle(currentText.getStyle());
 				currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-family: " + '"'
 						+ fontComboBox.getValue().toString() + '"');
+				change.setNewStyle(currentText.getStyle());
+				undoStack.push(change);
 
 			} 
 		} 
@@ -826,11 +854,21 @@ public class DemoController {
 	public void changeFontSize(ActionEvent e) {
 		if (fontComboBox.getValue().toString() != "size") {
 			if (selectedText.size() > 0) {
+				Operation change = new Operation();
+				change.setOperation("text style");
+				change.setCurrentStyle(selectedText.get(0).getStyle());
 				for (int i = 0; i < selectedText.size(); i++) {
 					selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-size: " + sizeComboBox.getValue().toString() );
 				}
+				change.setNewStyle(selectedText.get(0).getStyle());
+				undoStack.push(change);
 			} else {
+				Operation change = new Operation();
+				change.setOperation("text style");
+				change.setCurrentStyle(currentText.getStyle());
 				currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-size: " + sizeComboBox.getValue().toString() );
+				change.setNewStyle(currentText.getStyle());
+				undoStack.push(change);
 			}
 		}
 		
