@@ -10,7 +10,7 @@
 ### Installation
 
 1. Download the *JAR* file from the latest release
-2. Run ``` java -jar VennEver.jar ``` to launch *VennEver.jar*  
+2. Run ``` java -jar --module-path "/path/to/javafx/lib" --add-modules javafx.controls,javafx.fxml VennEver.jar ``` to launch *VennEver.jar*  
 
 *MacOS users should be able to launch the JAR file by double clicking on it*
 
