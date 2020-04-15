@@ -88,4 +88,5 @@ compileJava {
     }
 
 }
+
 mainClassName = 'com.venn.Main'
