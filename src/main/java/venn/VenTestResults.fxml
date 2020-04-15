@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="650.0" minWidth="900.0" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.VennTestResultsController">
+   <children>
+      <AnchorPane fx:id="canvas" layoutX="89.0" layoutY="101.0" prefHeight="482.0" prefWidth="723.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="101.0">
+         <effect>
+            <DropShadow color="#00000046" height="130.0" radius="64.5" spread="0.66" width="130.0" />
+         </effect>
+         <children>
+            <Circle fx:id="lCircle" fill="#64636896" layoutX="246.0" layoutY="241.0" radius="210.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Circle>
+            <Circle fx:id="rCircle" fill="#fc2d5a73" layoutX="477.0" layoutY="241.0" radius="210.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Circle>
+         </children>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="616.0" layoutY="12.0" prefHeight="39.0" prefWidth="196.0" style="-fx-background-radius: 50 0 0 50;" styleClass="second-set" stylesheets="@app.css" text="VennTest Results">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="correctIcon" fitHeight="30.0" fitWidth="30.0" layoutX="89.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../resources/icons8-checked.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="correctInfo1" layoutX="129.0" layoutY="38.0" prefHeight="30.0" prefWidth="124.0" styleClass="footer" stylesheets="@app.css" text="Spot on!" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="correctInfo2" layoutX="130.0" layoutY="63.0" prefHeight="30.0" prefWidth="390.0" styleClass="footer" stylesheets="@app.css" text="Your attempt matched the correct answer." visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="playAgain" graphicTextGap="9.0" layoutX="441.0" layoutY="599.0" mnemonicParsing="false" onAction="#playAgainAction" prefHeight="37.0" prefWidth="165.0" style="-fx-background-color: #fa2c56;" stylesheets="@app.css" text="Play Again" textFill="WHITE" visible="false">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons8-puzzle_white.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="backToEditor" graphicTextGap="9.0" layoutX="254.0" layoutY="599.0" mnemonicParsing="false" onAction="#backToEditorAction" prefHeight="37.0" prefWidth="174.0" style="-fx-background-color: #FA2c56; -fx-background-radius: 0 50 50 0;" stylesheets="@app.css" text="Back to Editor" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons8-query_outer_join_right_white.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="wrongIcon" fitHeight="30.0" fitWidth="30.0" layoutX="89.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../resources/icons8-cancel.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="wrongInfo1" layoutX="129.0" layoutY="38.0" prefHeight="30.0" prefWidth="152.0" styleClass="footer" stylesheets="@app.css" text="Better luck next time!" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="wrongInfo2" layoutX="130.0" layoutY="63.0" prefHeight="30.0" prefWidth="390.0" styleClass="footer" stylesheets="@app.css" text="Your attempt was wrong. Check the answer to verify." visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="showAnswer" graphicTextGap="9.0" layoutX="616.0" layoutY="57.0" mnemonicParsing="false" onAction="#showAnswerAction" prefHeight="37.0" prefWidth="196.0" style="-fx-background-color: #fa2c56;" stylesheets="@app.css" text="Show Answer" textFill="WHITE" visible="false">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons8-faq.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="tryAgain" graphicTextGap="9.0" layoutX="441.0" layoutY="599.0" mnemonicParsing="false" onAction="#tryAgainAction" prefHeight="37.0" prefWidth="165.0" style="-fx-background-color: #fa2c56;" stylesheets="@app.css" text="Try Again" textFill="WHITE" visible="false">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons8-puzzle_white.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>

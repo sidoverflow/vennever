@@ -1,0 +1,247 @@
+@font-face {
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+    src: url('../resources/ProximaNova.ttf');
+    
+}
+@font-face {
+  -fx-font-weight: normal;
+  -fx-font-style: italic;
+  src: url('../resources/ProximaNovaIt.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: normal;
+  src: url('../resources/ProximaNovaB.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: italic;
+  src: url('../resources/ProximaNovaBIt.ttf');
+  
+}
+
+@font-face {
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+    src: url('../resources/Montserrat.ttf');
+    
+    
+}
+@font-face {
+  -fx-font-weight: normal;
+  -fx-font-style: italic;
+  src: url('../resources/MontserratIt.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: normal;
+  src: url('../resources/MontserratB.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: italic;
+  src: url('../resources/MontserratBIt.ttf');
+  
+}
+
+.root{
+
+    -fx-font-family: "Proxima Nova";
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+}
+
+.first-set {
+	-fx-background-color : #FA2C56 ;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Proxima Nova";
+	-fx-background-radius :  0 5 5 0;
+	
+}
+.second-set {
+	-fx-background-color : #FA2C56 ;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Proxima Nova";
+	-fx-background-radius :  5 0 0 5;
+	
+}
+.intersection-set {
+	-fx-background-color : #FA2C56 ;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Proxima Nova";
+	-fx-font-size: 12pt;
+	-fx-background-radius :  5 5 5 5;
+	
+}
+.intersection-set:hover{
+	-fx-font-size: 11pt;
+}
+
+.footer {
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Proxima Nova";
+	-fx-font-weight: normal;
+
+	
+}
+.upload-button
+{
+-fx-background-color : #393e46;
+-fx-background-radius :  0 50 50 0;
+-fx-font-family: "Proxima Nova";
+-fx-font-size: 12pt;
+}
+
+.upload-button:hover
+{
+-fx-background-color : #FA2C56 ;
+-fx-background-radius :  0 50 50 0;
+-fx-font-size: 11pt;
+}
+.upload-button:pressed
+{
+-fx-background-color :  #222831;
+-fx-background-radius :  0 50 50 0;
+}
+
+.button1
+{
+-fx-background-color : #222831;
+-fx-background-radius :  50 0 0 50;
+-fx-font-family: "Proxima Nova";
+-fx-font-size: 12pt;
+}
+
+.button
+{
+-fx-background-color : #222831;
+-fx-background-radius :  50 0 0 50;
+-fx-font-family: "Proxima Nova";
+-fx-font-size: 12pt;
+}
+
+
+
+.button:hover
+{
+-fx-background-color : #393e46 ;
+-fx-background-radius :  50 0 0 50;
+-fx-font-size: 11pt;
+}
+.button:pressed
+{
+-fx-background-color : #FA2C56 ;
+-fx-background-radius :  50 0 0 50;
+}
+
+
+.format-button
+{
+-fx-background-color : #393e46;
+-fx-background-radius :  10 10 10 10;
+-fx-font-family: "Proxima Nova";
+-fx-font-size: 12pt;
+-fx-text-fill: #ffffff
+}
+
+.format-button:pressed
+{
+-fx-background-color : #222831;
+}
+
+
+.intersection
+{
+-fx-background-color : #222831;
+-fx-background-radius :  50 0 0 50;
+-fx-font-family: "Proxima Nova";
+}
+
+.intersection:hover
+{
+-fx-background-color : #282b30 ;
+-fx-background-radius :  50 0 0 50;
+}
+
+.menu-button .arrow {
+	-fx-background-color : #FA2C56 ;
+}
+
+
+.text-area {
+    -fx-font-family: "Proxima Nova";
+    -fx-font-size: 18;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #222831;
+
+}
+
+.text-area .content {
+    -fx-background-color:  #222831;
+    
+}
+
+.circle-label {
+	-fx-text-fill: #ffffff;
+	-fx-font-size: 10;
+	-fx-font-family: "Proxima Nova";
+	-fx-background-radius :  5 0 0 5;
+	
+}
+
+
+.split-menu-button .arrow {
+	-fx-background-color:  #ffffff;
+	-fx-border-color:  transparent;
+	
+}
+.split-menu-button {
+-fx-background-color :  #393e46;
+-fx-background-radius :  50 50 50 50;
+
+}
+
+.split-menu-button .text-field {
+-fx-background-color :  #393e46;
+-fx-background-radius :  50 50 50 50;
+-fx-text-fill: #ffffff
+
+}
+
+.split-menu-button .arrow-button {
+-fx-background-color :  #393e46;
+-fx-background-radius :  50 50 50 50;
+
+	
+}
+
+.split-menu-button .arrow-button:hover {
+-fx-background-color :  #FA2C56;
+-fx-background-radius :  50 50 50 50;
+
+	
+}
+
+.split-menu-button .list-view .list-cell {
+	-fx-text-fill: #ffffff;
+	-fx-background-color :  #393e46;
+}
+
+.split-menu-button .list-view .list-cell:hover {
+	-fx-background-color :  #FA2C56;
+}
+
+.split-menu-button .list-cell {
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Proxima Nova";
+}
+

@@ -1,0 +1,195 @@
+@font-face {
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+    src: url('../resources/ProximaNova.ttf');
+    
+}
+@font-face {
+  -fx-font-weight: normal;
+  -fx-font-style: italic;
+  src: url('../resources/ProximaNovaIt.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: normal;
+  src: url('../resources/ProximaNovaB.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: italic;
+  src: url('../resources/ProximaNovaBIt.ttf');
+  
+}
+
+@font-face {
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+    src: url('../resources/Montserrat.ttf');
+    
+    
+}
+@font-face {
+  -fx-font-weight: normal;
+  -fx-font-style: italic;
+  src: url('../resources/MontserratIt.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: normal;
+  src: url('../resources/MontserratB.ttf');
+  
+}
+
+@font-face {
+  -fx-font-weight: bold;
+  -fx-font-style: italic;
+  src: url('../resources/MontserratBIt.ttf');
+  
+}
+
+.root{
+
+    -fx-font-family: "Proxima Nova";
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+}
+
+.editable-text {
+	-fx-font-family: "Proxima Nova";
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+    -fx-font-size: 14;
+    -fx-padding: 5;
+    -fx-background-color:  #CECFD1;
+    -fx-background-opacity: 0.2;
+    -fx-background-radius: 5 5 5 5;
+}
+
+.editable-text:hover {
+    -fx-background-color: #FA2C56;
+}
+.editable-text:focused {
+    -fx-background-color: #000000;
+    
+}
+.color-picker {
+-fx-background-color : #FA2C56;
+-fx-background-radius :  50 50 50 50;
+-fx-font-family: "Proxima Nova";
+-fx-font-fill: #ffffff;
+
+}
+.infoLabel {
+	-fx-font-family: "Proxima Nova";
+	-fx-font-size: 10pt;
+	-fx-text-fill: #ffffff;
+}
+
+.color-picker:hover {
+    -fx-background-color: #8a1a30;
+}
+.color-picker .arrow {
+	-fx-background-color : #ffffff ;
+}
+.color-picker .label {
+     -fx-text-fill: #ffffff;
+
+}
+
+.color-picker .color-picker-label
+{
+-fx-alignment : bottom-center;
+}
+
+.slider .track {
+	-fx-background-color: #FA2C56;
+}
+.slider .thumb {
+	-fx-background-color: #ffffff;
+}
+
+.alert-pane{
+  -fx-background-color : #222831;
+}
+
+
+.alert-pane .content{
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+.alert-pane:header *.header-panel{
+    -fx-background-color: #393e46;
+}
+.alert-pane:header *.header-panel *.label{
+    -fx-font-size: 18px;
+    -fx-text-fill: #FA2C56;
+}
+/* Button style */
+.dialog-pane .button {
+-fx-background-color : #393e46;
+-fx-background-radius :  50 0 0 50;
+-fx-font-family: "Proxima Nova";
+-fx-text-fill: #ffffff;
+-fx-font-size: 12pt;
+}
+
+.dialog-pane .button:hover {
+-fx-background-color : #FA2C56 ;
+-fx-background-radius :  50 0 0 50;
+-fx-font-size: 11pt;
+}
+
+.dialog-pane .button:pressed {
+-fx-background-color :  #222831;
+-fx-background-radius :  50 0 0 50;
+}
+
+.alert.confirmation.dialog-pane {
+    -fx-graphic: url("../resources/icons8-csv_pink.png");
+}
+
+.alert-pane-close{
+  -fx-background-color : #222831;
+}
+
+
+.alert-pane-close .content{
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+.alert-pane-close:header *.header-panel{
+    -fx-background-color: #393e46;
+}
+.alert-pane-close:header *.header-panel *.label{
+    -fx-font-size: 18px;
+    -fx-text-fill: #FA2C56;
+}
+/* Button style */
+.dialog-pane-close .button {
+-fx-background-color : #393e46;
+-fx-background-radius :  50 50 50 50;
+-fx-font-family: "Proxima Nova";
+-fx-text-fill: #ffffff;
+-fx-font-size: 12pt;
+}
+
+.dialog-pane-close .button:hover {
+-fx-background-color : #FA2C56 ;
+-fx-background-radius :  50 50 50 50;
+-fx-font-size: 11pt;
+}
+
+.dialog-pane-close .button:pressed {
+-fx-background-color :  #222831;
+-fx-background-radius :  50 0 0 50;
+}
+
+.alert.confirmation.dialog-pane-close {
+    -fx-graphic: url("../resources/icons8-shutdown.png");
+}
