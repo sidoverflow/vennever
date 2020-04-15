@@ -38,7 +38,7 @@ public class Main extends Application {
 			
 			
 			
-	        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("/venn/Demo.fxml"));
+	        FXMLLoader firstPaneLoader = new FXMLLoader(Main.class.getResource("/venn/Demo.fxml"));
 	        Parent root = firstPaneLoader.load();
 	        Scene firstScene = new Scene(root);
 
