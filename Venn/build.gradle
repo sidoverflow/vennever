@@ -87,6 +87,15 @@ compileJava {
 
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/java/venn"]
+            includes = ["**/*.fxml"]
+        }
+    }
+}
+
 
 test {
 	useJUnitPlatform()
