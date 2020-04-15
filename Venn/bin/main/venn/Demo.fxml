@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" style="-fx-background-color: #393e46;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.DemoController">
+   <children>
+      <AnchorPane layoutX="-24.0" layoutY="31.0" prefHeight="670.0" prefWidth="332.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-24.0" AnchorPane.topAnchor="31.0">
+         <children>
+            <AnchorPane fx:id="sidebar" layoutX="2.0" layoutY="-2.0" prefHeight="676.0" prefWidth="304.0" style="-fx-background-color: #222831; -fx-background-radius: 0 40 40 0;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="-2.0">
+               <children>
+                  <VBox layoutX="22.0" layoutY="136.0" prefHeight="565.0" prefWidth="282.0" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="136.0">
+                     <children>
+                        <Button fx:id="editor" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="282.0" style="-fx-background-color: #FA2C56#FA2C56 #FA2C56#FA2C56;" stylesheets="@app.css" text="Editor" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons8-query_outer_join_right_white.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="addData" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#openSecondScene" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Data" textAlignment="CENTER" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons8-add_file.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="vennTest" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#openFourthScene" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="VennTest" textAlignment="CENTER" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons8-puzzle.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <MenuButton alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="50.0" prefWidth="282.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#diagramTitleAction" text="add diagram title" />
+                              <MenuItem mnemonicParsing="false" onAction="#setTitleAction" text="add set titles" />
+                              <MenuItem mnemonicParsing="false" onAction="#textBoxAction" text="add text box" />
+                           </items>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons8-add_row.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="-0.5" />
+                           </padding>
+                           <stylesheets>
+                              <URL value="@app.css" />
+                              <URL value="@menubar.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="menu-bar" />
+                              <String fx:value="button" />
+                           </styleClass>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </MenuButton>
+                        <Button fx:id="format" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#formatButtonAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Format Text" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons8-lowercase.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="customizeCircle" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#customizeCircleAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Customize Circles" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons8-mastercard.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#handleUndoButtonAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Undo" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons8-undo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#handleRedoButtonAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Redo" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons8-redo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="clearAll" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#clearAllAction" prefHeight="50.0" prefWidth="282.0" stylesheets="@app.css" text="Clear All " textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons8-delete_bin.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </VBox>
+                  <Label contentDisplay="CENTER" layoutX="113.0" layoutY="632.0" prefHeight="21.0" prefWidth="51.0" styleClass="footer" stylesheets="@app.css" text="made on" textAlignment="CENTER" AnchorPane.bottomAnchor="25.0" />
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="167.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0">
+                     <image>
+                        <Image url="@../resources/icons8-java.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="78.0" fitWidth="116.0" layoutX="94.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/VennEver.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ctrl" fitHeight="25.0" fitWidth="25.0" layoutX="118.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-ctrl.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="click" fitHeight="25.0" fitWidth="25.0" layoutX="152.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="file:/Users/lensman/git/VennProject/Venn/src/main/java/resources/icons8-left_click.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="selectInfo" layoutX="69.0" layoutY="598.0" prefHeight="17.0" prefWidth="199.0" styleClass="footer" stylesheets="@app.css" text="to select and edit multiple boxes" visible="false" />
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="canvas" layoutX="380.0" layoutY="95.0" prefHeight="574.0" prefWidth="799.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="95.0">
+         <effect>
+            <DropShadow color="#00000046" height="130.0" radius="64.5" spread="0.66" width="130.0" />
+         </effect>
+         <children>
+            <StackPane prefHeight="564.0" prefWidth="802.0">
+               <children>
+                  <Group>
+                     <children>
+                        <Pane layoutX="26.0" layoutY="21.0" prefHeight="536.0" prefWidth="770.0">
+                           <children>
+                              <Circle fx:id="lCircle" fill="#64636896" layoutX="273.0" layoutY="267.0" onMouseClicked="#circleClick" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="200.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </Circle>
+                              <Circle fx:id="rCircle" fill="#fc2d5a73" layoutX="493.0" layoutY="267.0" onMouseClicked="#circleClick" onMouseDragged="#circleOnMouseDraggedEventHandler" onMousePressed="#circleOnMousePressedEventHandler" radius="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </Circle>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Group>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="formatPaneSize" layoutX="875.0" layoutY="33.0" prefHeight="50.0" prefWidth="243.0" style="-fx-background-color: #222831 #222831; -fx-background-radius: 0 0 50 50;" visible="false">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#fa2d59a5" offsetY="3.0" />
+         </effect>
+         <children>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="27.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons8-enlarge.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="formatPaneColour" layoutX="402.0" layoutY="33.0" prefHeight="50.0" prefWidth="435.0" style="-fx-background-color: #222831 #222831; -fx-background-radius: 0 0 50 50;" visible="false">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#fa2f5f" offsetY="3.0" />
+         </effect>
+         <children>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="201.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons8-paint_palette.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="12.0" layoutY="3.0" prefWidth="48.0" styleClass="circle-label" stylesheets="@app.css" text="left circle" />
+            <Label layoutX="364.0" layoutY="3.0" styleClass="circle-label" stylesheets="@app.css" text="right circle" />
+         </children>
+      </Pane>
+      <Pane fx:id="formatPaneText" layoutX="402.0" layoutY="32.0" prefHeight="50.0" prefWidth="757.0" style="-fx-background-color: #222831 #222831; -fx-background-radius: 0 0 50 50;" visible="false">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" color="#fa2f5f" offsetY="3.0" />
+         </effect>
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="39.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons8-type.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="fontComboBox" layoutX="66.0" layoutY="13.0" onAction="#changeFont" prefWidth="150.0" promptText="Proxima Nova" styleClass="split-menu-button" stylesheets="@app.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ComboBox>
+            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="238.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons8-font_size.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="sizeComboBox" editable="true" layoutX="265.0" layoutY="13.0" onAction="#changeFontSize" prefHeight="27.0" prefWidth="68.0" promptText="12" styleClass="split-menu-button" stylesheets="@app.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <Button fx:id="bold" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="358.0" layoutY="10.0" mnemonicParsing="false" onAction="#boldButton" prefHeight="23.0" prefWidth="26.0" styleClass="format-button" stylesheets="@app.css">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/icons8-bold.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="italics" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="422.0" layoutY="10.0" mnemonicParsing="false" onAction="#italicsButton" prefHeight="23.0" prefWidth="26.0" styleClass="format-button" stylesheets="@app.css">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/icons8-italic.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="description" layoutX="550.0" layoutY="10.0" mnemonicParsing="false" onAction="#descriptionAction" prefHeight="32.0" prefWidth="161.0" styleClass="format-button" stylesheets="@app.css" text="Show Description">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="remove" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="486.0" layoutY="10.0" mnemonicParsing="false" onAction="#removeAction" prefHeight="23.0" prefWidth="26.0" styleClass="format-button" stylesheets="@app.css">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/icons8-remove.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+      <MenuBar fx:id="menuBar" layoutX="-1.0" layoutY="-2.0" prefHeight="35.0" prefWidth="1250.0" stylesheets="@menubar.css">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#loadFile" text="Open…">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#save" text="Save">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#export" text="Export">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#quitButton" text="Quit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleUndoButtonAction" text="Undo" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleRedoButtonAction" text="Redo" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openBrowser" text="About VennEver" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>
