@@ -38,22 +38,22 @@ public class Main extends Application {
 			
 			
 			
-	        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getClassLoader().getResource("venn/Demo.fxml"));
+	        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("Demo.fxml"));
 	        Parent root = firstPaneLoader.load();
 	        Scene firstScene = new Scene(root);
 
 	        // getting loader and a pane for the second scene
-	        FXMLLoader secondPaneLoader = new FXMLLoader(getClass().getClassLoader().getResource("venn/AddData.fxml"));
+	        FXMLLoader secondPaneLoader = new FXMLLoader(getClass().getResource("AddData.fxml"));
 	        Parent secondPane = secondPaneLoader.load();
 	        Scene secondScene = new Scene(secondPane);
 	        
 	        // getting loader and a pane for the third scene
-	        FXMLLoader thirdPaneLoader = new FXMLLoader(getClass().getClassLoader().getResource("venn/AddDataIntersection.fxml"));
+	        FXMLLoader thirdPaneLoader = new FXMLLoader(getClass().getResource("AddDataIntersection.fxml"));
 	        Parent thirdPane = thirdPaneLoader.load();
 	        Scene thirdScene = new Scene(thirdPane);
 	        
 	     // getting loader and a pane for the third scene
-	        FXMLLoader fourthPaneLoader = new FXMLLoader(getClass().getClassLoader().getResource("venn/VennTest.fxml"));
+	        FXMLLoader fourthPaneLoader = new FXMLLoader(getClass().getResource("VennTest.fxml"));
 	        Parent fourthPane = fourthPaneLoader.load();
 	        Scene fourthScene = new Scene(fourthPane);
 
