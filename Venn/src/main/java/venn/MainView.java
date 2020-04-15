@@ -25,7 +25,7 @@ public class MainView extends Application {
 		
 		
 		System.out.println(System.getProperty("java.classpath"));
-        launch(args);
+        Application.launch(args);
     }
 	 
 // JavaFX entry point
