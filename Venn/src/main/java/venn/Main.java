@@ -43,7 +43,7 @@ public class Main extends Application {
 	        Scene firstScene = new Scene(root);
 
 	        // getting loader and a pane for the second scene
-	        FXMLLoader secondPaneLoader = new FXMLLoader(getClass().getResource("/venn/AddData.fxml"));
+	        FXMLLoader secondPaneLoader = new FXMLLoader(Main.class.getResource("/venn/AddData.fxml"));
 	        Parent secondPane = secondPaneLoader.load();
 	        Scene secondScene = new Scene(secondPane);
 	        
