@@ -137,7 +137,7 @@ public class Main extends Application {
 	        firstScene.setFill(Color.TRANSPARENT);
 	        primaryStage.setTitle("VennEver");
 			primaryStage.setScene(firstScene);
-			firstScene.getStylesheets().add(getClass().getResource("/editable-text.css").toExternalForm());
+			firstScene.getStylesheets().add(getClass().getResource("editable-text.css").toExternalForm());
 	        primaryStage.initStyle(StageStyle.TRANSPARENT);
 	        
 	        
