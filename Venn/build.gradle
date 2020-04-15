@@ -6,6 +6,17 @@
  * User Manual available at https://docs.gradle.org/5.6.1/userguide/java_library_plugin.html
  */
  
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.7.0'
+        classpath 'org.openjfx:javafx:11'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+    }
+}
 
 
 
@@ -64,6 +75,16 @@ jar {
 	from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+}
+compileJava {
+    doFirst {
+        options.compilerArgs = [
+                '--module-path', classpath.asPath,
+                '--add-modules', 'javafx.controls,javafx.fxml,javafx.graphics'
+        ]
+        println options.compilerArgs
+    }
+
 }
 
 
