@@ -90,7 +90,7 @@ compileJava {
 sourceSets {
     main {
         resources {
-            srcDirs = ["src/main/java/venn"]
+            srcDirs = ["src/main/java"]
             includes = ["**/*.fxml"]
         }
     }
