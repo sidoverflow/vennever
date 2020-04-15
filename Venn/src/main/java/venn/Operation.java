@@ -15,6 +15,8 @@ public class Operation {
 	private DemoController.EditableLabel addedLabel;
 	private double currentCircleSize;
 	private double newCircleSize;
+	private String currentStyle;
+	private String newStyle;
 	private String currentLabelData;
 	private String newLabelData;
 	private String operation;
@@ -87,6 +89,27 @@ public class Operation {
 		return this.newColor;
 	}
 
+	// text style
+	
+	public void setCurrentStyle(String style) {
+
+		this.currentStyle = style;
+	}
+
+	public String getCurrentStyle() {
+
+		return this.currentStyle;
+	}
+	
+	public void setNewStyle(String style) {
+
+		this.newStyle = style;
+	}
+
+	public String getNewStyle() {
+
+		return this.newStyle;
+	}
 	// ---------CIRCLE CURRENT COLOR GET AND SET METHOD------------------
 	public void setCurrentColor(Color currentColor) {
 		this.currentColor = currentColor;

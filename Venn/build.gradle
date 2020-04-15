@@ -31,8 +31,10 @@ repositories {
 	jcenter()
     mavenCentral()
 }
-
-
+java {
+	sourceCompatibility = JavaVersion.VERSION_12
+	targetCompatibility = JavaVersion.VERSION_12
+}
 javafx {
     version = "11"
     modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing', 'javafx.media', 'javafx.graphics' ]
@@ -55,6 +57,8 @@ dependencies {
 
 
 }
+
+
 
 jar {
 	manifest {

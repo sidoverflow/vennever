@@ -689,28 +689,49 @@ public class DemoController {
 		if (cB % 2 == 0) {
 			
 				if (selectedText.size() > 0) {
+					Operation change = new Operation();
+					change.setOperation("text style");
+					change.setCurrentStyle(selectedText.get(0).getStyle());
 					for (int i = 0; i < selectedText.size(); i++) {
 						selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-weight: bold");
 					}
-//					selectedText.clear();
+					change.setNewStyle(selectedText.get(0).getStyle());
+					undoStack.push(change);
 				} else {
+					Operation change = new Operation();
+					change.setOperation("text style");
+					change.setCurrentStyle(currentText.getStyle());
 					currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-weight: bold");
+					change.setNewStyle(currentText.getStyle());
+					undoStack.push(change);
 				}
 			
 		}
 		else {
 		
 				if (selectedText.size() > 0) {
+					Operation change = new Operation();
+					change.setOperation("text style");
+					change.setCurrentStyle(selectedText.get(0).getStyle());
 					for (int i = 0; i < selectedText.size(); i++) {
 						selectedText.get(i).setStyle(selectedText.get(i).getStyle() + ";" + "-fx-font-weight: normal");
 					}
-//					selectedText.clear();
+					change.setNewStyle(selectedText.get(0).getStyle());
+					undoStack.push(change);
 				} else {
+					Operation change = new Operation();
+					change.setOperation("text style");
+					change.setCurrentStyle(currentText.getStyle());
 					currentText.setStyle(currentText.getStyle() + ";" + "-fx-font-weight: normal");
+					change.setNewStyle(currentText.getStyle());
+					undoStack.push(change);
 				}
 			
 		}
 		cB++;
+		
+		
+		
 	}
 
 	@FXML
@@ -855,6 +876,18 @@ public class DemoController {
 			EditableLabel oldLabel = undo.getlabel();
 			canvas.getChildren().removeAll(oldLabel);
 		}
+		else if (operation.equals("text style")) {
+			String currentStyle = undo.getCurrentStyle();
+			currentText.setStyle(currentStyle);
+			if (currentText != null) {
+				currentText.setStyle(currentStyle);
+			}
+			else {
+				for (int i = 0; i < selectedText.size(); i++) {
+					selectedText.get(0).setStyle(currentStyle);
+				}
+			}
+		}
 
 	}
 
@@ -898,6 +931,18 @@ public class DemoController {
 		}else if ( operation.equals("label")) {
 			EditableLabel undoneLabel = redo.getlabel();
 			canvas.getChildren().addAll(undoneLabel);
+		}
+		else if (operation.equals("text style")) {
+			String undoneStyle = redo.getNewStyle();
+			currentText.setStyle(undoneStyle);
+			if (currentText != null) {
+				currentText.setStyle(undoneStyle);
+			}
+			else {
+				for (int i = 0; i < selectedText.size(); i++) {
+					selectedText.get(0).setStyle(undoneStyle);
+				}
+			}
 		}
 
 	}
