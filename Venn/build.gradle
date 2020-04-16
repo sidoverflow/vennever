@@ -107,4 +107,4 @@ test {
 	}
 }
 
-mainClassName = 'venn.Main'
+mainClassName = 'venn.MainView'
