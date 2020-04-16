@@ -22,11 +22,11 @@ public class MainView extends Application {
 	double xOffset = 0;
 	double yOffset = 0;
 	public static void main(String[] args) {
-		
-		
-		System.out.println(System.getProperty("java.classpath"));
-        Application.launch(args);
-    }
+		String javaVersion = System.getProperty("java.version");
+		String javafxVersion = System.getProperty("javafx.version");
+		Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+       		Application.launch(args);
+    	}
 	 
 // JavaFX entry point
 	@Override
