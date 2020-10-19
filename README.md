@@ -5,7 +5,7 @@
 
 > *Coursework for EECS2311: Software Development Project | Winter 2020*
 
-![Course](https://img.shields.io/badge/course-EECS2311-lightgrey) ![GitHub release](https://img.shields.io/github/v/release/sidoverflow/VennProject?color=red) ![CircleCI](https://img.shields.io/circleci/build/github/sidoverflow/VennProject) ![GitHub contributors](https://img.shields.io/github/contributors/sidoverflow/VennProject) ![GitHub issues](https://img.shields.io/github/issues/sidoverflow/VennProject) ![GitHub license](https://img.shields.io/github/license/sidoverflow/VennProject) 
+![Course](https://img.shields.io/badge/course-EECS2311-lightgrey) ![GitHub release](https://img.shields.io/github/v/release/sidoverflow/VennProject?color=red) ![CircleCI](https://circleci.com/gh/sidoverflow/VennEver.svg?style=svg) ![GitHub contributors](https://img.shields.io/github/contributors/sidoverflow/VennProject) ![GitHub issues](https://img.shields.io/github/issues/sidoverflow/VennProject) ![GitHub license](https://img.shields.io/github/license/sidoverflow/VennProject) 
 
 ### Prerequisite
 
